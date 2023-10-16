@@ -13,8 +13,8 @@
 メンバ変数
 private  _codeName  
 public   CodeName  
-static   s_codeName　（publicの場合s_Static）  
-const    c_codeName    （publicの場合c_Static）  
+static   s_codeName  （publicの場合s_Static）  
+const    c_codeName  （publicの場合c_Static）  
 
 ローカル変数  
 codeName  
