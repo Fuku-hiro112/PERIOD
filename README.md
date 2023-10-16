@@ -7,15 +7,15 @@
 ## プロジェクトの構成
 
 ## 命名規則
-基本的に### [Microsoftの命名規則]https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/coding-style/identifier-names
+基本的に**[Microsoftの命名規則](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/coding-style/identifier-names)
 にのっとっています。
 
 メンバ変数
-private  _codeName
-public   CodeName
-static   s_codeName　（publicの場合s_Static）
-const    c_codeName    （publicの場合c_Static）
+private  _codeName  
+public   CodeName  
+static   s_codeName　（publicの場合s_Static）  
+const    c_codeName    （publicの場合c_Static）  
 
-ローカル変数
-codeName
+ローカル変数  
+codeName  
 
