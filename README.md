@@ -58,6 +58,3 @@ var gameObjPosList = new Dictionary<GameObject, Vector3>();
 ・ローカル変数の宣言は原則メソッドの先頭で行う。   
 ・public変数は定義せず、代わりにプロパティを使用する。  
 例）public string PlayerName1 { get; private set; }  
-
-
-
