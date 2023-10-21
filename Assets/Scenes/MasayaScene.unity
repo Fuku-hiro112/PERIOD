@@ -274,7 +274,6 @@ GameObject:
   - component: {fileID: 1027928592}
   - component: {fileID: 1027928591}
   - component: {fileID: 1027928597}
-  - component: {fileID: 1027928598}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -294,7 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: 0e60fbac7e06b9749bf824ed3dac4502,
+    type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -306,10 +306,110 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1027928596}
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1027928596}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b5237183-70e2-4ba1-b5af-47bcac946a02
+    m_ActionName: Player/Move[/DualShock4GamepadHID/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1027928592}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ActionButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 84958cf8-9c33-45cb-a450-2f9a2a4d0ce2
+    m_ActionName: "Player/Button\u25B3[/DualShock4GamepadHID/buttonNorth]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1027928592}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ActionButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: db18d92e-f1ca-4392-9f6e-e67fff942bdb
+    m_ActionName: "Player/Button\u25A1[/DualShock4GamepadHID/buttonWest]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1027928592}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ActionButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8d62fddc-8b61-4995-8133-24b485ff2204
+    m_ActionName: "Player/Button\u2715[/DualShock4GamepadHID/buttonSouth]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1027928592}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ActionButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7dfea83c-f3d6-43b7-9456-c5507e28becf
+    m_ActionName: "Player/Button\u3007"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 803ecfcd-31ad-40fa-89b4-351c4c04ba45
+    m_ActionName: Player/ButtonL1[/DualShock4GamepadHID/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 22e9d9e6-5599-4158-88e4-841fb0c5275d
+    m_ActionName: Player/ButtonR1[/DualShock4GamepadHID/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 159531fe-3050-47f1-a26c-48989d02bd12
+    m_ActionName: Player/ButtonL2[/DualShock4GamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c8c8799-44c6-4db5-9776-32790d948d06
+    m_ActionName: Player/ButtonR2[/DualShock4GamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5447a1c1-1ca9-4e50-bb71-d4dbc5689e6a
+    m_ActionName: Player/ButtonCrossKey[/DualShock4GamepadHID/dpad/up]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1027928592
@@ -438,32 +538,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!143 &1027928598
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027928590}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1581329909
 GameObject:
   m_ObjectHideFlags: 0

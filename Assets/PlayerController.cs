@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
+
     private Rigidbody _rigidbody;
-    private Vector3 movement;
+    private Vector3 _movement;
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -21,15 +22,14 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
-        movement = new Vector3(movementVector.x, 0.0f, movementVector.y);
+        _movement = new Vector3(movementVector.x, 0.0f, movementVector.y);
     }
 
     void Update()
     {
-        _rigidbody.velocity = movement * _speed;
+        _rigidbody.velocity = _movement * _speed;
+
         ActionButton();
-        ChangeCharacter();
-        SelectItem();
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// キャラクター変更処理 
     /// </summary>
-    public void ChangeCharacter()
+    /* public void ChangeCharacter()
     {
         // ゲームパッドが接続されていないとnull。
         if (Gamepad.current == null) return;
@@ -106,13 +106,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("R1が離された！");
         }
-    }
+    } */
 
 
     /// <summary>
     /// アイテム選択処理
     /// </summary>
-    public void SelectItem()
+    /* public void SelectItem()
     {
         // ゲームパッドが接続されていないとnull。
         if (Gamepad.current == null) return;
@@ -134,15 +134,15 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("R2が離された！");
         }
-    }
+    } */
 
 
     /// <summary>
     /// アイテム使用処理
     /// </summary>
-    public void UseItem()
+   /* public void UseItem()
     {
         // ４つある十字ボタンのどこに設定するか分からなかったのでまだ設定していません。
-    }
+    } */
 
 }
