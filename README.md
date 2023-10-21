@@ -58,3 +58,8 @@ var gameObjPosList = new Dictionary<GameObject, Vector3>();
 ・ローカル変数の宣言は原則メソッドの先頭で行う。   
 ・public変数は定義せず、代わりにプロパティを使用する。  
 例）public string PlayerName1 { get; private set; }  
+
+## Gitについて  
+・ブランチを切る前にpullをして最新情報にしてからブランチを切るようにしてください  
+・pushに関しては、最低作業した日ごとにするようにしてください（他の人が進捗を確認できるように）  
+・featureブランチはdevelopブランチから切るようにし、「feature/作業内容」という名前にしてください（なんの作業をしているブランチか一目でわかるようにするため）  
