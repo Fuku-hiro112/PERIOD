@@ -3,146 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
 
-    private Rigidbody _rigidbody;
-    private Vector3 _movement;
-    void Start()
+    private Transform _transform;
+    private CharacterController _characterController;
+
+    private Vector2 _inputMove;
+    private float _verticalVelocity;
+    private float _turnVelocity;
+
+
+    /// <summary>
+    /// 移動Action(PlayerInput側から呼ばれる)
+    /// </summary>
+    public void OnMove(InputAction.CallbackContext context)
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        // 入力値を保持しておく
+        _inputMove = context.ReadValue<Vector2>();
     }
 
 
-    /// <summary>
-    /// 移動処理
-    /// </summary>
-    public void OnMove(InputValue movementValue)
+    private void Awake()
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-        _movement = new Vector3(movementVector.x, 0.0f, movementVector.y);
+        _transform = transform;
+        _characterController = GetComponent<CharacterController>();
     }
 
-    void Update()
+    private void Update()
     {
-        _rigidbody.velocity = _movement * _speed;
+        // 操作入力と鉛直方向速度から、現在速度を計算
+        var moveVelocity = new Vector3(
+            _inputMove.x * _speed,
+            _verticalVelocity,
+            _inputMove.y * _speed
+        );
 
-        ActionButton();
+        // 現在フレームの移動量を移動速度から計算
+        var moveDelta = moveVelocity * Time.deltaTime;
+
+        // CharacterControllerに移動量を指定し、オブジェクトを動かす
+        _characterController.Move(moveDelta);
+
+        if (_inputMove != Vector2.zero)
+        {
+            // 移動入力がある場合は、振り向き動作も行う
+
+            // 操作入力からy軸周りの目標角度[deg]を計算
+            var targetAngleY = -Mathf.Atan2(_inputMove.y, _inputMove.x)
+                * Mathf.Rad2Deg + 90;
+
+            // イージングしながら次の回転角度[deg]を計算
+            var angleY = Mathf.SmoothDampAngle(
+                _transform.eulerAngles.y,
+                targetAngleY,
+                ref _turnVelocity,
+                0.1f
+            );
+
+            // オブジェクトの回転を更新
+            _transform.rotation = Quaternion.Euler(0, angleY, 0);
+        }
     }
-
-    /// <summary>
-    /// アクションボタン処理
-    /// </summary>
-    public void ActionButton()
-    {
-        // ゲームパッドが接続されていないとnull。
-        if (Gamepad.current == null) return;
-
-        if (Gamepad.current.buttonNorth.wasPressedThisFrame)
-        {
-            Debug.Log("△が押された！");
-        }
-        if (Gamepad.current.buttonNorth.wasReleasedThisFrame)
-        {
-            Debug.Log("△が離された！");
-        }
-
-
-        if (Gamepad.current.buttonSouth.wasPressedThisFrame)
-        {
-            Debug.Log("×が押された！");
-        }
-        if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
-        {
-            Debug.Log("×が離された！");
-        }
-
-
-        if (Gamepad.current.buttonWest.wasPressedThisFrame)
-        {
-            Debug.Log("□が押された！");
-        }
-        if (Gamepad.current.buttonWest.wasReleasedThisFrame)
-        {
-            Debug.Log("□が離された！");
-        }
-
-
-        if (Gamepad.current.buttonEast.wasPressedThisFrame)
-        {
-            Debug.Log("〇が押された！");
-        }
-        if (Gamepad.current.buttonEast.wasReleasedThisFrame)
-        {
-            Debug.Log("〇が離された！");
-        }
-
-    }
-
-
-    /// <summary>
-    /// キャラクター変更処理 
-    /// </summary>
-    /* public void ChangeCharacter()
-    {
-        // ゲームパッドが接続されていないとnull。
-        if (Gamepad.current == null) return;
-
-        if (Gamepad.current.leftShoulder.wasPressedThisFrame)
-        {
-            Debug.Log("L1が押された！");
-        }
-        if (Gamepad.current.leftShoulder.wasReleasedThisFrame)
-        {
-            Debug.Log("L1が離された！");
-        }
-        if (Gamepad.current.rightShoulder.wasPressedThisFrame)
-        {
-            Debug.Log("R1が押された！");
-        }
-        if (Gamepad.current.rightShoulder.wasReleasedThisFrame)
-        {
-            Debug.Log("R1が離された！");
-        }
-    } */
-
-
-    /// <summary>
-    /// アイテム選択処理
-    /// </summary>
-    /* public void SelectItem()
-    {
-        // ゲームパッドが接続されていないとnull。
-        if (Gamepad.current == null) return;
-
-        if (Gamepad.current.leftTrigger.wasPressedThisFrame)
-        {
-            Debug.Log("L2が押された！");
-        }
-        if (Gamepad.current.leftTrigger.wasReleasedThisFrame)
-        {
-            Debug.Log("L2が離された！");
-        }
-
-        if (Gamepad.current.rightTrigger.wasPressedThisFrame)
-        {
-            Debug.Log("R2が押された！");
-        }
-        if (Gamepad.current.rightTrigger.wasReleasedThisFrame)
-        {
-            Debug.Log("R2が離された！");
-        }
-    } */
-
-
-    /// <summary>
-    /// アイテム使用処理
-    /// </summary>
-   /* public void UseItem()
-    {
-        // ４つある十字ボタンのどこに設定するか分からなかったのでまだ設定していません。
-    } */
-
 }
