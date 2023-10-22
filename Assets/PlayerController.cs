@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
 
     /// <summary>
-    /// 移動Action(PlayerInput側から呼ばれる)
+    /// 移動処理　コピペ元：https://nekojara.city/unity-input-system-character-controller
     /// </summary>
     public void OnMove(InputAction.CallbackContext context)
     {
