@@ -9,20 +9,11 @@ public class GimmickAction : MonoBehaviour
     /// <summary>
     /// ギミックに近づいた際、ボタンを表示するインターフェース
     /// </summary>
-    public interface IDisplayButton
+    public interface IGimmick
     {
-        void DisplayMessage();
+        string DisplayButton();
+        void ActivateGimmick();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
 

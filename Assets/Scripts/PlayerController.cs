@@ -70,3 +70,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
+
+
+/// <summary>
+/// プレイヤーのギミックアクション処理
+/// </summary>
+public class PlayerAction : GimmickAction
+{
+    private IGimmick _currentGimmick; // 近くのギミック
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // ギミックに接触したら
+        IGimmick gimmick = other.GetComponent<IGimmick>();
+        if (gimmick != null)
+        {
+            _currentGimmick = gimmick;
+            _currentGimmick.DisplayButton();
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // ギミックから離れたら
+        if (_currentGimmick != null)
+        {
+            // テキストを非表示にする
+        }
+    }
+}
