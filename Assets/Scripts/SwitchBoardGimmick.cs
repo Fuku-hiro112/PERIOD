@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SwitchBoardGimmick : GimmickAction
 {
-    public string DisplayButton()
+    public void DisplayButton()
     {
-        return "？ボタンで作動させる"; // 対応するボタンを表示
+        Debug.Log( "？ボタンで作動させる"); // 対応するボタンを表示
     }
 
     public void ActivateGimmick()

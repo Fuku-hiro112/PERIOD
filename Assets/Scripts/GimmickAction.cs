@@ -11,7 +11,7 @@ public class GimmickAction : MonoBehaviour
     /// </summary>
     public interface IGimmick
     {
-        string DisplayButton();
+        void DisplayButton();
         void ActivateGimmick();
     }
     

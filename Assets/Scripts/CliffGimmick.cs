@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CliffGimmick : GimmickAction
 {
-    public string DisplayButton()
+    public void DisplayButton()
     {
-        return "？ボタンで渡る"; // 対応するボタンを表示
+        Debug.Log("？ボタンで渡る"); // 対応するボタンを表示
     }
 
     public void ActivateGimmick()

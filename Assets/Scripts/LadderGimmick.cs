@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LadderGimmick : GimmickAction
 { 
-    public string DisplayButton()
+    public void DisplayButton()
     {
-        return "？ボタンで昇る / 降りる"; // 対応するボタンを表示
+        Debug.Log("？ボタンで昇る / 降りる"); // 対応するボタンを表示
     }
 
     public void ActivateGimmick()
