@@ -1,19 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using static GimmickAction;
+using UnityEngine.InputSystem;
+/// <summary>
+/// ギミックに近づいた際、ボタンを表示するインターフェース
+/// </summary>
+interface IGimmick
+ {
+    void DisplayButton(Vector3 pos);
+    void  ActivateGimmick(bool input);
+ } 
 
-public class GimmickAction : MonoBehaviour
-{
-    /// <summary>
-    /// ギミックに近づいた際、ボタンを表示するインターフェース
-    /// </summary>
-    public interface IGimmick
-    {
-        void DisplayButton();
-        void ActivateGimmick();
-    }
-    
-}
 

@@ -5,7 +5,7 @@ using UnityEngine;
 using static UnityEngine.EventSystems.StandaloneInputModule;
 using UnityEngine.UIElements;
 
-public interface IMovable
+interface IMovable
 {
     void SetDirection(Vector3 direction);
 }

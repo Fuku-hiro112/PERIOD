@@ -1,34 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-
 public class PlayerController : MonoBehaviour
 {
+
+    IMovable _move;
     [SerializeField]
     private float _speed;
-
     private Transform _transform;
-    IMovable _move;
-    
     private PlayerInput _input;
-
     private Vector2 _inputMove;
-    private float _verticalVelocity;
-    private float _turnVelocity;
-
-
-  
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        _inputMove = context.ReadValue<Vector2>();
-        var direction = new Vector3(_inputMove.x, 0, _inputMove.y);
-        _move.SetDirection(direction);
-
-    }
-
+    
     private void OnEnable()
     {
         _input.actions["Move"].performed += OnMove;
@@ -41,10 +26,20 @@ public class PlayerController : MonoBehaviour
         _input.actions["Move"].canceled -= OnMoveStop;
     }
 
+    // à⁄ìÆèàóù
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        _inputMove = context.ReadValue<Vector2>();
+        var direction = new Vector3(_inputMove.x, 0, _inputMove.y);
+        _move.SetDirection(direction);
+    }
+
+    // à⁄ìÆí‚é~èàóù
     void OnMoveStop(InputAction.CallbackContext context)
     {
         _inputMove = Vector2.zero;
     }
+
 
     private void Awake()
     {
@@ -53,9 +48,21 @@ public class PlayerController : MonoBehaviour
         TryGetComponent(out _move);
     }
 
-    private void Update()
+    private void OnCollisionStay(Collision collision)
     {
+        if(collision.gameObject.CompareTag("Gimmick"))
+        {
+            if (collision.gameObject.TryGetComponent(out IGimmick gimmick))
+            {
+                Vector3 pos = transform.position;
+               
+                gimmick.DisplayButton(pos);
 
-    }
+                gimmick.ActivateGimmick(_input.actions.FindAction("PushGimmick").WasPressedThisFrame());     
+                 
+                
+            }
+        }
+    } 
 }
 
