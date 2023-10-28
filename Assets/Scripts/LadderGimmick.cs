@@ -11,7 +11,7 @@ public class LadderGimmick : MonoBehaviour, IGimmick
     [SerializeField] GameObject _guideCanvas;
     private Text _text;
     Vector3 _position;
-    private float _posUp = 2f;
+    private float _posUp = 3f;
     public void DisplayButton(Vector3 pos)
     {
         if (_text == null)
@@ -27,8 +27,18 @@ public class LadderGimmick : MonoBehaviour, IGimmick
     public void ActivateGimmick(bool isInput)
     {
         // 梯子のギミックがアクティブになったときの処理
-        if(isInput) Debug.Log("梯子を昇る / 降りる");
+        if (isInput)
+        {
+            Debug.Log("梯子を昇る / 降りる");
+        }        
     }
+
+    public void InActivateGimmick()
+    {
+        _text = null;
+       // Destroy(_text);
+    }
+
 
     void Update()
     {

@@ -6,10 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
+    
     IMovable _move;
-    [SerializeField]
-    private float _speed;
     private Transform _transform;
     private PlayerInput _input;
     private Vector2 _inputMove;
@@ -37,14 +35,23 @@ public class PlayerController : MonoBehaviour
     // à⁄ìÆí‚é~èàóù
     void OnMoveStop(InputAction.CallbackContext context)
     {
+        Debug.Log(_inputMove + "stop");
         _inputMove = Vector2.zero;
+        var direction = new Vector3(_inputMove.x, 0, _inputMove.y);
+        _move.SetDirection(direction);
     }
 
 
     private void Awake()
     {
+        Application.targetFrameRate = 100;
         _transform = transform;
         _input = GetComponent<PlayerInput>();
+        
+    }
+
+    private void Start()
+    {
         TryGetComponent(out _move);
     }
 
@@ -57,12 +64,14 @@ public class PlayerController : MonoBehaviour
                 Vector3 pos = transform.position;
                
                 gimmick.DisplayButton(pos);
-
                 gimmick.ActivateGimmick(_input.actions.FindAction("PushGimmick").WasPressedThisFrame());     
-                 
-                
             }
         }
-    } 
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        
+    }
 }
 
