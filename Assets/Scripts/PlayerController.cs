@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 pos = transform.position;
                
                 gimmick.DisplayButton(pos);
-                gimmick.ActivateGimmick(_input.actions.FindAction("PushGimmick").WasPressedThisFrame());     
+                gimmick.ActivateGimmick(_input.actions["PushGimmick"].WasPressedThisFrame());     
             }
         }
     }

@@ -295,6 +295,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""PushGimmick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f7cf375-7e4d-4c54-be0e-58dfbba07be1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PushGimmick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
