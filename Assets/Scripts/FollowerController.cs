@@ -6,10 +6,10 @@ using UnityEngine.UIElements;
 using Unity.VisualScripting;
 
 
-/// <summary>
+/// <Summary>
 /// エンジニアがプレイヤーを追従する処理　参考元：https://nekojara.city/unity-smooth-damp
-/// </summary>
-public class EngineerController : MonoBehaviour
+/// </Summary>
+public class FollowerController : MonoBehaviour
 {
     // ターゲット（メインキャラクター）
     [SerializeField] private Transform _operator;
@@ -31,7 +31,8 @@ public class EngineerController : MonoBehaviour
 
     private Vector3 _direction;
 
-
+    // CharacterMoveをインスタンス
+    CharacterMove CharacterMove= new CharacterMove(0f, 0f, float.PositiveInfinity);
 
     // x、y、z座標をメインキャラクターの座標に追従させる処理
     private void Update()
@@ -40,12 +41,16 @@ public class EngineerController : MonoBehaviour
         FaceOperator();
     }
 
+
+    /// <Summary>
+    /// フォロワーがオペレーターを追従するメソッド
+    /// </Summary>
     private void MoveFollower()
     {
-        // メインキャラクターの位置
+        // オペレーターーの位置
         Vector3 targetPosition = _operator.position;
 
-        // エンジニアの位置
+        // フォロワーの位置
         Vector3 currentPosition = _follower.position;
 
         float distance = Vector3.Distance(targetPosition, currentPosition);
@@ -53,7 +58,6 @@ public class EngineerController : MonoBehaviour
 
         // メインキャラクターとの距離を一定に保つ
         Vector3 targetPositionAdjusted = targetPosition - direction * _distanceFromOperator;
-
 
         // 一定の距離に近づくまでメインキャラクターを追う
         if (distance > _distanceFromOperator)
@@ -72,9 +76,13 @@ public class EngineerController : MonoBehaviour
         }
     }
 
+
+    /// <Summary>
+    /// フォロワーがオペレーターのいる位置を向くメソッド
+    /// </Summary>
     private void FaceOperator()
     {
-        // エンジニアをメインキャラクターの方向に向かせる
+        // フォロワーをオペレーターの方向に向かせる
         Vector3 lookDirection = _operator.position - _follower.position;
         if (lookDirection != Vector3.zero)
         {

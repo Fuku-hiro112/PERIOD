@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <Summary>
+/// キャラクターの移動を管理するクラス
+/// </Summary>
 public class CharacterMove
 {
     // CharacterMoveコンストラクタの引数を代入するのに必要
     private float _distanceFromOperator, _smoothTime, _maxSpeed;
 
-    // コンストラクタを定義
+    // コンストラクタを定義する
     public CharacterMove(float distanceFromOperator, float smoothTime, float maxSpeed)
     {
         _distanceFromOperator = distanceFromOperator;
@@ -16,9 +20,9 @@ public class CharacterMove
     }
 
 
-    /// <summary>
-    /// フォロワーの動きを表すメソッド
-    /// </summary>
+    /// <Summary>
+    /// フォロワーがオペレーターを追従するメソッド
+    /// </Summary>
     public void MoveFollower(Transform operatorChara, Transform followerChara, ref Vector3 currentVelocity)
     {
         // メインキャラクターの位置
