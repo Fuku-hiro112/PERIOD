@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <Summary>
-/// ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã«é–¢ã™ã‚‹å‡¦ç†ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
+/// ƒfƒbƒhƒ][ƒ“‚ÉŠÖ‚·‚éˆ—‚ğs‚¤ƒNƒ‰ƒX‚Å‚·B
 /// </Summary>
 public class DeadZoneController : MonoBehaviour
 {
@@ -11,13 +11,13 @@ public class DeadZoneController : MonoBehaviour
 
     [SerializeField] private float _maxSpeed;
 
-    // ã‚¹ãƒ”ãƒ¼ãƒ‰ã®å¢—åŠ ç‡
+    // ƒXƒs[ƒh‚Ì‘‰Á—¦
     [SerializeField] private float _increaseSpeedRate;
 
-    // çµŒéæ™‚é–“ãŒã“ã“ã‚’è¶…ãˆã‚‹ã¨ã‚¹ãƒ”ãƒ¼ãƒ‰ãŒå¢—åŠ ã™ã‚‹è¦å®šæ™‚é–“
+    // Œo‰ßŠÔ‚ª‚±‚±‚ğ’´‚¦‚é‚ÆƒXƒs[ƒh‚ª‘‰Á‚·‚é‹K’èŠÔ
     [SerializeField] private float _regulationTime;
 
-    // çµŒéæ™‚é–“
+    // Œo‰ßŠÔ
     private float _elapsedTime;
 
 
@@ -28,44 +28,45 @@ public class DeadZoneController : MonoBehaviour
 
 
     /// <Summary>
-    /// ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã®é€Ÿåº¦ã«é–¢ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
+    /// ƒfƒbƒhƒ][ƒ“‚Ì‘¬“x‚ÉŠÖ‚·‚éƒƒ\ƒbƒh
     /// </Summary>
     private void MoveDeadZone()
     {
         if (_elapsedTime < _regulationTime)
         {
-            _elapsedTime = 0f; // çµŒéæ™‚é–“ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+            _elapsedTime = 0f; // Œo‰ßŠÔ‚ğƒŠƒZƒbƒg‚·‚é
 
-            // æ™‚é–“çµŒéã«ã‚ˆã£ã¦é€Ÿåº¦ã‚’å¾ã€…ã«å¢—åŠ 
+            // ŠÔŒo‰ß‚É‚æ‚Á‚Ä‘¬“x‚ğ™X‚É‘‰Á
             _velocity += Vector3.forward * _increaseSpeedRate * Time.deltaTime;
         }
 
-        // velocityãŒmaxSpeedã‚’è¶…ãˆãªã„ã‚ˆã†ã«åˆ¶é™
+        // velocity‚ªmaxSpeed‚ğ’´‚¦‚È‚¢‚æ‚¤‚É§ŒÀ
         _velocity = Vector3.ClampMagnitude(_velocity, _maxSpeed);
 
-        // ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã®ç§»å‹•å‡¦ç†
+        // ƒfƒbƒhƒ][ƒ“‚ÌˆÚ“®ˆ—
         transform.position = transform.position + _velocity * Time.deltaTime;
     }
 
 
     /// <Summary>
-    /// ã‚ªãƒšãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚„ã‚¨ãƒ³ã‚¸ãƒ‹ã‚¢ãŒãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã«è§¦ã‚ŒãŸæ™‚ã®å‡¦ç†ã‚’ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
+    /// ƒIƒyƒŒ[ƒ^[‚âƒGƒ“ƒWƒjƒA‚ªƒfƒbƒhƒ][ƒ“‚ÉG‚ê‚½‚Ìˆ—‚ğ‚·‚éƒƒ\ƒbƒh
     /// </Summary>
     /// <param name="GameObject"></param>
     private void OnTriggerEnter(Collider GameObject)
     {
         if (GameObject.CompareTag("Player"))
         {
-            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã«è§¦ã‚ŒãŸæ™‚ã€æ­»äº¡å‡¦ç†
+            // ƒvƒŒƒCƒ„[‚ªƒfƒbƒhƒ][ƒ“‚ÉG‚ê‚½A€–Sˆ—
             PlayerDeath();
 
-            Debug.Log("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ­»äº¡"); // æ­»äº¡å‡¦ç†ãŒã¾ã ãªã„ã®ã§ãƒ‡ãƒãƒƒã‚°ãƒ­ã‚°ã—ã¦ã„ã¾ã™ã€‚
+            Debug.Log("ƒvƒŒƒCƒ„[€–S"); // €–Sˆ—‚ª‚Ü‚¾‚È‚¢‚Ì‚ÅƒfƒoƒbƒOƒƒO‚µ‚Ä‚¢‚Ü‚·B
         }
     }
 
 
     private void PlayerDeath()
     {
-        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ­»äº¡å‡¦ç†ã‚’ã“ã“ã«è¨˜è¿°
+        // ƒvƒŒƒCƒ„[‚Ì€–Sˆ—‚ğ‚±‚±‚É‹Lq
     }
 }
+
