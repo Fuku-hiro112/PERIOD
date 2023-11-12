@@ -9,6 +9,12 @@ namespace Character
 {
     interface IOperaterInput
     {
-        void SetDirection(Vector3 direction);
+        public Vector3 MovementValue
+        {
+            get; set;
+        }
+
+        public bool IsGimmickAction();
+        public bool IsChange();
     }
 }

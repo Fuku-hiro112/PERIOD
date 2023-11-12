@@ -1,3 +1,4 @@
+using Character;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,11 +8,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     
-    IMovable _move;
     private PlayerInput _input;
     private Vector2 _inputMove; // スティックの入力値
-
-    
+    PlayerMove _move;
 
     // アクション起動
     private void OnEnable()
@@ -27,14 +26,14 @@ public class PlayerController : MonoBehaviour
         _input.actions["Move"].canceled -= OnMoveStop;
     }
 
-    /*
+    
     // 移動処理
     void OnMove(InputAction.CallbackContext context)
     {
         // スティック入力値を渡す
         _inputMove = context.ReadValue<Vector2>();
         var direction = new Vector3(_inputMove.x, 0, _inputMove.y);
-        _move.SetDirection(direction);
+        _move.Direction = direction;
     }
 
     // 移動停止処理
@@ -43,14 +42,9 @@ public class PlayerController : MonoBehaviour
         // スティック入力値を渡す
         _inputMove = Vector2.zero;
         var direction = new Vector3(_inputMove.x, 0, _inputMove.y);
-        _move.SetDirection(direction);
+        _move.Direction = direction;
     }
-    */
-    void OnStart()
-    {
-        
-    }
-
+    
     private void Awake()
     {
         Application.targetFrameRate = 100;
@@ -60,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        TryGetComponent(out _move);
+        _move = GetComponent<PlayerMove>();
     }
 
     private void OnCollisionStay(Collision collision)

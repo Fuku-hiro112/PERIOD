@@ -7,17 +7,20 @@ namespace Character.OperaterState
     public class DashState : IOperaterState
     {
         private OperaterController _operaterController;
+        private float _resistance = 0.8f;
 
         public DashState(OperaterController operaterController)
         {
             _operaterController = operaterController;
         }
+
+        public float Resistance　=> _resistance;
+
         /// <summary>
         /// State開始時に実行される
         /// </summary>
         public void HandleStart()
         {
-
 
         }
         /// <summary>

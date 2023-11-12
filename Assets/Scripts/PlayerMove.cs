@@ -4,35 +4,50 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using static UnityEngine.EventSystems.StandaloneInputModule;
 using UnityEngine.UIElements;
+using Character;
 
-interface IMovable
+public class PlayerMove : MonoBehaviour
 {
-    void SetDirection(Vector3 direction);
-}
-
-public class PlayerMove : MonoBehaviour, IMovable
-{
+    // 移動、振り向き関連
     [SerializeField] float _speed = 4f;
-    Rigidbody _rb;
     float _turnVelocity;
-    Transform _transform;
     Vector3 _direction;
+    Rigidbody _rb;
+    Transform _transform;
 
+    // 接地、段差登り関連
     [SerializeField]
-    float raycastDistance = 1.0f; // レイの長さ
+    float raycastForwardDistance = 1.0f; // レイの長さ
     [SerializeField]
     LayerMask groundLayer; // 地面と判定するレイヤー
-    bool isClimb = false;
+    [SerializeField] float _maxObstacleHeight = 2.0f; // 指定の高さ以下の障害物を判定する高さ4
+    [SerializeField] Vector3 _raycastBottomPos = new Vector3(0f, -1.0f, 0f);
+    [SerializeField] Vector3 _raycastTopPos;
 
-    private void Awake()
+    /// <summary>
+    /// 操作キャラクターの情報取得
+    /// </summary>
+    /// <param name="rb"></param>
+    /// <param name="transform"></param>
+    public void InOperationCharacter(Rigidbody rb, Transform transform)
     {
-        _rb = GetComponent<Rigidbody>();
-        _transform = GetComponent<Transform>();
+        _rb = rb;
+        _transform = transform;
     }
 
-    public void SetDirection(Vector3 direction)
+    /// <summary>
+    /// 入力方向の取得
+    /// </summary>
+    /// <param name="direction"></param>
+    public void MoveDirection(Vector3 direction)
     {
-        _direction = direction; 
+        _direction = direction;
+    }
+
+    public Vector3 Direction
+    {
+        get { return _direction; }
+        set { _direction = value; }
     }
 
     /// <summary>
@@ -69,59 +84,55 @@ public class PlayerMove : MonoBehaviour, IMovable
         }
     }
 
-    [SerializeField] float _maxObstacleHeight = 2.0f; // 指定の高さ以下の障害物を判定する高さ4
-    [SerializeField] float _bottom = -1.0f;
 
-
+    /// <summary>
+    /// 段差を登る
+    /// </summary>
+    /// <param name="transform"></param>
     void Climb()
     {
-        // レイの原点を設定（通常、プレイヤーキャラクターの足元の位置）
+        // レイのポジションと向きを設定
         Vector3 raycastOrigin = _transform.position;
-        raycastOrigin.y += _bottom;
         Vector3 playerForward = _transform.forward;
+        Vector3 playerDown = -_transform.up;
+        _raycastTopPos = new Vector3(0f, _maxObstacleHeight, 0f);
+        Vector3 raycastBottom = raycastOrigin + _raycastBottomPos;
+        Vector3 raycastTop = raycastBottom + _raycastTopPos;
 
-        // レイを正面に飛ばす
-        Ray ray = new Ray(raycastOrigin, playerForward);
-        RaycastHit hit;
+        // レイの用意
+        Ray rayBottom = new Ray(raycastBottom, playerForward);
+        Ray rayTop = new Ray(raycastTop, playerForward);
+        Ray rayDown = new Ray(raycastOrigin, playerDown);
+        Debug.DrawRay(raycastOrigin, playerForward * raycastForwardDistance, Color.blue);
+        Debug.DrawRay(raycastBottom, playerForward * raycastForwardDistance, Color.red);
 
-        // Rayの始点を可視化
-        Debug.DrawRay(raycastOrigin, playerForward * raycastDistance, Color.blue);
+        // フラグの用意
+        bool isRaycastBottom = Physics.Raycast(rayBottom, raycastForwardDistance, groundLayer);
+        bool isRaycastTop = Physics.Raycast(rayTop, raycastForwardDistance, groundLayer);
+        bool isGround = Physics.Raycast(rayDown, 1f, groundLayer);
 
         // レイキャストを実行
-        if (Physics.Raycast(ray, out hit,raycastDistance, groundLayer))
+        if (_direction != Vector3.zero)
         {
-            float stepForce = 0;
-            float posY = 0;
-            if (!isClimb)
-               posY = _transform.position.y;
-
-            Debug.Log(hit.point.y　+ "高さ");
-            Debug.Log(posY + "ポジションY");
-            
-            // 障害物が右側にあり、かつ指定の高さ以下にある場合、上方向に力を加える
-            if (hit.point.y <= _maxObstacleHeight && posY + hit.point.y > _transform.position.y)
+            if (isRaycastBottom && isRaycastTop)
             {
-                isClimb = true;
-                stepForce = 0.2f;
-                _transform.Translate(_transform.up * stepForce);
-            }
-            else
-            {
-                isClimb = false;
+                float stepForce = 0.1f;
+                Vector3 pos = _transform.up * stepForce;
+                _transform.Translate(pos);
             }
         }
     }
 
-
-    void FixedUpdate()
+    private void Start()
     {
-        if (_direction != Vector3.zero)
-            Climb();
+        _rb = GetComponent<Rigidbody>();
+        _transform = GetComponent<Transform>();
     }
 
     void Update()
     {
         Movement();
         TurnAround();
+        Climb();
     }
 }
