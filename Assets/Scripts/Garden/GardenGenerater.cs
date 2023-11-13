@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Garden
 {
+    [System.Serializable]
     public class GardenGenerater
     {
         /// <summary>
@@ -21,8 +22,8 @@ namespace Garden
             foreach (GameObject garden in gardens)
             {
                 // 出現位置を更新
-                float gardenScalZ = garden.transform.localScale.z * 10;// meshの大きさによって変わるので変更が必要
-                gardenPos += new Vector3(0, 0, gardenScalZ);// 箱庭のスケール分足す
+                float gardenScalZ = garden.transform.localScale.z * 10;//TODO: meshの大きさによって変わるので変更が必要
+                 gardenPos += new Vector3(0, 0, gardenScalZ);// 箱庭のスケール分足す
 
                 // 箱庭生成
                 Object.Instantiate(garden, gardenPos, Quaternion.Euler(Vector3.zero));
