@@ -8,14 +8,14 @@ namespace Game
 {
     public class GameManager : MonoBehaviour
     {
-        private GameState _state = GameState.Title;
+        private GameState _state = GameState.GamePlay;
         [SerializeField] private GameMode _mode;
         [SerializeField] private GameController _controller;
         private CancellationToken _token;
         void Start()
         {
             _token = this.GetCancellationTokenOnDestroy();
-            _controller = new GameController(_mode, _token);
+            //_controller = new GameController(_mode, _token);
         }
 
         void Update()
@@ -27,10 +27,9 @@ namespace Game
 // シーンごとに分けるつもり
 public enum GameState
 {
-    Title,
     Tutorial,
     GamePlay,
-
+    GimmikPlay,
 }
 // ゲームモードの種類
 public enum GameMode

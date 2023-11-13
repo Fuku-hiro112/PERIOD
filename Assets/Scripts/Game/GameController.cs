@@ -11,24 +11,27 @@ namespace Game
     {
         private CancellationToken _token;
         private GameMode _mode;
+        
+        // Scripts達
         [SerializeField]
-        private ProgressController _progress;
+        private ProgressController _progressController;
         [SerializeField]
         private GameFacade _facade;
+
         public GameController(GameMode mode , CancellationToken token)
         {
             _mode = mode;
             _token = token;
+            _progressController = new ProgressController();
+            _facade = new GameFacade(_progressController.Progres);
             OnStart();
         }
         /// <summary>
         /// Startメソッドから呼ばれる予定　ココがMonoつく可能性アリ
         /// </summary>
-        public void OnStart()
+        private void OnStart()
         {
-            _facade = new GameFacade();
-            _progress = new ProgressController();
-            _facade.IGardenController.ControlGardenAsync(() => _progress.IncreaseProgress(), _mode, _token);
+            _facade.IGardenController.ControlGardenAsync(() => _progressController.IncreaseProgress(), _mode, _token);
         }
 
         public void OnUpdate()

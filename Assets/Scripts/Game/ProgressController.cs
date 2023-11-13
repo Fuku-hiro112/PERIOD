@@ -9,39 +9,32 @@ namespace Game
     [Serializable]
     public class ProgressController
     {
-        // 開始時日数とウェーブ
-        [SerializeField]
-        private int _day = 1;
-        [SerializeField]
-        private int _wave = 1;
-
+        // 開始時 日数とウェーブ
+        [SerializeField] 
+        private Progres _progres;
+        
         public int DaysUpWave { private get; set; } = 4;
-        //public int Day  => _day;
-        //public int Wave => _wave;
+        public Progres Progres { get => _progres; private set => _progres = value; }
 
-        public ProgressController()
-        {
-            _day = 1;
-            _wave = 1;
-        }
         /// <summary>
         /// 日付を増やす
         /// </summary>
         public void IncreaseDay()
         {
-            _day++;
+            Progres.Day++;
         }
         /// <summary>
         /// ウェーブと日付を増やす
         /// </summary>
-        public void IncreaseProgress()
+        public int IncreaseProgress()
         {
             // ウェーブが上がる日数に到達したら
-            if (_day % DaysUpWave == 0)
+            if (Progres.Day % DaysUpWave == 0)
             {
-                _wave++;
+                Progres.Wave++;
             }
             IncreaseDay();
+            return Progres.Wave;
         }
 
         //TODO: viewに移動予定
@@ -53,8 +46,15 @@ namespace Game
 
         public void OnUpdateText()
         {
-            _dayText.text = $"{_day}DAY";
-            _waveText.text = $"{_wave}WAVE";
+            _dayText.text = $"{Progres.Day}DAY";
+            _waveText.text = $"{Progres.Wave}WAVE";
         }
     }
+}
+[Serializable]
+public class Progres
+{
+    // 基本的には1から始まるので変更しなくてよい
+    public int Wave = 1;
+    public int Day = 1;
 }
