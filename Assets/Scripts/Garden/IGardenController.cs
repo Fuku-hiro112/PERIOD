@@ -8,5 +8,5 @@ using UnityEngine;
 public interface IGardenController
 {
     void OnStart();
-    UniTaskVoid ControlGardenAsync(Action action, GameMode mode, CancellationToken token);
+    UniTaskVoid ControlGardenAsync(Func<int> func, GameMode mode, CancellationToken token);
 }

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEditor;
 using UnityEngine;
 
 namespace Garden
@@ -30,26 +31,32 @@ namespace Garden
         [SerializeField]
         private GardenSetter _setter;
 
-        public void OnStart()
+        public GardenController(Progres progres)
         {
             // DBから持ってくる
             GardenGenerator _g = GameObject.FindAnyObjectByType<GardenGenerator>();//TODO：データベース完成したら後々消して下さい
             GameObject[] gardenKinds = _g._gardenKinds;
-            GameObject   prepareGarden = _g._prepareGarden;
-            _player = GameObject.FindGameObjectWithTag("Player").transform;
+            GameObject prepareGarden = _g._prepareGarden;
             GardenMap gardenMap
                        = new GardenMap(gardenKinds, prepareGarden);
             _generater = new GardenGenerater();
-            _setter    = new GardenSetter(gardenMap);
+            _setter = new GardenSetter(gardenMap);
+            _player = GameObject.FindGameObjectWithTag("Player").transform;
+            _waveNum = progres.Wave;
+            _dayNum = progres.Day;
+        }
+
+        public void OnStart()
+        {
             
         }
         /// <summary>
         /// プレイヤーの位置によって箱庭を生成する、
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="Func"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public async UniTaskVoid ControlGardenAsync(Action action, GameMode mode, CancellationToken token)
+        public async UniTaskVoid ControlGardenAsync(Func<int> func, GameMode mode, CancellationToken token)
         {
             while (true)
             {
@@ -58,7 +65,7 @@ namespace Garden
                 await UniTask.WaitUntil(() => _player.position.z >= _gardenPos.z, cancellationToken: token);
 
                 // 日付、waveを増やす
-                action?.Invoke();
+                _waveNum = func.Invoke();
             }
         }
         //TODO: 箱庭の表示非表示管理
