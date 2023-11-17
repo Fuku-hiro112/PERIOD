@@ -23,8 +23,8 @@ public class GardenGenerator : MonoBehaviour
 
     void Start()
     {
-        _dayText.text = $"{_dayNum}DAY";
-        _waveText.text = $"{_waveNum}WAVE";
+        //_dayText.text = $"{_dayNum}DAY";
+        //_waveText.text = $"{_waveNum}WAVE";
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         CancellationToken token = this.GetCancellationTokenOnDestroy();
 
@@ -72,10 +72,10 @@ public class GardenGenerator : MonoBehaviour
             if (_dayNum % _daysUpWave == 0) 
             { 
                 _waveNum++;
-                _waveText.text = $"{_waveNum}WAVE";
+                //_waveText.text = $"{_waveNum}WAVE";
             }
             _dayNum++;
-            _dayText.text = $"{_dayNum}DAY";
+            //_dayText.text = $"{_dayNum}DAY";
         }
     }
     /// <summary>
