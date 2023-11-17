@@ -78,7 +78,10 @@ namespace Character
         }
 
         
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool IsChange()
         {
             return _input.actions["Change"].WasPressedThisFrame();

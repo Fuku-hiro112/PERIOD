@@ -14,6 +14,7 @@ namespace Character
             get; set;
         }
 
+        public void OnStart();
         public bool IsGimmickAction();
         public bool IsChange();
     }
