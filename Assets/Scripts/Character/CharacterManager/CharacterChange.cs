@@ -12,11 +12,11 @@ namespace Character
     [Serializable]
     public class CharacterChange
     {
-        IOperaterInput _IOperaterInput;
+        IOperatorInput _IOperat0rInput;
 
-        public CharacterChange(OperaterInput input)
+        public CharacterChange(OperatorInput input)
         {
-            _IOperaterInput = input;
+            _IOperat0rInput = input;
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Character
         /// <returns></returns>
         public bool OnChange()
         {
-            return _IOperaterInput.IsChange();
+            return _IOperat0rInput.IsChange();
         }
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Character.OperaterState
 {
-    public class IdleState : IOperaterState
+    public class IdleState : IOperatorState
     {
-        private OperaterController _controller;
+        private OperatorController _controller;
 
-        public IdleState(OperaterController controller)
+        public IdleState(OperatorController controller)
         {
             _controller = controller;
         }

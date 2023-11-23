@@ -12,23 +12,27 @@ namespace Character
     public class CharaController
     {
         [SerializeField]
-        OperaterController _operaterController;
+        OperatorController _operatorController;
+        FollowerController _followerController;
 
         private GameObject _currentCharacter;
 
-        public CharaController(OperaterController operaterController)
+　　　　
+        public CharaController(OperatorController operaterController, FollowerController followerController)
         {
-            _operaterController = operaterController;
+            _operatorController = operaterController;
+            _followerController = followerController;  
         }
 
         /// <summary>
         /// 現在の操作characterを通達
         /// </summary>
         /// <param name="player"></param>
-        public void CharacterCurrent(GameObject player)
+        public void CharacterCurrent(GameObject player, GameObject follower)
         {
             _currentCharacter = player;
-            _operaterController.CharacterChange(_currentCharacter);
+            _operatorController.CharacterChange(_currentCharacter);
+            _followerController.CharacterChange( _currentCharacter, follower);
         }
     }
 }
