@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ff35879ab72ae458ce1db4dca6a6a1, type: 3}
   m_Name: Thunder
   m_EditorClassIdentifier: 
-  Name: Thunder
-  Prefab: {fileID: 7252164453071027707, guid: d61d22730edee6347a10231137a9f572, type: 3}
+  _id: 1
+  _start: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8, type: 3}
+  Prefab: {fileID: 0}

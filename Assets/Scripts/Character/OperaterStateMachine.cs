@@ -1,21 +1,24 @@
 using System;
+using UnityEngine;
 
 namespace Character.OperaterState
 {
     [Serializable]
     public class OperaterStateMachine
     {
-        public IOperaterState CurrentState { get; private set; }
+        [SerializeField]
+        private GimmickState _gimmickState;
 
+        public IOperaterState CurrentState { get; private set; }
         public IdleState IdleState { get; private set; }
         public WalkState WalkState { get; private set; }
-        public DashState DashState { get; private set; }
+        public GimmickState GimmickState { get; private set; }
 
         public OperaterStateMachine(OperaterController player)
         {
-            this.IdleState = new IdleState(player);
-            this.WalkState = new WalkState(player);
-            this.DashState = new DashState(player);
+            IdleState = new IdleState(player);
+            WalkState = new WalkState(player);
+            GimmickState = new GimmickState(player);
         }
         /// <summary>
         /// State‚Ì‰Šú‰»

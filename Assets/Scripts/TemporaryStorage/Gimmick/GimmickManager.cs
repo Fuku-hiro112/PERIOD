@@ -11,12 +11,16 @@ namespace Gimmick
         [SerializeField]
         private GimmickController _gimmickController = new GimmickController();
 
-        void Start()
+        private void Awake()
         {
-            _cursorController.OnStart();
+
+        }
+        private void Start()
+        {
+            //_cursorController.OnStart();
             _gimmickController.OnStart();
         }
-        void Update()
+        private void Update()
         {
             _cursorController.OnUpdate();
             _gimmickController.OnUpdate();
