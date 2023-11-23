@@ -21,6 +21,10 @@ namespace Character
             _operaterController = operaterController;
         }
 
+        /// <summary>
+        /// Œ»İ‚Ì‘€ìcharacter‚ğ’Ê’B
+        /// </summary>
+        /// <param name="player"></param>
         public void CharacterCurrent(GameObject player)
         {
             _currentCharacter = player;

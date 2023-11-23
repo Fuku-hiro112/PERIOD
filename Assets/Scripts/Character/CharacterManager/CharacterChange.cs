@@ -4,24 +4,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 
-/// </summary>
-[Serializable]
-public class CharacterChange 
+namespace Character
 {
-    IOperaterInput _IOperaterInput;
-
-    public CharacterChange(OperaterInput input)
+    /// <summary>
+    /// 
+    /// </summary>
+    [Serializable]
+    public class CharacterChange
     {
-        _IOperaterInput = input;
+        IOperaterInput _IOperaterInput;
+
+        public CharacterChange(OperaterInput input)
+        {
+            _IOperaterInput = input;
+        }
+
+        /// <summary>
+        /// “ü—Í‚ðŽó‚¯‚é
+        /// </summary>
+        /// <returns></returns>
+        public bool OnChange()
+        {
+            return _IOperaterInput.IsChange();
+        }
     }
-
-    public bool OnChange()
-    {
-        return _IOperaterInput.IsChange();
-    }
-    
-
-
 }

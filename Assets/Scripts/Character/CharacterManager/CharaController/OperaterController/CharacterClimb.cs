@@ -14,8 +14,8 @@ namespace Character
     {
         [SerializeField] Transform _transform;
         [SerializeField] float raycastForwardDistance = 1.0f; // レイの長さ
-        [SerializeField] LayerMask _groundLayer; // 地面と判定するレイヤー
         [SerializeField] float _maxObstacleHeight = 2.0f; // 指定の高さ以下の障害物を判定する高さ
+        [SerializeField] LayerMask _groundLayer; // 地面と判定するレイヤー
         [SerializeField] Vector3 _raycastBottomPos;
         [SerializeField] Vector3 _raycastTopPos;
         [SerializeField] bool isRaycastBottom;

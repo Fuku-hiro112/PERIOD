@@ -9,13 +9,13 @@ namespace Character.OperaterState
 
         public IdleState IdleState { get; private set; }
         public WalkState WalkState { get; private set; }
-        public DashState DashState { get; private set; }
+        public GimmickState DashState { get; private set; }
 
         public OperaterStateMachine(OperaterController player)
         {
-            this.IdleState = new IdleState(player);
-            this.WalkState = new WalkState(player);
-            this.DashState = new DashState(player);
+            IdleState = new IdleState(player);
+            WalkState = new WalkState(player);
+            DashState = new GimmickState(player);
         }
         /// <summary>
         /// State‚Ì‰Šú‰»
