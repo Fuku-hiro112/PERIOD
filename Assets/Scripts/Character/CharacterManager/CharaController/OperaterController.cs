@@ -17,7 +17,7 @@ namespace Character
         [SerializeField] private CharacterTurnAround _characterTurnAround;
         [SerializeField] private GameObject _currentCharacter;
         private GimmickController _gimmickController; // なんでprivateにしてる？
-        private IOperaterInput _IOperaterInput;
+        private IOperaterInput _iOperaterInput;
 
         public OperaterStateMachine StateMachine { get => _stateMachine; }
         public CharacterMove CharacterMove { get => _characterMove; }
@@ -38,7 +38,7 @@ namespace Character
         
         public void OnInput(OperaterInput input)
         {
-            _IOperaterInput = input;
+            _iOperaterInput = input;
         }
             
         private void Awake()
@@ -56,12 +56,54 @@ namespace Character
 
         void Update()
         {
-            
-            _characterMove.Movement(_IOperaterInput.MovementValue, 1.0f);
-            _characterClimb.Climb(_IOperaterInput.MovementValue);
-            _characterTurnAround.TurnAround(_IOperaterInput.MovementValue);
+            _characterMove.Movement(_iOperaterInput.MovementValue, 1.0f);
+            _characterClimb.Climb(_iOperaterInput.MovementValue);
+            _characterTurnAround.TurnAround(_iOperaterInput.MovementValue);
 
             _stateMachine.OnUpdate();
-        } 
+        }
+        private bool IsSameState(IOperaterState state) => state == _stateMachine.CurrentState;
+
+        //** --------  以下当たり判定  -------- **//
+
+        private void OnCollisionEnter(Collision other)
+        {
+
+        }
+        private void OnCollisionStay(Collision other)
+        {
+
+        }
+        private void OnCollisionExit(Collision other)
+        {
+            if (other.gameObject.CompareTag("Gimmick"))
+            {
+                //TODO: テキスト非表示
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Gimmick"))
+            {
+                //TODO: テキスト表示
+            }
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (IsSameState(_stateMachine.GimmickState)) return;
+            if (other.gameObject.CompareTag("Gimmick"))
+            {
+                if (_stateMachine != null)//TODO: 何かのボタンを押したときに変更
+                {
+                    //HACK: GimmickControllerを渡してからステートを変更しないと、OnStartが呼ばれないと思います
+                    other.transform.parent.TryGetComponent(out _gimmickController);
+                    _stateMachine.Transition(_stateMachine.GimmickState);
+                }
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+
+        }
     }
 }

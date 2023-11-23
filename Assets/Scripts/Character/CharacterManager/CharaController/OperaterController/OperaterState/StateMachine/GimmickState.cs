@@ -15,7 +15,7 @@ namespace Character.OperaterState
         {
             _operater = operaterController;
 
-            GameObject.FindGameObjectWithTag("Canvas").
+            GameObject.FindGameObjectWithTag("GimmickCanvas").
                 transform.Find("Cursor").TryGetComponent(out _cursor);
         }
         /// <summary>
