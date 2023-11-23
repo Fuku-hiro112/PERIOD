@@ -5,15 +5,15 @@ using UnityEngine;
 namespace Character.OperaterState
 {
     [Serializable]
-    public class GimmickState : IOperaterState
+    public class GimmickState : IOperatorState
     {
-        private OperaterController _operater;
+        private OperatorController _operator;
         [SerializeField]
         private CursorController _cursor;
 
-        public GimmickState(OperaterController operaterController)
+        public GimmickState(OperatorController operatorController)
         {
-            _operater = operaterController;
+            _operator = operatorController;
 
             GameObject.FindGameObjectWithTag("GimmickCanvas").
                 transform.Find("Cursor").TryGetComponent(out _cursor);
@@ -23,8 +23,8 @@ namespace Character.OperaterState
         /// </summary>
         public void HandleStart()
         {
-            _cursor.OnStart(_operater.GimmickController.GimmickID);
-            _operater.GimmickController.OnStart();
+            _cursor.OnStart(_operator.GimmickController.GimmickID);
+            _operator.GimmickController.OnStart();
         }
         /// <summary>
         /// フレーム単位で実行される、新しい状態に移行するための条件も書く
@@ -32,12 +32,12 @@ namespace Character.OperaterState
         public void HandleUpdate()
         {
             _cursor.OnUpdate();
-            _operater.GimmickController.OnUpdate();
+            _operator.GimmickController.OnUpdate();
 
             // Transition(ICharacterState nextState)を使い移行条件を書く
             if (_cursor.IsClear)
             {
-                _operater.StateMachine.Transition(_operater.StateMachine.IdleState);
+                _operator.StateMachine.Transition(_operator.StateMachine.IdleState);
             }
         }
         /// <summary>
@@ -45,7 +45,7 @@ namespace Character.OperaterState
         /// </summary>
         public void HandleEnd()
         {
-            _operater.GimmickController.OnEnd();
+            _operator.GimmickController.OnEnd();
         }
 
         
