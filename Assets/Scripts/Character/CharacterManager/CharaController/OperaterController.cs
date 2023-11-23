@@ -11,7 +11,7 @@ namespace Character
 
     public class OperaterController : MonoBehaviour
     {
-        [SerializeField] private OperaterStateMachine _stateMachine;   
+        [SerializeField] private OperaterStateMachine _stateMachine;
         [SerializeField] private CharacterMove _characterMove;
         [SerializeField] private CharacterClimb _characterClimb;
         [SerializeField] private CharacterTurnAround _characterTurnAround;

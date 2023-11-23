@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character
 {
-    public class OperaterController : MonoBehaviour
+    public class OperaterControllerF : MonoBehaviour
     {
         [SerializeField]
         private OperaterStateMachine _stateMachine;
@@ -15,7 +15,7 @@ namespace Character
 
         private void Awake()
         {
-            _stateMachine = new OperaterStateMachine(this);
+            //_stateMachine = new OperaterStateMachine(this);
         }
         private void Start()
         {
