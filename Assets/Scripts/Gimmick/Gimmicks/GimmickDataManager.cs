@@ -20,8 +20,8 @@ namespace Gimmick
             foreach (GimmickSourceData gimmickData in _data)
             {
                 gimmickData.Prefab.SetActive(false);// Prefab本体をFalseに
-                // 他クラスでデータにアクセスし、表示非表示の変更をするため、データを書き換える
-                gimmickData.Prefab = Instantiate(gimmickData.Prefab, _canvasGimmick.transform);
+                //Fixed: 毎回データが書き変わる為修正が必要、他クラスでデータにアクセスし、表示非表示の変更をするため、データを書き換える　
+                gimmickData.Prefab = Instantiate(gimmickData._prefab, _canvasGimmick.transform);
             }
         }
 
