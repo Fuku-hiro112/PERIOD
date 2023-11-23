@@ -16,13 +16,11 @@ namespace Character
     [Serializable]
     public class CharacterMove 
     {
-        // 移動、振り向き関連
-        [SerializeField] float _speed = 5f;
-        [SerializeField] Vector3 _direction;
-        [SerializeField] Rigidbody _rb;
-        [SerializeField] Transform _transform;
-        [SerializeField] Vector3 _position;　// 後に消去
+        [SerializeField] private float _speed = 5f;
+        [SerializeField] private Vector3 _direction;
+        [SerializeField] private Rigidbody _rb;
 
+        public Vector3 Velocity { get => _rb.velocity; }
 
         /// <summary>
         /// 操作キャラクターの情報取得
@@ -32,9 +30,7 @@ namespace Character
         public void InOperationCharacter(GameObject player)
         {
             _rb = player.GetComponent<Rigidbody>();
-            _transform = player.GetComponent<Transform>();
         }
-
 
         /// <summary>
         /// 移動処理
@@ -43,12 +39,12 @@ namespace Character
         /// <param name="resistance"></param>
         public void Movement(Vector3 direction, float resistance)
         {
-            // 操作入力と鉛直方向速度から、現在速度を計算
-            var moveVelocity = direction * _speed * resistance;
-            _rb.velocity = new Vector3(moveVelocity.x, _rb.velocity.y, moveVelocity.z);
-            _position = _transform.position;
+            if (_rb)
+            {
+                // 操作入力と鉛直方向速度から、現在速度を計算
+                var moveVelocity = direction * _speed * resistance;
+                _rb.velocity = new Vector3(moveVelocity.x, _rb.velocity.y, moveVelocity.z);
+            }
         }
-
-       
     }
 }

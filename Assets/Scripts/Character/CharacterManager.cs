@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Character
 {
     /// <summary>
-    /// 
+    /// character‚ÌŠÇ—
     /// </summary>
     public class CharacterManager : MonoBehaviour
     {
@@ -14,7 +14,7 @@ namespace Character
         [SerializeField] GameObject _boy;
         [SerializeField] GameObject _engineer;
         [SerializeField] GameObject _currentCharacter;
-        [SerializeField] OperaterController _operatingController;
+        [SerializeField] OperaterController _operaterController;
         [SerializeField] CharaController _charaController;
         [SerializeField] CharacterChange _characterChange;
         [SerializeField] OperaterInput _operaterInput;
@@ -22,12 +22,19 @@ namespace Character
         // ¶‘¶”»’è
         [SerializeField] bool isDead = false;
 
+        /// <summary>
+        /// Œ»İ‚Ì‘€ìcharacter‚ğ’Ê’B
+        /// </summary>
+        /// <param name="player"></param>
         void CharacterChange(GameObject player)
         {
             _currentCharacter = player;
             _charaController.CharacterCurrent(player);
         }
 
+        /// <summary>
+        /// ‘€ìcharacterØ‚è‘Ö‚¦
+        /// </summary>
         void OperaterChange()
         {
             if (_characterChange.OnChange())
@@ -47,9 +54,9 @@ namespace Character
 
         private void Start()
         {
-            _charaController = new CharaController(_operatingController);
+            _charaController = new CharaController(_operaterController);
             _operaterInput.OnStart();
-            _operatingController.OnInput(_operaterInput);
+            _operaterController.OnInput(_operaterInput);
             CharacterChange(_boy);
         }
 

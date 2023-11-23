@@ -10,28 +10,29 @@ namespace Character
 
     public class OperaterController : MonoBehaviour
     {
-        [SerializeField] private OperaterStateMachine _operaterStateMachine;
-        public OperaterStateMachine OperaterStateMachine => _operaterStateMachine;
-
-        // 
+        [SerializeField] private OperaterStateMachine _stateMachine;   
         [SerializeField] private CharacterMove _characterMove;
         [SerializeField] private CharacterClimb _characterClimb;
         [SerializeField] private CharacterTurnAround _characterTurnAround;
-        private IOperaterInput _IOperaterInput;
         [SerializeField] private GameObject _currentCharacter;
-            
+        private IOperaterInput _IOperaterInput;
+
+        public OperaterStateMachine StateMachine { get => _stateMachine; }
+        public CharacterMove CharacterMove { get => _characterMove; }
+
         /// <summary>
         /// ëÄçÏcharacterÇÃïœçX
         /// </summary>
         /// <param name="player"></param>
         public void CharacterChange(GameObject player)
         {
+            _characterMove.Movement(new Vector3(0, 1.0f, 0), 0f);
             _currentCharacter = player;
             _characterMove.InOperationCharacter(_currentCharacter);
             _characterTurnAround.InOperationCharacter(_currentCharacter);
             _characterClimb.InOperationCharacter(_currentCharacter);
         }
-            
+        
         public void OnInput(OperaterInput input)
         {
             _IOperaterInput = input;
@@ -39,22 +40,25 @@ namespace Character
             
         private void Awake()
         {
-            _operaterStateMachine = new OperaterStateMachine(this);
+            _stateMachine = new OperaterStateMachine(this);
             _characterMove = new CharacterMove();
             _characterClimb = new CharacterClimb();
             _characterTurnAround = new CharacterTurnAround();
         }
+
         private void Start()
         {
-            _operaterStateMachine.Initialize(_operaterStateMachine.IdleState);
-           
+            _stateMachine.Initialize(_stateMachine.IdleState);  
         }
 
         void Update()
         {
+            
             _characterMove.Movement(_IOperaterInput.MovementValue, 1.0f);
             _characterClimb.Climb(_IOperaterInput.MovementValue);
             _characterTurnAround.TurnAround(_IOperaterInput.MovementValue);
+
+            _stateMachine.OnUpdate();
         } 
     }
 }
