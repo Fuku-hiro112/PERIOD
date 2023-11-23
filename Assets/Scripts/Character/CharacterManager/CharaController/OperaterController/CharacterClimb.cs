@@ -25,7 +25,7 @@ namespace Character
         /// 操作キャラクターの情報取得
         /// </summary>
         /// <param name="transform"></param>
-        public void InOperationCharacter(GameObject player)
+        public void InCharacter(GameObject player)
         {
             _transform = player.GetComponent<Transform>();
         }

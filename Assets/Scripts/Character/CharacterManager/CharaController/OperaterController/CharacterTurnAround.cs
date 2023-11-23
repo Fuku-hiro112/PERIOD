@@ -13,7 +13,8 @@ namespace Character {
     {
         [SerializeField] private float _turnSpeed = 0.1f;
         float _turnVelocity;
-        Transform _transform;
+        [SerializeField] Transform _transform;
+        [SerializeField] Transform _target;
 
         /// <summary>
         /// 操作キャラクターの情報取得
@@ -22,6 +23,26 @@ namespace Character {
         public void InOperationCharacter(GameObject player)
         {
             _transform = player.GetComponent<Transform>();
+        }
+
+        /// <summary>
+        /// 各キャラクターの情報を取得
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="follower"></param>
+        public void InFolloewrCharacter(GameObject player, GameObject follower)
+        {
+            _target = player.GetComponent<Transform>();
+            _transform = follower.GetComponent<Transform>();
+        }
+
+        /// <Summary>
+        /// フォロワーがオペレーターのいる位置を向くメソッド
+        /// </Summary>
+        public Vector3 MyTargetDirection()
+        {
+            // フォロワーをオペレーターの方向に向かせる
+           return _target.position - _transform.position;
         }
 
         /// <summary>

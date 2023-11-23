@@ -5,11 +5,11 @@ using UnityEngine.InputSystem.XR;
 
 namespace Character.OperaterState
 {
-    public class WalkState : IOperaterState
+    public class WalkState : IOperatorState
     {
-        private OperaterController _controller;
+        private OperatorController _controller;
 
-        public WalkState(OperaterController controller)
+        public WalkState(OperatorController controller)
         {
             _controller = controller;
         }
