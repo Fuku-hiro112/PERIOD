@@ -35,8 +35,8 @@ namespace Garden
         {
             // DBから持ってくる
             GardenGenerator _g = GameObject.FindAnyObjectByType<GardenGenerator>();//TODO：データベース完成したら後々消して下さい
-            GameObject[] gardenKinds = _g._gardenKinds;
-            GameObject prepareGarden = _g._prepareGarden;
+            GameObject[] gardenKinds = _g.GardenKinds;
+            GameObject prepareGarden = _g.PrepareGarden;
             GardenMap gardenMap
                        = new GardenMap(gardenKinds, prepareGarden);
             _generater = new GardenGenerater();
