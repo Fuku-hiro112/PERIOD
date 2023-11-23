@@ -23,6 +23,7 @@ namespace Character.OperaterState
         /// </summary>
         public void HandleStart()
         {
+            _operator.IsAction = true;
             _cursor.OnStart(_operator.GimmickController.GimmickID);
             _operator.GimmickController.OnStart();
         }
@@ -45,6 +46,7 @@ namespace Character.OperaterState
         /// </summary>
         public void HandleEnd()
         {
+            _operator.IsAction = false;
             _operator.GimmickController.OnEnd();
         }
 

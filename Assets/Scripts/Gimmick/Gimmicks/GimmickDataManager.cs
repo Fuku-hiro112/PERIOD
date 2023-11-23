@@ -19,8 +19,8 @@ namespace Gimmick
             // SourceDataのインスタンスを全て生成し、非表示にして見えないようにしている
             foreach (GimmickSourceData gimmickData in _data)
             {
-                gimmickData.Prefab.SetActive(false);// Prefab本体をFalseに
-                //Fixed: 毎回データが書き変わる為修正が必要、他クラスでデータにアクセスし、表示非表示の変更をするため、データを書き換える　
+                gimmickData._prefab.SetActive(false);// Prefab本体をFalseに
+                //Fixed: 毎回データが書き変わる為修正が必要、他クラスでデータにアクセスし、表示非表示の変更をするため、データを書き換える
                 gimmickData.Prefab = Instantiate(gimmickData._prefab, _canvasGimmick.transform);
             }
         }

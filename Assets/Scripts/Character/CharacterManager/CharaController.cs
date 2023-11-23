@@ -5,9 +5,6 @@ using UnityEngine;
 
 namespace Character
 {
-    /// <summary>
-    /// 
-    /// </summary>
     [Serializable]
     public class CharaController
     {
@@ -21,14 +18,14 @@ namespace Character
         public CharaController(OperatorController operaterController, FollowerController followerController)
         {
             _operatorController = operaterController;
-            _followerController = followerController;  
+            _followerController = followerController;
         }
 
         /// <summary>
         /// Œ»İ‚Ì‘€ìcharacter‚ğ’Ê’B
         /// </summary>
         /// <param name="player"></param>
-        public void CharacterCurrent(GameObject player, GameObject follower)
+        public void CharacterCurrent(GameObject player, GameObject follower)// operator‚ª—\–ñŒê‚¾‚Á‚½‚½‚ßplayer‚É‚µ‚Ä‚¢‚é
         {
             _currentCharacter = player;
             _operatorController.CharacterChange(_currentCharacter);

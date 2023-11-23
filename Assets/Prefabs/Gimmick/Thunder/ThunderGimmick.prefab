@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.1, y: -99.6}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: -10, y: -209}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5328213366443276820
 CanvasRenderer:
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.2784314}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.5411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -188,7 +188,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 500}
+  m_SizeDelta: {x: 1200, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5328213367441896704
 CanvasRenderer:
@@ -272,20 +272,24 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 83.65129, y: 220.43472}
-      - {x: -108.28152, y: -13.335236}
-      - {x: -14.173727, y: -45.27536}
-      - {x: -88.986664, y: -231.1246}
-      - {x: 93.744225, y: -8.690832}
-      - {x: -1.4728148, y: 24.787422}
-      - {x: 83.32297, y: 219.52518}
-      - {x: 49.074303, y: 163.84256}
-      - {x: -12.960152, y: 20.632889}
-      - {x: 79.945755, y: -11.836452}
-      - {x: -61.87457, y: -184.49721}
-      - {x: -3.0674767, y: -40.22382}
-      - {x: -93.946655, y: -9.228933}
-      - {x: 51.533268, y: 168.58673}
+    - - {x: 196.81682, y: 525.7798}
+      - {x: -263.62253, y: -32.03293}
+      - {x: -34.269676, y: -108.808014}
+      - {x: -214.55286, y: -555.48987}
+      - {x: -212.73306, y: -551.0106}
+      - {x: 226.8807, y: -19.660925}
+      - {x: -2.8688717, y: 60.26789}
+      - {x: 197.55737, y: 525.57605}
+      - {x: 121.86716, y: 399.4603}
+      - {x: 20.400818, y: 163.11157}
+      - {x: 10.847229, y: 140.21771}
+      - {x: -30.001137, y: 49.32144}
+      - {x: -32.32612, y: 47.435562}
+      - {x: 192.1136, y: -27.854641}
+      - {x: -147.44196, y: -441.35828}
+      - {x: -8.138277, y: -96.02545}
+      - {x: -226.56989, y: -22.97289}
+      - {x: 123.361084, y: 404.06213}
   m_UseDelaunayMesh: 0
 --- !u!1001 &3717020600519484272
 PrefabInstance:
@@ -378,12 +382,12 @@ PrefabInstance:
     - target: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -15
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 60
+      value: 133
       objectReference: {fileID: 0}
     - target: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8,
         type: 3}
@@ -404,6 +408,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartPos
+      objectReference: {fileID: 0}
+    - target: {fileID: 5654064638198099701, guid: 43cd91ead110646439e5c5f9aaa795b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.StandaloneInputModule;
-using UnityEngine.UIElements;
-using Unity.VisualScripting;
 using Character;
 
 /// <Summary>
@@ -24,12 +19,12 @@ public class FollowerController : MonoBehaviour
     [SerializeField] private float _maxSpeed = float.PositiveInfinity;
 
     // メインキャラクターとの距離
-    [SerializeField] private float _distanceFromOperator; 
+    [SerializeField] private float _distanceFromOperator;
 
     private Vector3 _direction;
 
     // FollowerMoveをインスタンス
-    FollowerMove _followerMove= new FollowerMove(2f, 0.1f, float.PositiveInfinity);
+    FollowerMove _followerMove = new FollowerMove(2f, 0.1f, float.PositiveInfinity);
 
     CharacterTurnAround _characterTurn = new CharacterTurnAround();
     CharacterClimb _characterClimb = new CharacterClimb();
@@ -41,7 +36,7 @@ public class FollowerController : MonoBehaviour
         _characterTurn.TurnAround(_direction);
         _characterClimb.Climb(_direction);
     }
-    
+
     /// <summary>
     /// キャラクター情報の更新
     /// </summary>
@@ -50,13 +45,13 @@ public class FollowerController : MonoBehaviour
     public void CharacterChange(GameObject player, GameObject follower)
     {
         _operator = player;
-        _follower = follower; 
+        _follower = follower;
         _followerMove.InFolloewrCharacter(_operator, _follower);
         _characterTurn.InFolloewrCharacter(_operator, _follower);
         _characterClimb.InCharacter(_follower);
     }
 }
-    
+
 
 
 

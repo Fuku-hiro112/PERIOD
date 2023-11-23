@@ -10,7 +10,6 @@ namespace Character
     /// </summary>
     public class CharacterManager : MonoBehaviour
     {
-
         [SerializeField] GameObject _boy;
         [SerializeField] GameObject _engineer;
         [SerializeField] GameObject _currentCharacter;
@@ -19,7 +18,8 @@ namespace Character
         [SerializeField] CharaController _charaController;
         [SerializeField] CharacterChange _characterChange;
         [SerializeField] OperatorInput _operatorInput;
-
+        [SerializeField] CollisionDetection _collisionBoy;
+        [SerializeField] CollisionDetection _collisionEngineer;
         // ê∂ë∂îªíË
         [SerializeField] bool isDead = false;
 
@@ -58,6 +58,8 @@ namespace Character
             _charaController = new CharaController(_operatorController, _followerController);
             _operatorInput.OnStart();
             _operatorController.OnInput(_operatorInput);
+            _collisionBoy.OnInput(_operatorInput);
+            _collisionEngineer.OnInput(_operatorInput);
             CharacterChange(_boy, _engineer);
         }
 
