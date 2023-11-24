@@ -1,3 +1,4 @@
+using Character;
 using Gimmikc;
 using Input;
 using System;
@@ -53,10 +54,10 @@ namespace Gimmick
             Vector3 moveValue = _cursorInput.MoveValue * Time.deltaTime * _speed;
             
             // ダッシュ処理
-            if (_cursorInput.IsPadButtonB)
+            /*if (_cursorInput.IsGimmickAction())
             {
                 moveValue *= _dashMagnification;
-            }
+            }*/
 
             //移動 
             this.gameObject.transform.position += moveValue;// 設計的に別の場所から呼び出すようにしているため,どのオブジェクトか分からなくなると考えた為,this.gameobjectで明示している

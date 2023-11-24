@@ -16,7 +16,7 @@ namespace Character
         [SerializeField] private CharacterClimb _characterClimb;
         [SerializeField] private CharacterTurnAround _characterTurnAround;
         private GimmickController _gimmickController; // Ç»ÇÒÇ≈privateÇ…ÇµÇƒÇÈÅH
-        private IOperatorInput _IOperatorInput;
+        private IOperatorInput _iOperatorInput;
         [SerializeField] private GameObject _currentCharacter;
         public bool IsAction = false;
 
@@ -45,7 +45,7 @@ namespace Character
         /// <param name="input"></param>
         public void OnInput(OperatorInput input)
         {
-            _IOperatorInput = input;
+            _iOperatorInput = input;
         }
 
         private void Awake()
@@ -65,9 +65,9 @@ namespace Character
         {
             if (!IsAction)
             {
-                _characterMove.Movement(_IOperatorInput.MovementValue, 1.0f);
-                _characterClimb.Climb(_IOperatorInput.MovementValue);
-                _characterTurnAround.TurnAround(_IOperatorInput.MovementValue);
+                _characterMove.Movement(_iOperatorInput.MovementValue, 1.0f);
+                _characterClimb.Climb(_iOperatorInput.MovementValue);
+                _characterTurnAround.TurnAround(_iOperatorInput.MovementValue);
             }
 
             _stateMachine.OnUpdate();

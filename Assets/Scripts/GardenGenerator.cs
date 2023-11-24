@@ -13,23 +13,30 @@ namespace Garden
 {
     public class GardenGenerator : MonoBehaviour
     {
-        private GameObject[] _gardenKinds;
-        [SerializeField] private GameObject _prepareGarden;
-        Vector3 _gardenPos = Vector3.zero;
-        [SerializeField] private int _daysUpWave = 4;// waveが上がる日数
-        [SerializeField] private Text _dayText;
-        [SerializeField] private Text _waveText;
-        private int _dayNum = 1;
-        private int _waveNum = 1;
-        Transform _player;
+        [SerializeField] 
+        private GameObject _prepareGarden;
+        [SerializeField] 
+        private Text _dayText;
+        [SerializeField] 
+        private Text _waveText;
+        [SerializeField]// 初期高さ　Playerをy=0にしたいため
+        Vector3 _gardenPos = new Vector3(0, 9.58f, 0);
+        [SerializeField] 
+        private int _daysUpWave = 4;// waveが上がる日数
 
+        private GameObject[] _gardenKinds;
+        private Transform _player;
+        private int _waveNum = 1;
+        private int _dayNum = 1;
+
+        //HACK: データベースorオブジェクトプールによる処理負荷軽減を推奨
         public GameObject[] GardenKinds { get => _gardenKinds; }
         public GameObject PrepareGarden { get => _prepareGarden; }
 
         void Start()
         {
-            //_dayText.text = $"{_dayNum}DAY";
-            //_waveText.text = $"{_waveNum}WAVE";
+            _dayText.text = $"{_dayNum}DAY";
+            _waveText.text = $"{_waveNum}WAVE";
             _player = GameObject.FindGameObjectWithTag("Player").transform;
             CancellationToken token = this.GetCancellationTokenOnDestroy();
 
@@ -38,26 +45,6 @@ namespace Garden
             _gardenKinds = SetGardenKinds(childNum);
 
             ControlGardenAsync(childNum, token).Forget();
-
-            /*
-            // 箱庭生成
-            for (int i = 0; i < gardenSet.Length; i++)
-            {
-                float halfScalZ = gardenSet[i].transform.localScale.z * 10 /2;// 箱庭の奥行の半分長さを取る メッシュによって変わるので変更が必要
-                _gardenPos += new Vector3(0,0,halfScalZ);
-                Instantiate(gardenSet[i], _gardenPos, Quaternion.Euler(Vector3.zero));// i番目の箱庭を生成　回転はゼロ
-            }*/
-            /*
-            // 箱庭生成
-            while (idx < gardenSet.Length)// 
-            {
-                while (_dayNum % _daysUpWave == 0)// _dayUpWaveごとに
-                {
-                    _waveNum++;
-                }
-                _dayNum++;
-                GenerateGarden(gardenSet);
-            }*/
         }
         /// <summary>
         /// 箱庭を出現させる
@@ -77,10 +64,10 @@ namespace Garden
                 if (_dayNum % _daysUpWave == 0)
                 {
                     _waveNum++;
-                    //_waveText.text = $"{_waveNum}WAVE";
+                    _waveText.text = $"{_waveNum}WAVE";
                 }
                 _dayNum++;
-                //_dayText.text = $"{_dayNum}DAY";
+                _dayText.text = $"{_dayNum}DAY";
             }
         }
         /// <summary>
@@ -92,11 +79,12 @@ namespace Garden
             foreach (GameObject garden in gardens)
             {
                 // 出現位置を更新
-                float gardenScalZ = garden.transform.localScale.z * 10;// meshの大きさによって変わるので変更が必要
-                _gardenPos += new Vector3(0, 0, gardenScalZ);// 箱庭のスケール分足す
+                Vector3 boundsSize = garden.GetComponent<MeshFilter>().mesh.bounds.size;
+                float gardenSizeX = boundsSize.x * garden.transform.localScale.x;//
+                _gardenPos += new Vector3(0, 0, gardenSizeX);// 箱庭のサイズ分足す
 
                 // 箱庭生成
-                Instantiate(garden, _gardenPos, Quaternion.Euler(Vector3.zero));
+                Instantiate(garden, _gardenPos, Quaternion.Euler(0,90,0));
             }
         }
 
