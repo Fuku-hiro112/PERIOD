@@ -14,11 +14,13 @@ namespace Input
         private void OnEnable()
         {
             TryGetComponent(out _input);
+            Input.SwitchCurrentActionMap("UI");
             Input.actions["Navigate"].performed += OnMove;
             Input.actions["Navigate"].canceled += OnMoveStop;
         }
         private void OnDisable()
         {
+            Input.SwitchCurrentActionMap("Player");
             Input.actions["Navigate"].performed -= OnMove;
             Input.actions["Navigate"].canceled -= OnMoveStop;
         }

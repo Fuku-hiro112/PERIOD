@@ -322,7 +322,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Change"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -333,7 +333,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Change"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
