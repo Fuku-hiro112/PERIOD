@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 
 /// <summary>
-/// ギミックのタグを判別するクラス
+/// ギミックタグを判別するクラス
 /// </summary>
 public class DisplayGimmickError : MonoBehaviour
 {
@@ -21,50 +21,41 @@ public class DisplayGimmickError : MonoBehaviour
     GameObject ErrorMessagePrefab;
 
     [SerializeField]
-    Vector3 CanvasPos = new Vector3(0, 2, 0); //Canvas の位置
+    Transform Canvas; //Canvas の位置
 
 
     private void Start()
     {
         _myCanvas = Instantiate(ErrorMessagePrefab);
         _myCanvas.transform.SetParent(gameObject.transform); //Canvasを自身の子構造に
-        _myCanvas.transform.position = transform.position + CanvasPos; //キャンバスの位置補正
+        _myCanvas.transform.localPosition = transform.localPosition + Canvas.position; //キャンバスの位置補正
         _imgError = _myCanvas.transform.Find("ErrorMessage").GetComponent<Image>();
-    }
-
-
-    private void Update()
-    {
-        _myCanvas.transform.forward = Camera.main.transform.forward;
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            DisplayErrorMessage();
+            Debug.Log("当たった");
+
+            _imgError.gameObject.SetActive(true);
+
+            
         }
     }
-
-    /// <summary>
-    /// 操作できないことを画像で表示
-    /// </summary>
-    private void DisplayErrorMessage()
-    {
-        if (_ErrorMessage != null)
-        {
-            _ErrorMessage.gameObject.SetActive(true);
-        }
-    }
-
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            _ErrorMessage.gameObject.SetActive(false);
+            _imgError.gameObject.SetActive(false);
         }
+    }
+
+    private void Update()
+    {
+        _myCanvas.transform.forward = Camera.main.transform.forward;
     }
 }
 
