@@ -1,10 +1,9 @@
-using Character;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Haptics;
 
 namespace Character
 {
@@ -17,6 +16,7 @@ namespace Character
         [SerializeField] private PlayerInput _input;
         [SerializeField] private Vector2 _inputMove;
         [SerializeField] Vector3 _direction;
+        InputActionMap _Player;
 
         /// <summary>
         /// アクティブがオンになった時の処理
@@ -24,8 +24,10 @@ namespace Character
         public void OnEnable()
         {
             Debug.Log("スタート");
-            _input.actions["Move"].performed += OnMove;
-            _input.actions["Move"].canceled += OnMoveStop;
+            _Player = _input.actions.FindActionMap("Player");
+            _input.SwitchCurrentActionMap("Player");
+            _Player["Move"].performed += OnMove;
+            _Player["Move"].canceled += OnMoveStop;
         }
 
         /// <summary>
@@ -33,8 +35,8 @@ namespace Character
         /// </summary>
         public void OnDisable()
         {
-            _input.actions["Move"].performed -= OnMove;
-            _input.actions["Move"].canceled -= OnMoveStop;
+            _Player["Move"].performed -= OnMove;
+            _Player["Move"].canceled -= OnMoveStop;
         }
 
         /// <summary>
@@ -70,11 +72,11 @@ namespace Character
 
         /// <summary>
         /// ギミックアクションボタン入力判定
-        /// </summary>
-        [SerializeField]    
+        /// </summary> 
+        /// 
         public bool IsGimmickAction()
         {
-            return _input.actions["PushGimmick"].WasPressedThisFrame(); 
+            return _Player["PushGimmick"].WasPressedThisFrame(); 
         }
 
         
@@ -84,7 +86,34 @@ namespace Character
         /// <returns></returns>
         public bool IsChange()
         {
-            return _input.actions["Change"].WasPressedThisFrame();
+            return _Player["Change"].WasPressedThisFrame();
+        }
+        
+        /// <summary>
+        /// 振動
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator Vibration()
+        {
+            if (_input.devices.FirstOrDefault(x => x is IDualMotorRumble) is not IDualMotorRumble gamepad)
+            {
+                Debug.Log("デバイス未接続");
+                yield break;
+            }
+
+            // 振動
+            Debug.Log("コントローラ振動開始");
+
+            gamepad.SetMotorSpeeds(1.0f, 0.0f);
+            yield return new WaitForSeconds(1.0f);
+
+            gamepad.SetMotorSpeeds(0.0f, 1.0f);
+            
+            yield return new WaitForSeconds(1.0f);
+            
+            gamepad.SetMotorSpeeds(0.0f, 0.0f);
+
+            Debug.Log("コントローラ振動停止");
         }
         
         /// <summary>
@@ -92,7 +121,7 @@ namespace Character
         /// </summary>
         public void OnStart()
         {
-            _input = GameObject.Find("CharacterManager").GetComponent<PlayerInput>();
+            _input = GameObject.Find("CursorInput").GetComponent<PlayerInput>();
             OnEnable();
         }
     }

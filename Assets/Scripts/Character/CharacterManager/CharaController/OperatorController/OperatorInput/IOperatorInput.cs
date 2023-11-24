@@ -17,5 +17,6 @@ namespace Character
         public void OnStart();
         public bool IsGimmickAction();
         public bool IsChange();
+        public IEnumerator Vibration();
     }
 }
