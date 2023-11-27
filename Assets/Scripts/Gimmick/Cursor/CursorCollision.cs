@@ -1,3 +1,4 @@
+using Input;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,9 +14,10 @@ namespace Gimmick
         [SerializeField]
         Transform _startPosition;
 
-        public void MoveFirstPosition(GameObject cursor)
+        public void MoveFirstPosition(GameObject cursor, CursorInput input)
         {
             cursor.transform.position = _startPosition.position;
+            input.Vibration();
         }
         public void EndGimmick()
         {

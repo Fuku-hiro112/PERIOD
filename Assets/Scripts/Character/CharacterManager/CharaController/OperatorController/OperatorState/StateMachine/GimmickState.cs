@@ -10,13 +10,17 @@ namespace Character.OperaterState
         private OperatorController _operator;
         [SerializeField]
         private CursorController _cursor;
-
+        [SerializeField]
+        private InputManager _inputManager;
+ 
         public GimmickState(OperatorController operatorController)
         {
             _operator = operatorController;
 
             GameObject.FindGameObjectWithTag("GimmickCanvas").
                 transform.Find("Cursor").TryGetComponent(out _cursor);
+
+            _inputManager = GameObject.Find("Input").GetComponent<InputManager>();
         }
         /// <summary>
         /// StateäJénéûÇ…é¿çsÇ≥ÇÍÇÈ
@@ -24,6 +28,7 @@ namespace Character.OperaterState
         public void HandleStart()
         {
             _operator.IsAction = true;
+            _inputManager.ActionMapChange("UI");
             _cursor.OnStart(_operator.GimmickController.GimmickID);
             _operator.GimmickController.OnStart();
         }
@@ -46,6 +51,7 @@ namespace Character.OperaterState
         /// </summary>
         public void HandleEnd()
         {
+            _inputManager.ActionMapChange("Player");
             _operator.IsAction = false;
             _operator.GimmickController.OnEnd();
         }
