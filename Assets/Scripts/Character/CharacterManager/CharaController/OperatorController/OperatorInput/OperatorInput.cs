@@ -1,6 +1,9 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Linq;
+using System.Threading;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Haptics;
@@ -15,19 +18,18 @@ namespace Character
     {
         [SerializeField] private PlayerInput _input;
         [SerializeField] private Vector2 _inputMove;
-        [SerializeField] Vector3 _direction;
-        InputActionMap _Player;
+        [SerializeField] private Vector3 _direction;
+        private InputActionMap _playerMap;
+        CancellationToken _token;
 
         /// <summary>
         /// アクティブがオンになった時の処理
         /// </summary>
         public void OnEnable()
         {
-            Debug.Log("スタート");
-            _Player = _input.actions.FindActionMap("Player");
-            _input.SwitchCurrentActionMap("Player");
-            _Player["Move"].performed += OnMove;
-            _Player["Move"].canceled += OnMoveStop;
+            _playerMap = _input.actions.FindActionMap("Player");
+            _playerMap["Move"].performed += OnMove;
+            _playerMap["Move"].canceled += OnMoveStop;
         }
 
         /// <summary>
@@ -35,8 +37,8 @@ namespace Character
         /// </summary>
         public void OnDisable()
         {
-            _Player["Move"].performed -= OnMove;
-            _Player["Move"].canceled -= OnMoveStop;
+            _playerMap["Move"].performed -= OnMove;
+            _playerMap["Move"].canceled -= OnMoveStop;
         }
 
         /// <summary>
@@ -45,6 +47,8 @@ namespace Character
         /// <param name="context"></param>
         private void OnMove(InputAction.CallbackContext context)
         {
+            if (_playerMap != _input.currentActionMap)
+                return;
             // スティック入力値を渡す
             _inputMove = context.ReadValue<Vector2>();
             _direction = new Vector3(_inputMove.x, 0, _inputMove.y);
@@ -56,6 +60,8 @@ namespace Character
         /// <param name="context"></param>
         private void OnMoveStop(InputAction.CallbackContext context)
         {
+            if (_playerMap != _input.currentActionMap)
+                return;
             // スティック入力値を渡す
             _inputMove = Vector2.zero;
             _direction = new Vector3(_inputMove.x, 0, _inputMove.y);
@@ -76,7 +82,9 @@ namespace Character
         /// 
         public bool IsGimmickAction()
         {
-            return _Player["PushGimmick"].WasPressedThisFrame(); 
+            if (_playerMap != _input.currentActionMap)
+                return false;
+            return _playerMap["PushGimmick"].WasPressedThisFrame(); 
         }
 
         
@@ -86,31 +94,32 @@ namespace Character
         /// <returns></returns>
         public bool IsChange()
         {
-            return _Player["Change"].WasPressedThisFrame();
+            if (_playerMap != _input.currentActionMap)
+                return false;
+            return _playerMap["Change"].WasPressedThisFrame();
         }
         
         /// <summary>
         /// 振動
         /// </summary>
         /// <returns></returns>
-        public IEnumerator Vibration()
+        async public UniTaskVoid Vibration()
         {
+            if (_playerMap != _input.currentActionMap)
+                return;
+
             if (_input.devices.FirstOrDefault(x => x is IDualMotorRumble) is not IDualMotorRumble gamepad)
             {
                 Debug.Log("デバイス未接続");
-                yield break;
+                return;
             }
 
             // 振動
             Debug.Log("コントローラ振動開始");
-
             gamepad.SetMotorSpeeds(1.0f, 0.0f);
-            yield return new WaitForSeconds(1.0f);
 
-            gamepad.SetMotorSpeeds(0.0f, 1.0f);
-            
-            yield return new WaitForSeconds(1.0f);
-            
+            await UniTask.Delay(1000, cancellationToken: _token);
+
             gamepad.SetMotorSpeeds(0.0f, 0.0f);
 
             Debug.Log("コントローラ振動停止");

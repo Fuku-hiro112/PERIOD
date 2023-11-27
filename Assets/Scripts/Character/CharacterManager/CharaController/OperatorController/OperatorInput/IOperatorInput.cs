@@ -4,6 +4,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using static UnityEngine.EventSystems.StandaloneInputModule;
 using UnityEngine.UIElements;
+using Cysharp.Threading.Tasks;
 
 namespace Character
 {
@@ -17,6 +18,6 @@ namespace Character
         public void OnStart();
         public bool IsGimmickAction();
         public bool IsChange();
-        public IEnumerator Vibration();
+        public UniTaskVoid Vibration();
     }
 }

@@ -45,8 +45,6 @@ namespace Gimmick
             this.transform.position = StartPosition;
 
             IsClear = false;
-
-            _cursorInput.enabled = true;
         }
 
         /// <summary>
@@ -74,6 +72,7 @@ namespace Gimmick
                 // 初期地点へ
                 this.transform.position = StartPosition;
                 //TODO: ゲームパットを振動 and 画面の揺れ and サウンド　別クラスから呼び出そう
+                _cursorInput.Vibration();
                 
             }
             /*else if (other.gameObject.CompareTag("CheckPoint"))// いる？
@@ -88,7 +87,6 @@ namespace Gimmick
                 _image.enabled = false;
                 IsClear = true;
            　　 // 追加
-                _cursorInput.enabled = false;
             }
         }
     }
