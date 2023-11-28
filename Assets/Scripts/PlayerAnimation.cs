@@ -44,7 +44,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             return;
         }
-
+        
         //移動処理
         float Lx = Gamepad.current.leftStick.ReadValue().x;
         float Ly = Gamepad.current.leftStick.ReadValue().y;
@@ -52,7 +52,7 @@ public class PlayerAnimation : MonoBehaviour
 
         if (Dir.sqrMagnitude > _Threshold)
         {
-            transform.position += Dir * _MoveSpeed * Time.fixedDeltaTime;
+            //transform.position += Dir * _MoveSpeed * Time.fixedDeltaTime;
             //同じ長さの２つのベクトルのDot積（同じ方向なら1、反対方向なら-1）を求める
             _animator.SetFloat("Vertical", Vector3.Dot(Dir, transform.forward));
             _animator.SetFloat("Horizontal", Vector3.Dot(Dir, transform.right));
