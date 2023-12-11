@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Gimmick;
 using System;
 using UnityEngine;
@@ -10,17 +11,13 @@ namespace Character.OperaterState
         private OperatorController _operator;
         [SerializeField]
         private CursorController _cursor;
-        [SerializeField]
-        private InputManager _inputManager;
- 
+
         public GimmickState(OperatorController operatorController)
         {
             _operator = operatorController;
 
             GameObject.FindGameObjectWithTag("GimmickCanvas").
                 transform.Find("Cursor").TryGetComponent(out _cursor);
-
-            _inputManager = GameObject.Find("Input").GetComponent<InputManager>();
         }
         /// <summary>
         /// State開始時に実行される
@@ -28,7 +25,6 @@ namespace Character.OperaterState
         public void HandleStart()
         {
             _operator.IsAction = true;
-            _inputManager.ActionMapChange("UI");
             _cursor.OnStart(_operator.GimmickController.GimmickID);
             _operator.GimmickController.OnStart();
         }
@@ -43,19 +39,18 @@ namespace Character.OperaterState
             // Transition(ICharacterState nextState)を使い移行条件を書く
             if (_cursor.IsClear)
             {
-                _operator.StateMachine.Transition(_operator.StateMachine.IdleState);
+                _operator.StateMachine.Transition(_operator.StateMachine.IdleState).Forget();
             }
         }
         /// <summary>
         /// State終了時に実行される
         /// </summary>
-        public void HandleEnd()
+        public async UniTask HandleEnd() 
         {
-            _inputManager.ActionMapChange("Player");
             _operator.IsAction = false;
             _operator.GimmickController.OnEnd();
+            // TODO: 現在接触している、または使用したotherをどこかから持ってくる
+            //await other.gameObject.GetComponent<GimmickSourceDataBase>().HandleActionAsync();
         }
-
-        
     }
 }

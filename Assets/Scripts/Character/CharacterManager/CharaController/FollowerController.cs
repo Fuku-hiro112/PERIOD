@@ -16,25 +16,35 @@ public class FollowerController : MonoBehaviour
     [SerializeField] private float _smoothTime;
 
     // 最高速度
-    [SerializeField] private float _maxSpeed = float.PositiveInfinity;
+    [SerializeField] private float _maxSpeed = 10.0f;
 
-    // メインキャラクターとの距離
+    // メインキャラクターとの一定距離を維持
     [SerializeField] private float _distanceFromOperator;
 
     private Vector3 _direction;
 
+    private bool _isFollow = true;
+
     // FollowerMoveをインスタンス
-    FollowerMove _followerMove = new FollowerMove(2f, 0.1f, float.PositiveInfinity);
+    FollowerMove _followerMove;
 
     CharacterTurnAround _characterTurn = new CharacterTurnAround();
     CharacterClimb _characterClimb = new CharacterClimb();
 
+    private void Awake()
+    {
+        _followerMove = new FollowerMove(_distanceFromOperator, _smoothTime, _maxSpeed);
+    }
+
     private void Update()
     {
-        _followerMove.MoveFollower();
-        _direction = _characterTurn.MyTargetDirection();
-        _characterTurn.TurnAround(_direction);
-        _characterClimb.Climb(_direction);
+        if (_isFollow)
+        {
+            _followerMove.MoveFollower();
+            _direction = _characterTurn.MyTargetDirection();
+            _characterTurn.TurnAround(_direction);
+            _characterClimb.Climb(_direction);
+        }
     }
 
     /// <summary>

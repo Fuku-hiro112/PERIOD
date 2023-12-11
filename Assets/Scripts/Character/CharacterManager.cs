@@ -23,13 +23,18 @@ namespace Character
         // ê∂ë∂îªíË
         [SerializeField] bool isDead = false;
 
+        public OperatorInput OperatorInput { get => _operatorInput; private set => _operatorInput = value; }
+        public GameObject CurrentCharacter { get => _currentCharacter; private set => _currentCharacter = value; }
+
+
+
         /// <summary>
         /// åªç›ÇÃëÄçÏcharacterÇí íB
         /// </summary>
         /// <param name="player"></param>
         void CharacterChange(GameObject player, GameObject follower)
         {
-            _currentCharacter = player;
+            CurrentCharacter = player;
             _charaController.CharacterCurrent(player, follower);
         }
 
@@ -40,7 +45,7 @@ namespace Character
         {
             if (_characterChange.OnChange())
             {
-                if (_currentCharacter == _boy)
+                if (CurrentCharacter == _boy)
                     CharacterChange(_engineer, _boy);
                 else
                     CharacterChange(_boy, _engineer);
@@ -49,17 +54,17 @@ namespace Character
 
         void Awake()
         {
-            _operatorInput = new OperatorInput();
-            _characterChange = new CharacterChange(_operatorInput);
+            OperatorInput = new OperatorInput();
+            _characterChange = new CharacterChange(OperatorInput);
         }
 
         private void Start()
         {
             _charaController = new CharaController(_operatorController, _followerController);
-            _operatorInput.OnStart();
-            _operatorController.OnInput(_operatorInput);
-            _collisionBoy.OnInput(_operatorInput);
-            _collisionEngineer.OnInput(_operatorInput);
+            OperatorInput.OnStart();
+            _operatorController.OnInput(OperatorInput);
+            _collisionBoy.OnInput(OperatorInput);
+            _collisionEngineer.OnInput(OperatorInput);
             CharacterChange(_boy, _engineer);
         }
 

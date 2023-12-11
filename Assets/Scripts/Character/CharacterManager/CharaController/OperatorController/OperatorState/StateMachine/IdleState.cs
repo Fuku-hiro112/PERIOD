@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -29,7 +30,7 @@ namespace Character.OperaterState
             // Transition(ICharacterState nextState)を使い移行条件を書く
             if (Mathf.Abs(velocity.x) + Mathf.Abs(velocity.z) > 0)
             {
-                _controller.StateMachine.Transition(_controller.StateMachine.WalkState);
+                _controller.StateMachine.Transition(_controller.StateMachine.WalkState).Forget();
                
             }
             Debug.Log("立ち");
@@ -37,7 +38,7 @@ namespace Character.OperaterState
         /// <summary>
         /// State終了時に実行される
         /// </summary>
-        public void HandleEnd()
+        public async UniTask HandleEnd()
         {
 
         }
