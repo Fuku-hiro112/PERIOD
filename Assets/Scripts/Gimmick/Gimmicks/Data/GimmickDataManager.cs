@@ -12,16 +12,22 @@ namespace Gimmick
         [SerializeField]
         private GameObject _canvasGimmick;
 
-        private GimmickSourceData[] _data { get => _dataBase.DataArray; }
+        private GimmickSourceDataBase[] _data { get => _dataBase.DataArray; }
+        public static GimmickDataManager s_Instance;//Hack: Staticにしたくないが仕方なさそう
 
         private void Awake()
         {
             // SourceDataのインスタンスを全て生成し、非表示にして見えないようにしている
-            foreach (GimmickSourceData gimmickData in _data)
+            foreach (GimmickSourceDataBase gimmickData in _data)
             {
                 gimmickData._prefab.SetActive(false);// Prefab本体をFalseに
                 //Fixed: 毎回データが書き変わる為修正が必要、他クラスでデータにアクセスし、表示非表示の変更をするため、データを書き換える
                 gimmickData.Prefab = Instantiate(gimmickData._prefab, _canvasGimmick.transform);
+            }
+
+            if (s_Instance == null)
+            {
+                s_Instance = this;
             }
         }
 
@@ -30,7 +36,7 @@ namespace Gimmick
         /// </summary>
         /// <param name="id"></param>
         /// <returns>IDのデータ</returns>
-        private GimmickSourceData SearchData(int id)
+        private GimmickSourceDataBase SearchData(int id)
         {
             /*foreach (GimmickSourceData data in _data)
             {

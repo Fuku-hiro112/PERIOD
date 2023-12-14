@@ -25,6 +25,7 @@ namespace Character
         [NonSerialized]
         public GimmickController GimmickController;
         public GameObject CurrentCharacter { get => _currentCharacter; }
+        public CharacterTurnAround CharacterTurnAround { get => _characterTurnAround; private set => _characterTurnAround = value; }
 
         /// <summary>
         /// ëÄçÏcharacterÇÃïœçX
@@ -35,7 +36,7 @@ namespace Character
             _characterMove.Movement(new Vector3(0, 1.0f, 0), 0f);
             _currentCharacter = player;
             _characterMove.InOperationCharacter(_currentCharacter);
-            _characterTurnAround.InOperationCharacter(_currentCharacter);
+            CharacterTurnAround.InOperationCharacter(_currentCharacter);
             _characterClimb.InCharacter(_currentCharacter);
         }
         
@@ -53,7 +54,7 @@ namespace Character
             _stateMachine = new OperatorStateMachine(this);
             _characterMove = new OperatorMove();
             _characterClimb = new CharacterClimb();
-            _characterTurnAround = new CharacterTurnAround();
+            CharacterTurnAround = new CharacterTurnAround();
         }
 
         private void Start()
@@ -67,7 +68,7 @@ namespace Character
             {
                 _characterMove.Movement(_iOperatorInput.MovementValue, 1.0f);
                 _characterClimb.Climb(_iOperatorInput.MovementValue);
-                _characterTurnAround.TurnAround(_iOperatorInput.MovementValue);
+                CharacterTurnAround.TurnAround(_iOperatorInput.MovementValue);
             }
 
             _stateMachine.OnUpdate();

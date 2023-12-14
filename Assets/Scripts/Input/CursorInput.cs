@@ -59,8 +59,8 @@ namespace Input
             // 振動
             Debug.Log("コントローラ振動開始");
 
-            gamepad.SetMotorSpeeds(1.0f, 0.0f);
-            await UniTask.Delay(1000, cancellationToken: _token);
+            gamepad.SetMotorSpeeds(0.5f, 0.0f);
+            await UniTask.Delay(500, cancellationToken: _token);
 
             gamepad.SetMotorSpeeds(0.0f, 0.0f);
 

@@ -1,4 +1,5 @@
 using Character;
+using Cysharp.Threading.Tasks;
 using Gimmikc;
 using Input;
 using System;
@@ -13,6 +14,10 @@ namespace Gimmick
         [SerializeField]
         private CursorInput _cursorInput;
         [SerializeField]
+        private InputManager _inputManager;
+        [SerializeField]
+        private CameraManager _cameraManager;
+        [SerializeField]
         private float _speed = 1;
         [SerializeField]
         private float _dashMagnification = 2;
@@ -26,6 +31,7 @@ namespace Gimmick
         {
             TryGetComponent(out _image);
             _image.enabled = false;
+            _inputManager = GameObject.Find("Input").GetComponent<InputManager>();
         }
         
        
@@ -43,7 +49,7 @@ namespace Gimmick
             StartPosition = iSearchable.SearchPosition(id);
             // カーソルをスタート地点へ
             this.transform.position = StartPosition;
-
+            _inputManager.ActionMapChange("UI");
             IsClear = false;
         }
 
@@ -72,8 +78,9 @@ namespace Gimmick
                 // 初期地点へ
                 this.transform.position = StartPosition;
                 //TODO: ゲームパットを振動 and 画面の揺れ and サウンド　別クラスから呼び出そう
-                _cursorInput.Vibration();
-                
+                _cursorInput.Vibration().Forget();
+                _cameraManager.Shake().Forget();
+
             }
             /*else if (other.gameObject.CompareTag("CheckPoint"))// いる？
             //{
@@ -84,6 +91,7 @@ namespace Gimmick
             {
                 Debug.Log("ギミック終了");
                 //TODO: ギミック終了処理（あれば）
+                _inputManager.ActionMapChange("Player");
                 _image.enabled = false;
                 IsClear = true;
            　　 // 追加

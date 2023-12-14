@@ -10,7 +10,7 @@ namespace Character
     /// </Summary>
     public class FollowerMove
     {
-        // CharacterMoveコンストラクタの引数を代入するのに必要
+        // CharacterMoveコンストラクタの引数を代入するのに必要 橋
         private float _distanceFromOperator, _smoothTime, _maxSpeed;
         Vector3 _currentVelocity;
         Transform _operatorTransfrom;
@@ -57,7 +57,8 @@ namespace Character
             {
                 // 次フレームの位置を計算（SmoothDampを各軸に適用）
                 float newX = Mathf.SmoothDamp(currentPosition.x, targetPositionAdjusted.x, ref _currentVelocity.x, _smoothTime, _maxSpeed);
-                float newY = Mathf.SmoothDamp(currentPosition.y, targetPositionAdjusted.y, ref _currentVelocity.y, _smoothTime, _maxSpeed);
+                float newY = _followerTransfrom.position.y;
+                    //Mathf.SmoothDamp(currentPosition.y, targetPositionAdjusted.y, ref _currentVelocity.y, _smoothTime, _maxSpeed);
                 float newZ = Mathf.SmoothDamp(currentPosition.z, targetPositionAdjusted.z, ref _currentVelocity.z, _smoothTime, _maxSpeed);
 
                 // 現在位置の更新

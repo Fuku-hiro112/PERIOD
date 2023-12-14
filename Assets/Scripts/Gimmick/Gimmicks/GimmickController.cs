@@ -8,7 +8,6 @@ namespace Gimmick
         [SerializeField]
         private int _gimmickID;
         private GameObject _prefab;
-
         public int GimmickID { get => _gimmickID; }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace Gimmick
         }
         public void OnUpdate()
         {
-
+            
         }
         /// <summary>
         /// ギミック終了

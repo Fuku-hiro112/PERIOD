@@ -17,7 +17,7 @@ namespace Gimmick
         public void MoveFirstPosition(GameObject cursor, CursorInput input)
         {
             cursor.transform.position = _startPosition.position;
-            input.Vibration();
+            input.Vibration().Forget();
         }
         public void EndGimmick()
         {

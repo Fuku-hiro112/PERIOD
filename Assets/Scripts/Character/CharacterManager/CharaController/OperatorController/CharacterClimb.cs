@@ -13,8 +13,9 @@ namespace Character
     public class CharacterClimb
     {
         [SerializeField] Transform _transform;
-        [SerializeField] float raycastForwardDistance = 1.0f; // レイの長さ
+        [SerializeField] float _raycastForwardDistance = 1.0f; // レイの長さ
         [SerializeField] float _maxObstacleHeight = 2.0f; // 指定の高さ以下の障害物を判定する高さ
+        [SerializeField] float _forwardValue = 0.5f;
         [SerializeField] LayerMask _groundLayer; // 地面と判定するレイヤー
         [SerializeField] Vector3 _raycastBottomPos;
         [SerializeField] Vector3 _raycastTopPos;
@@ -43,7 +44,9 @@ namespace Character
 
             // レイを投げる位置を設定
             _raycastTopPos = new Vector3(0f, _maxObstacleHeight, 0f);
-            _raycastBottomPos = new Vector3(playerForward.x * 0.5f, _maxObstacleHeight, playerForward.z * 0.5f);
+            _raycastBottomPos = new Vector3(playerForward.x *_forwardValue, 
+                                            _maxObstacleHeight,
+                                            playerForward.z * _forwardValue);
 
             Vector3 bottomPos = new Vector3(0, -1f, 0); //足元を設定
 
@@ -56,12 +59,12 @@ namespace Character
             Ray rayTop = new Ray(raycastTop, playerForward); // 上限を設定
 
             // 後で消します　Rayを可視化
-            Debug.DrawRay(raycastTop, playerForward * raycastForwardDistance, Color.blue);
+            Debug.DrawRay(raycastTop, playerForward * _raycastForwardDistance, Color.blue);
             Debug.DrawRay(raycastBottomArea, playerDown * _maxObstacleHeight, Color.red);
 
             _groundLayer = LayerMask.GetMask("Ground");
             isRaycastBottom = Physics.Raycast(rayBottom, _maxObstacleHeight - 0.01f, _groundLayer);
-            isRaycastTop = Physics.Raycast(rayTop, raycastForwardDistance, _groundLayer);
+            isRaycastTop = Physics.Raycast(rayTop, _raycastForwardDistance, _groundLayer);
 
             // レイキャストを実行
             if (direction != Vector3.zero)
