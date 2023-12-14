@@ -17,7 +17,7 @@ namespace Gimmick
         public void OnStart()
         {
             // tagの乱用+検索範囲を狭めるため、Databaseオブジェクトの子オブジェクトから探すようにしている
-            ISearchable iSearchable = 
+            ISearcher iSearchable = 
                 GameObject.FindGameObjectWithTag("DataBase").
                 transform.Find("GimmickDataManager").GetComponent<GimmickDataManager>();
             

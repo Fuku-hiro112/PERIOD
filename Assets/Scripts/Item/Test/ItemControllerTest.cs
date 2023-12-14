@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Test;
+using Item;
 using UnityEngine;
 
 namespace Item
@@ -12,7 +12,7 @@ namespace Item
         /// <summary>
         /// ƒAƒCƒeƒ€‚ð“üŽè‚·‚é
         /// </summary>
-        public void ObtainItem(InventroyTest inventroy)
+        public void ObtainItem(Inventroy inventroy)
         {
             inventroy.Add(_itemID);
         }

@@ -11,4 +11,3 @@ namespace Gimmick
         public GimmickSourceData[] DataArray { get => _dataArray; }
     }
 }
-

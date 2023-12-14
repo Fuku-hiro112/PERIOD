@@ -1,4 +1,4 @@
-﻿namespace Test
+﻿namespace Item
 {
     internal class InventryTestBase
     {

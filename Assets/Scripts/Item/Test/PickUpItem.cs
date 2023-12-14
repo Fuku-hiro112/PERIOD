@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Test
+namespace Item
 {
-    public partial class DropItem : MonoBehaviour
+    public class AvailableItem : MonoBehaviour
     {
-        int itemID;
+        [SerializeField]
+        private int itemID;
 
         private void Start()
         {
             //GetComponent<Image>().sprite = item.icon;
         }
-
-        public void PickUpItem(bool isBoy)//TODO: CharaにisBoyをつける
+        public void PickUp()//TODO: CharaにisBoyをつける
         {
-            if (isBoy)
+            if (InventryManager.s_Instance.IsAddItem(itemID))
             {
-                InventryManager.s_Instance.BoyInventroy.Add(itemID);
                 Destroy(gameObject);
             }
             else
             {
-                InventryManager.s_Instance.EngineerInventroy.Add(itemID);
-                Destroy(gameObject);
+                //TODO: アイテム入手負荷処理　ビーブ音など
             }
         }
     }

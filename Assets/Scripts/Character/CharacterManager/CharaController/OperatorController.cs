@@ -58,7 +58,7 @@ namespace Character
 
         private void Start()
         {
-            _stateMachine.Initialize(_stateMachine.IdleState);  
+            _stateMachine.Initialize(_stateMachine.IdleState);
         }
 
         void Update()

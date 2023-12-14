@@ -1,5 +1,6 @@
 using Character.OperaterState;
 using Gimmick;
+using Item;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,11 @@ namespace Character
             if (other.gameObject.CompareTag("Gimmick"))
             {
                 //TODO: テキスト表示
+            }
+            else if (other.gameObject.CompareTag("Item"))
+            {
+                //TODO: そのオブジェクトの「アイテムを拾う処理」を呼んでアイテムを取得する
+                other.gameObject.GetComponent<AvailableItem>()?.PickUp();
             }
         }
         private void OnTriggerStay(Collider other)
