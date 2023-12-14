@@ -1,10 +1,11 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 
 namespace Gimmick
 {
     [CreateAssetMenu(fileName = "GimmickSourceData", menuName = "ScriptableObject/Gimmick")]
-    public class GimmickSourceData : ScriptableObject
+    public class GimmickSourceDataBase : ScriptableObject
     {
         [SerializeField]// ƒMƒ~ƒbƒN‚ÌID
         private int _id;
@@ -18,6 +19,11 @@ namespace Gimmick
         public GameObject Prefab;
         public int ID { get => _id; }
         public Vector3 StartPos { get => _start.position; }
-    }
+
+        public virtual async UniTask HandleActionAsync(Collider other)
+        {
+            
+        }
+    } 
 }
 

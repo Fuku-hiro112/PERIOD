@@ -19,7 +19,7 @@ namespace Character {
         /// <summary>
         /// 操作キャラクターの情報取得
         /// </summary>
-        /// <param name="transform"></param>
+        /// <param name="player"></param>
         public void InOperationCharacter(GameObject player)
         {
             _transform = player.GetComponent<Transform>();
@@ -48,6 +48,7 @@ namespace Character {
         /// <summary>
         /// 振り向き
         /// </summary>
+        /// <param name="direction></param>
         public void TurnAround(Vector3 direction)
         {
             // 移動入力がある場合は、振り向き動作も行う

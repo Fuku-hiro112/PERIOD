@@ -55,7 +55,7 @@ public class DisplayGimmickError : MonoBehaviour
 
     private void Update()
     {
-        _myCanvas.transform.forward = Camera.main.transform.forward;
+        //_myCanvas.transform.forward = Camera.main.transform.forward;
     }
 }
 

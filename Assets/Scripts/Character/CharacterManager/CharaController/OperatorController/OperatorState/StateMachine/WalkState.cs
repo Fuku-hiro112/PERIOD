@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +40,7 @@ namespace Character.OperaterState
         /// <summary>
         /// StateI—¹‚ÉÀs‚³‚ê‚é
         /// </summary>
-        public void HandleEnd()
+        public async UniTask HandleEnd()
         {
 
         }

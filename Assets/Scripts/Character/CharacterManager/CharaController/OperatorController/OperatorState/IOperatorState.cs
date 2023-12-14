@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+
 namespace Character.OperaterState
 {
     public interface IOperatorState
@@ -13,6 +15,6 @@ namespace Character.OperaterState
         /// <summary>
         /// StateI—¹‚ÉÀs‚³‚ê‚é
         /// </summary>
-        public void HandleEnd();
+        public UniTask HandleEnd();
     }
 }

@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     private InputActionMap _cuurentMap;
     private InputActionMap _playerMap;
     private InputActionMap _uiMap;
-    [SerializeField] bool _isChange = false;
+    [SerializeField] private bool _isChange = false;
     /*
     private void Awake()
     {

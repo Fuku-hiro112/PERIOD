@@ -6,9 +6,9 @@ namespace Gimmick
     public class GimmickDataBase : ScriptableObject
     {
         [SerializeField]
-        private GimmickSourceData[] _dataArray = new GimmickSourceData[0];
+        private GimmickSourceDataBase[] _dataArray = new GimmickSourceDataBase[0];
 
-        public GimmickSourceData[] DataArray { get => _dataArray; }
+        public GimmickSourceDataBase[] DataArray { get => _dataArray; }
     }
 }
 
