@@ -10,23 +10,27 @@ namespace Character
     /// </summary>
     public class CharacterManager : MonoBehaviour
     {
-        [SerializeField] GameObject _boy;
-        [SerializeField] GameObject _engineer;
-        [SerializeField] GameObject _currentCharacter;
-        [SerializeField] OperatorController _operatorController;
-        [SerializeField] FollowerController _followerController;
-        [SerializeField] CharaController _charaController;
-        [SerializeField] CharacterChange _characterChange;
-        [SerializeField] OperatorInput _operatorInput;
-        [SerializeField] CollisionDetection _collisionBoy;
-        [SerializeField] CollisionDetection _collisionEngineer;
+        // キャラクターオブジェクト
+        [SerializeField] private GameObject _boy;
+        [SerializeField] private GameObject _engineer;
+        // キャラクター状況
+        [SerializeField] private GameObject _operator;
+        [SerializeField] GameObject _follower;
+
+        [SerializeField] private OperatorController _operatorController;
+        [SerializeField] private FollowerController _followerController;
+        [SerializeField] private CharaController _charaController;
+        [SerializeField] private CharacterChange _characterChange;
+        [SerializeField] private OperatorInput _operatorInput;
+        [SerializeField] private CollisionDetection _collisionBoy;
+        [SerializeField] private CollisionDetection _collisionEngineer;
         // 生存判定
-        [SerializeField] bool isDead = false;
+        [SerializeField] private bool _isDead = false;
+        [SerializeField] private bool _isFollow = true;
 
         public OperatorInput OperatorInput { get => _operatorInput; private set => _operatorInput = value; }
-        public GameObject CurrentCharacter { get => _currentCharacter; private set => _currentCharacter = value; }
-
-
+        public GameObject Operator { get => _operator; private set => _operator = value; }
+        public GameObject Follower { get => _follower; private set => _follower = value; }
 
         /// <summary>
         /// 現在の操作characterを通達
@@ -34,7 +38,8 @@ namespace Character
         /// <param name="player"></param>
         void CharacterChange(GameObject player, GameObject follower)
         {
-            CurrentCharacter = player;
+            Operator = player;
+            Follower = follower;
             _charaController.CharacterCurrent(player, follower);
         }
 
@@ -45,8 +50,10 @@ namespace Character
         {
             if (_characterChange.OnChange())
             {
-                if (CurrentCharacter == _boy)
+                if (Operator == _boy)
+                {
                     CharacterChange(_engineer, _boy);
+                }
                 else
                     CharacterChange(_boy, _engineer);
             }
@@ -65,11 +72,15 @@ namespace Character
             _operatorController.OnInput(OperatorInput);
             _collisionBoy.OnInput(OperatorInput);
             _collisionEngineer.OnInput(OperatorInput);
+            _collisionBoy._isBoy = true;
+            _collisionEngineer._isBoy = false;
             CharacterChange(_boy, _engineer);
         }
 
         void Update()
         {
+            if (_isDead) return;
+            _followerController.Follow(_isFollow);
             OperaterChange();
         }
     }

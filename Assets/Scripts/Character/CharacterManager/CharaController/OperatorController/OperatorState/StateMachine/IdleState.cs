@@ -31,7 +31,6 @@ namespace Character.OperaterState
             if (Mathf.Abs(velocity.x) + Mathf.Abs(velocity.z) > 0)
             {
                 _controller.StateMachine.Transition(_controller.StateMachine.WalkState).Forget();
-               
             }
             Debug.Log("—§‚¿");
         }

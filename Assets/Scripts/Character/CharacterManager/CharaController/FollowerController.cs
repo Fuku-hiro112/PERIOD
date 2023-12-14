@@ -23,13 +23,22 @@ public class FollowerController : MonoBehaviour
 
     private Vector3 _direction;
 
-    private bool _isFollow = true;
+    [SerializeField] private bool _isFollow = true;
+    public bool IsAction = false;
 
     // FollowerMoveをインスタンス
     FollowerMove _followerMove;
 
-    CharacterTurnAround _characterTurn = new CharacterTurnAround();
+    CharacterTurnAround _characterTurnAround = new CharacterTurnAround();
     CharacterClimb _characterClimb = new CharacterClimb();
+
+    public CharacterTurnAround CharacterTurnAround { get => _characterTurnAround; private set => _characterTurnAround = value; }
+    public bool IsFollow { get => _isFollow; private set => _isFollow = value; }
+
+    public void Follow(bool isFollow)
+    {
+        IsFollow = isFollow;
+    }
 
     private void Awake()
     {
@@ -38,11 +47,11 @@ public class FollowerController : MonoBehaviour
 
     private void Update()
     {
-        if (_isFollow)
+        if (IsFollow && !IsAction)
         {
             _followerMove.MoveFollower();
-            _direction = _characterTurn.MyTargetDirection();
-            _characterTurn.TurnAround(_direction);
+            _direction = CharacterTurnAround.MyTargetDirection();
+            CharacterTurnAround.TurnAround(_direction);
             _characterClimb.Climb(_direction);
         }
     }
@@ -57,7 +66,7 @@ public class FollowerController : MonoBehaviour
         _operator = player;
         _follower = follower;
         _followerMove.InFolloewrCharacter(_operator, _follower);
-        _characterTurn.InFolloewrCharacter(_operator, _follower);
+        CharacterTurnAround.InFolloewrCharacter(_operator, _follower);
         _characterClimb.InCharacter(_follower);
     }
 }

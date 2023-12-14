@@ -4,6 +4,7 @@ using Gimmick;
 using Gimmikc;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Character
@@ -17,6 +18,8 @@ namespace Character
         // 後でけす
         MoveGimmickData _moveGImmick;
 
+        public bool _isBoy = false;
+
         public void OnInput(OperatorInput input)
         {
             _input = input;
@@ -25,11 +28,13 @@ namespace Character
 
         private void Start()
         {
+            // 後で消す
             _moveGImmick = new MoveGimmickData();
         }
 
         private void Update()
         {
+            // 後で消す
             if (_input.IsGimmickAction())
                 _moveGImmick.HandleActionAsync().Forget();
         }
@@ -58,7 +63,6 @@ namespace Character
             {
                 //TODO: テキスト表示
             }
-            
         }
         private void OnTriggerStay(Collider other)
         {
@@ -75,15 +79,16 @@ namespace Character
                     //HACK: GimmickControllerを渡してからステートを変更しないと、OnStartが呼ばれないと思います
                     other.transform.parent.TryGetComponent(out _operater.GimmickController);
                     _operater.StateMachine.Transition(_operater.StateMachine.GimmickState).Forget();
-
                     await other.gameObject.GetComponent<GimmickSourceDataBase>().HandleActionAsync();
                     _operater.StateMachine.Transition(_operater.StateMachine.IdleState).Forget();
                 }
             }
+            /*
             if (other.gameObject.CompareTag(""))
             {
 
             }
+            */
         }
         private void OnTriggerExit(Collider other)
         {

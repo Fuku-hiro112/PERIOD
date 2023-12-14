@@ -20,7 +20,7 @@ namespace Gimmick
         public int ID { get => _id; }
         public Vector3 StartPos { get => _start.position; }
 
-        public virtual async UniTask HandleActionAsync()
+        public virtual async UniTask HandleActionAsync(Collider other)
         {
             
         }
