@@ -49,6 +49,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ItemChange",
+                    "type": "Button",
+                    "id": "7649ecaf-22d5-4aba-b074-a56034980aac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Item",
+                    "type": "Button",
+                    "id": "9caa3aed-144d-46e9-83b9-dfd133df3172",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -317,6 +335,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "b750c435-bfe6-4f67-9313-51064cf573fb",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Change",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "Gamepad",
                     "id": "911c3b1a-979c-42d9-b00a-6c1072a7a833",
                     "path": "2DVector",
@@ -414,6 +443,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "b148c30f-da51-475c-b20e-20a0698b6541",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04927fd5-c109-4314-8084-eb864b0b3729",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
