@@ -36,7 +36,7 @@ namespace Gimmick
         /// </summary>
         /// <param name="id"></param>
         /// <returns>IDのデータ</returns>
-        private GimmickSourceDataBase SearchData(int id)
+        public GimmickSourceDataBase SearchData(int id)
         {
             /*foreach (GimmickSourceData data in _data)
             {
@@ -73,5 +73,7 @@ namespace Gimmick
         {
             return SearchData(id).Prefab;
         }
+
+        // TODO: ギミックの必要情報を取得
     }
 }

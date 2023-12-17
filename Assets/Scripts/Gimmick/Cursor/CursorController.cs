@@ -25,7 +25,7 @@ namespace Gimmick
 
         // ‰ŠúˆÊ’u
         public Vector3 StartPosition = Vector3.zero;
-        public bool IsClear { get; private set; }
+        public bool IsClear { get; set; }
 
         private void Awake()
         {
