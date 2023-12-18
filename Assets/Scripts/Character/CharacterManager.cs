@@ -15,7 +15,7 @@ namespace Character
         [SerializeField] private GameObject _engineer;
         // キャラクター状況
         [SerializeField] private GameObject _operator;
-        [SerializeField] GameObject _follower;
+        [SerializeField] private GameObject _follower;
 
         [SerializeField] private OperatorController _operatorController;
         [SerializeField] private FollowerController _followerController;

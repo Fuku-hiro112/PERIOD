@@ -10,13 +10,13 @@ public class TestCameraFollow : MonoBehaviour
     Vector3 origiral;
     void Start()
     {
-        origiral = transform.position;
-        origiral -= new Vector3(0,4.9f+5.9f,0);
+        //origiral = transform.position;
+        //origiral -= new Vector3(0,4.9f+5.9f,0);
     }
 
     
     void Update()
     {
-        transform.position = _player.transform.position - origiral;
+        //transform.position = _player.transform.position - origiral;
     }
 }

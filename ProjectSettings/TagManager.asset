@@ -9,6 +9,9 @@ TagManager:
   - GimmickCanvas
   - DataBase
   - Wall
+  - Item
+  - Action
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,9 +20,9 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
+  - BaskUI
+  - Action
+  - Character
   - 
   - 
   - 

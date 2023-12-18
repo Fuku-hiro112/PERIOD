@@ -67,7 +67,7 @@ namespace Character
             if (!IsAction)
             {
                 _characterMove.Movement(_iOperatorInput.MovementValue, 1.0f);
-                _characterClimb.Climb(_iOperatorInput.MovementValue);
+                //_characterClimb.Climb(_iOperatorInput.MovementValue);
                 CharacterTurnAround.TurnAround(_iOperatorInput.MovementValue);
             }
 
