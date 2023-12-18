@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Gimmick
 {
 
-    public class GimmickDataManager : MonoBehaviour , ISearchable
+    public class GimmickDataManager : MonoBehaviour , ISearcher
     {
         [SerializeField]
         private GimmickDataBase _dataBase;
@@ -45,8 +45,8 @@ namespace Gimmick
                     return data;
                 }
             }*/
-            
-            var data = _data.FirstOrDefault(d => d.ID == id);// idと一致したSourceを返す Linq
+            // idと一致したSourceを返す Linq
+            var data = _data.FirstOrDefault(d => d.ID == id);
             if (data == null)
             {
                 Debug.Log("<color=red>IDが一致しません</color>");
@@ -56,24 +56,14 @@ namespace Gimmick
         }
 
         /// <summary>
-        /// IDのStartPositionを返す
+        /// IDと一致するカーソルの初期位置を返す
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns>IDと一致したギミックのデータ</returns>
-        public Vector3 SearchPosition(int id)
-        {
-            return SearchData(id).StartPos;
-        }
+        /// <param name="id">ギミックのID</param>
+        public Vector3 SearchPosition(int id) => SearchData(id).StartPos;
         /// <summary>
-        /// IDのStartPositionを返す
+        /// IDと一致するギミックのPrefabを返す
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns>IDと一致したギミックのデータ</returns>
-        public GameObject SearchObject(int id)
-        {
-            return SearchData(id).Prefab;
-        }
-
-        // TODO: ギミックの必要情報を取得
+        /// <param name="id">ギミックのID</param>
+        public GameObject SearchObject(int id) => SearchData(id).Prefab;
     }
 }

@@ -71,6 +71,24 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemChange"",
+                    ""type"": ""Button"",
+                    ""id"": ""7649ecaf-22d5-4aba-b074-a56034980aac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item"",
+                    ""type"": ""Button"",
+                    ""id"": ""9caa3aed-144d-46e9-83b9-dfd133df3172"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -339,6 +357,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""b750c435-bfe6-4f67-9313-51064cf573fb"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Change"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""Gamepad"",
                     ""id"": ""911c3b1a-979c-42d9-b00a-6c1072a7a833"",
                     ""path"": ""2DVector"",
@@ -436,6 +465,28 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b148c30f-da51-475c-b20e-20a0698b6541"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04927fd5-c109-4314-8084-eb864b0b3729"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1057,6 +1108,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_PushGimmick = m_Player.FindAction("PushGimmick", throwIfNotFound: true);
         m_Player_Change = m_Player.FindAction("Change", throwIfNotFound: true);
+        m_Player_ItemChange = m_Player.FindAction("ItemChange", throwIfNotFound: true);
+        m_Player_Item = m_Player.FindAction("Item", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1136,6 +1189,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_PushGimmick;
     private readonly InputAction m_Player_Change;
+    private readonly InputAction m_Player_ItemChange;
+    private readonly InputAction m_Player_Item;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -1145,6 +1200,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @PushGimmick => m_Wrapper.m_Player_PushGimmick;
         public InputAction @Change => m_Wrapper.m_Player_Change;
+        public InputAction @ItemChange => m_Wrapper.m_Player_ItemChange;
+        public InputAction @Item => m_Wrapper.m_Player_Item;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1169,6 +1226,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Change.started += instance.OnChange;
             @Change.performed += instance.OnChange;
             @Change.canceled += instance.OnChange;
+            @ItemChange.started += instance.OnItemChange;
+            @ItemChange.performed += instance.OnItemChange;
+            @ItemChange.canceled += instance.OnItemChange;
+            @Item.started += instance.OnItem;
+            @Item.performed += instance.OnItem;
+            @Item.canceled += instance.OnItem;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1188,6 +1251,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Change.started -= instance.OnChange;
             @Change.performed -= instance.OnChange;
             @Change.canceled -= instance.OnChange;
+            @ItemChange.started -= instance.OnItemChange;
+            @ItemChange.performed -= instance.OnItemChange;
+            @ItemChange.canceled -= instance.OnItemChange;
+            @Item.started -= instance.OnItem;
+            @Item.performed -= instance.OnItem;
+            @Item.canceled -= instance.OnItem;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1383,6 +1452,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnPushGimmick(InputAction.CallbackContext context);
         void OnChange(InputAction.CallbackContext context);
+        void OnItemChange(InputAction.CallbackContext context);
+        void OnItem(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
