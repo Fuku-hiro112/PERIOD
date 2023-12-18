@@ -10,7 +10,7 @@ namespace Character
     /// 
     /// </summary>
     [Serializable]
-    public class CharacterChange
+    public class CharacterChange // Œã‚É–¼‘O‚ğ•ÏX
     {
         private IOperatorInput _iOperat0rInput;
 

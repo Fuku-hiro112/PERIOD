@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 
 namespace Character.OperaterState
@@ -30,9 +31,10 @@ namespace Character.OperaterState
         /// 現在のStateを終了し、次のStateに移行する
         /// </summary>
         /// <param name="nextState"></param>
-        public void Transition(IOperatorState nextState)
+        public　async UniTaskVoid Transition(IOperatorState nextState)
         {
-            CurrentState.HandleEnd();
+            // TODO: 後にUniTaskへ変更
+            await CurrentState.HandleEnd(); 
             CurrentState = nextState;
             nextState.HandleStart();
         }

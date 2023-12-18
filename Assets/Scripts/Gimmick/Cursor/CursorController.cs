@@ -1,3 +1,5 @@
+using Character;
+using Cysharp.Threading.Tasks;
 using Gimmikc;
 using Input;
 using System;
@@ -12,6 +14,10 @@ namespace Gimmick
         [SerializeField]
         private CursorInput _cursorInput;
         [SerializeField]
+        private InputManager _inputManager;
+        [SerializeField]
+        private CameraManager _cameraManager;
+        [SerializeField]
         private float _speed = 1;
         [SerializeField]
         private float _dashMagnification = 2;
@@ -19,12 +25,13 @@ namespace Gimmick
 
         // 初期位置
         public Vector3 StartPosition = Vector3.zero;
-        public bool IsClear { get; private set; }
+        public bool IsClear { get; set; }
 
         private void Awake()
         {
             TryGetComponent(out _image);
             _image.enabled = false;
+            _inputManager = GameObject.Find("Input").GetComponent<InputManager>();
         }
         
        
@@ -34,7 +41,7 @@ namespace Gimmick
         public void OnStart(int id)
         {
             // tagの乱用+検索範囲を狭めるため、Databaseオブジェクトの子オブジェクトから探すようにしている
-            ISearchable iSearchable =
+            ISearcher iSearchable =
                 GameObject.FindGameObjectWithTag("DataBase").
                 transform.Find("GimmickDataManager").GetComponent<GimmickDataManager>();
             
@@ -42,10 +49,8 @@ namespace Gimmick
             StartPosition = iSearchable.SearchPosition(id);
             // カーソルをスタート地点へ
             this.transform.position = StartPosition;
-
+            _inputManager.ActionMapChange("UI");
             IsClear = false;
-
-            _cursorInput.enabled = true;
         }
 
         /// <summary>
@@ -57,10 +62,10 @@ namespace Gimmick
             Vector3 moveValue = _cursorInput.MoveValue * Time.deltaTime * _speed;
             
             // ダッシュ処理
-            if (_cursorInput.IsPadButtonB)
+            /*if (_cursorInput.IsGimmickAction())
             {
                 moveValue *= _dashMagnification;
-            }
+            }*/
 
             //移動 
             this.gameObject.transform.position += moveValue;// 設計的に別の場所から呼び出すようにしているため,どのオブジェクトか分からなくなると考えた為,this.gameobjectで明示している
@@ -73,7 +78,9 @@ namespace Gimmick
                 // 初期地点へ
                 this.transform.position = StartPosition;
                 //TODO: ゲームパットを振動 and 画面の揺れ and サウンド　別クラスから呼び出そう
-                
+                _cursorInput.Vibration().Forget();
+                _cameraManager.Shake().Forget();
+
             }
             /*else if (other.gameObject.CompareTag("CheckPoint"))// いる？
             //{
@@ -84,10 +91,10 @@ namespace Gimmick
             {
                 Debug.Log("ギミック終了");
                 //TODO: ギミック終了処理（あれば）
+                _inputManager.ActionMapChange("Player");
                 _image.enabled = false;
                 IsClear = true;
            　　 // 追加
-                _cursorInput.enabled = false;
             }
         }
     }

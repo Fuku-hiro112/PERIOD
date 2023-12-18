@@ -10,18 +10,28 @@ namespace Character
     /// </summary>
     public class CharacterManager : MonoBehaviour
     {
-        [SerializeField] GameObject _boy;
-        [SerializeField] GameObject _engineer;
-        [SerializeField] GameObject _currentCharacter;
-        [SerializeField] OperatorController _operatorController;
-        [SerializeField] FollowerController _followerController;
-        [SerializeField] CharaController _charaController;
-        [SerializeField] CharacterChange _characterChange;
-        [SerializeField] OperatorInput _operatorInput;
-        [SerializeField] CollisionDetection _collisionBoy;
-        [SerializeField] CollisionDetection _collisionEngineer;
+        // キャラクターオブジェクト
+        [SerializeField] private GameObject _boy;
+        [SerializeField] private GameObject _engineer;
+        // キャラクター状況
+        [SerializeField] private GameObject _operator;
+        [SerializeField] GameObject _follower;
+
+        [SerializeField] private OperatorController _operatorController;
+        [SerializeField] private FollowerController _followerController;
+        [SerializeField] private CharaController _charaController;
+        [SerializeField] private CharacterChange _characterChange;
+        [SerializeField] private OperatorInput _operatorInput;
+        [SerializeField] private CollisionDetection _collisionBoy;
+        [SerializeField] private CollisionDetection _collisionEngineer;
         // 生存判定
-        [SerializeField] bool isDead = false;
+        [SerializeField] private bool _engineerIsDead = false;
+        [SerializeField] private bool _boyIsDead = false;
+        [SerializeField] private bool _isFollow = true;
+
+        public OperatorInput OperatorInput { get => _operatorInput; private set => _operatorInput = value; }
+        public GameObject Operator { get => _operator; private set => _operator = value; }
+        public GameObject Follower { get => _follower; private set => _follower = value; }
 
         /// <summary>
         /// 現在の操作characterを通達
@@ -29,7 +39,8 @@ namespace Character
         /// <param name="player"></param>
         void CharacterChange(GameObject player, GameObject follower)
         {
-            _currentCharacter = player;
+            Operator = player;
+            Follower = follower;
             _charaController.CharacterCurrent(player, follower);
         }
 
@@ -40,8 +51,10 @@ namespace Character
         {
             if (_characterChange.OnChange())
             {
-                if (_currentCharacter == _boy)
+                if (Operator == _boy)
+                {
                     CharacterChange(_engineer, _boy);
+                }
                 else
                     CharacterChange(_boy, _engineer);
             }
@@ -49,22 +62,24 @@ namespace Character
 
         void Awake()
         {
-            _operatorInput = new OperatorInput();
-            _characterChange = new CharacterChange(_operatorInput);
+            OperatorInput = new OperatorInput();
+            _characterChange = new CharacterChange(OperatorInput);
         }
 
         private void Start()
         {
             _charaController = new CharaController(_operatorController, _followerController);
-            _operatorInput.OnStart();
-            _operatorController.OnInput(_operatorInput);
-            _collisionBoy.OnInput(_operatorInput);
-            _collisionEngineer.OnInput(_operatorInput);
+            OperatorInput.OnStart();
+            _operatorController.OnInput(OperatorInput);
+            _collisionBoy.OnInput(OperatorInput);
+            _collisionEngineer.OnInput(OperatorInput);
             CharacterChange(_boy, _engineer);
         }
 
         void Update()
         {
+            if (_engineerIsDead || _boyIsDead) return;
+            _followerController.Follow(_isFollow);
             OperaterChange();
         }
     }

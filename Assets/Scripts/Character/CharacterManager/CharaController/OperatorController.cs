@@ -16,7 +16,7 @@ namespace Character
         [SerializeField] private CharacterClimb _characterClimb;
         [SerializeField] private CharacterTurnAround _characterTurnAround;
         private GimmickController _gimmickController; // なんでprivateにしてる？
-        private IOperatorInput _IOperatorInput;
+        private IOperatorInput _iOperatorInput;
         [SerializeField] private GameObject _currentCharacter;
         public bool IsAction = false;
 
@@ -25,6 +25,7 @@ namespace Character
         [NonSerialized]
         public GimmickController GimmickController;
         public GameObject CurrentCharacter { get => _currentCharacter; }
+        public CharacterTurnAround CharacterTurnAround { get => _characterTurnAround; private set => _characterTurnAround = value; }
 
         /// <summary>
         /// 操作characterの変更
@@ -35,7 +36,7 @@ namespace Character
             _characterMove.Movement(new Vector3(0, 1.0f, 0), 0f);
             _currentCharacter = player;
             _characterMove.InOperationCharacter(_currentCharacter);
-            _characterTurnAround.InOperationCharacter(_currentCharacter);
+            CharacterTurnAround.InOperationCharacter(_currentCharacter);
             _characterClimb.InCharacter(_currentCharacter);
         }
         
@@ -45,7 +46,7 @@ namespace Character
         /// <param name="input"></param>
         public void OnInput(OperatorInput input)
         {
-            _IOperatorInput = input;
+            _iOperatorInput = input;
         }
 
         private void Awake()
@@ -53,21 +54,21 @@ namespace Character
             _stateMachine = new OperatorStateMachine(this);
             _characterMove = new OperatorMove();
             _characterClimb = new CharacterClimb();
-            _characterTurnAround = new CharacterTurnAround();
+            CharacterTurnAround = new CharacterTurnAround();
         }
 
         private void Start()
         {
-            _stateMachine.Initialize(_stateMachine.IdleState);  
+            _stateMachine.Initialize(_stateMachine.IdleState);
         }
 
         void Update()
         {
             if (!IsAction)
             {
-                _characterMove.Movement(_IOperatorInput.MovementValue, 1.0f);
-                _characterClimb.Climb(_IOperatorInput.MovementValue);
-                _characterTurnAround.TurnAround(_IOperatorInput.MovementValue);
+                _characterMove.Movement(_iOperatorInput.MovementValue, 1.0f);
+                //_characterClimb.Climb(_iOperatorInput.MovementValue); // 不必要
+                CharacterTurnAround.TurnAround(_iOperatorInput.MovementValue);
             }
 
             _stateMachine.OnUpdate();

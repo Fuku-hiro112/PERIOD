@@ -82,7 +82,7 @@ public class DisplayGimmickError : MonoBehaviour
     }
 
     private void Update()
-    {
+    {-
         _myCanvas.transform.forward = Camera.main.transform.forward;　// 画面正面に表示する
     }
 }
