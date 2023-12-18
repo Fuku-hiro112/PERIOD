@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using DG.Tweening;
-using UnityEngine.Rendering.PostProcessing;
 
 
 /// <summary>
@@ -24,7 +23,6 @@ public class DeadZoneManager : MonoBehaviour
     public AudioSource audioSource; // 心臓の音を鳴らすのに必要
 
     // プレイヤーとデッドゾーンが触れた際に画面をグレーにする処理
-    private ColorGrading colorCurves;
     private ColorCurves _colorCurves;
 
     private void Start()
