@@ -23,9 +23,10 @@ namespace Garden
         Vector3 _gardenPos = new Vector3(0, 9.58f, 0);
         [SerializeField] 
         private int _daysUpWave = 4;// waveが上がる日数
+        [SerializeField]
+        private Transform _player;
 
         private GameObject[] _gardenKinds;
-        private Transform _player;
         private int _waveNum = 1;
         private int _dayNum = 1;
 
@@ -37,7 +38,7 @@ namespace Garden
         {
             _dayText.text = $"{_dayNum}DAY";
             _waveText.text = $"{_waveNum}WAVE";
-            _player = GameObject.FindGameObjectWithTag("Player").transform;
+            //_player = GameObject.FindGameObjectWithTag("Player").transform;
             CancellationToken token = this.GetCancellationTokenOnDestroy();
 
             int childNum = transform.childCount;// 子オブジェクトの数

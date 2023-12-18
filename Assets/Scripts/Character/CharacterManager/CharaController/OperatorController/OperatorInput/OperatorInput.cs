@@ -51,6 +51,7 @@ namespace Character
                 return;
             // スティック入力値を渡す
             _inputMove = context.ReadValue<Vector2>();
+            Debug.Log(_inputMove);
             _direction = new Vector3(_inputMove.x, 0, _inputMove.y);
         }
 

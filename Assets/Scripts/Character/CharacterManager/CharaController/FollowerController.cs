@@ -52,6 +52,7 @@ public class FollowerController : MonoBehaviour
             _followerMove.MoveFollower();
             _direction = CharacterTurnAround.MyTargetDirection();
             CharacterTurnAround.TurnAround(_direction);
+
             //_characterClimb.Climb(_direction); // •s•K—v
         }
     }
