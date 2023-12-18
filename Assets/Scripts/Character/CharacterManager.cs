@@ -21,14 +21,14 @@ namespace Character
         [SerializeField] private FollowerController _followerController;
         [SerializeField] private CharaController _charaController;
         [SerializeField] private CharacterChange _characterChange;
-        [SerializeField] private OperatorInput _operatorInput;
         [SerializeField] private CollisionDetection _collisionBoy;
         [SerializeField] private CollisionDetection _collisionEngineer;
+        [SerializeField] public static OperatorInput OperatorInput;
         // ¶‘¶”»’è
         [SerializeField] private bool _isDead = false;
         [SerializeField] private bool _isFollow = true;
 
-        public OperatorInput OperatorInput { get => _operatorInput; private set => _operatorInput = value; }
+
         public GameObject Operator { get => _operator; private set => _operator = value; }
         public GameObject Follower { get => _follower; private set => _follower = value; }
 

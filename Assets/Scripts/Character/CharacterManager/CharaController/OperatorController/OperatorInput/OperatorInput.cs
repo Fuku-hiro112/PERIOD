@@ -21,7 +21,6 @@ namespace Character
         [SerializeField] private Vector3 _direction;
         private InputActionMap _playerMap;
         CancellationToken _token;
-
         /// <summary>
         /// アクティブがオンになった時の処理
         /// </summary>
@@ -35,7 +34,7 @@ namespace Character
         /// <summary>
         /// アクティブがオフになった時の処理
         /// </summary>
-        public void OnDisable()
+        public void OnDisable()//HACK: どこからも呼ばれてない
         {
             _playerMap["Move"].performed -= OnMove;
             _playerMap["Move"].canceled -= OnMoveStop;
@@ -78,15 +77,13 @@ namespace Character
 
         /// <summary>
         /// ギミックアクションボタン入力判定
-        /// </summary> 
-        /// 
+        /// </summary>
         public bool IsGimmickAction()
         {
             if (_playerMap != _input.currentActionMap)
                 return false;
             return _playerMap["PushGimmick"].WasPressedThisFrame(); 
         }
-
         
         /// <summary>
         /// 操作切り替えボタン入力判定
@@ -99,6 +96,26 @@ namespace Character
             return _playerMap["Change"].WasPressedThisFrame();
         }
         
+        public float ItemSelectMove()
+        {
+            if (_playerMap != _input.currentActionMap)
+                return 0;
+            Vector2 vecter = _playerMap["ItemSelectMove"].ReadValue<Vector2>();
+            return vecter.y;
+        }
+        public bool ItemUse()
+        {
+            if (_playerMap != _input.currentActionMap)
+                return false;
+            return _playerMap["ItemUse"].WasPressedThisFrame();
+        }
+        public bool ItemSwap()
+        {
+            if (_playerMap != _input.currentActionMap)
+                return false;
+            return _playerMap["ItemSwap"].WasPressedThisFrame();
+        }
+
         /// <summary>
         /// 振動
         /// </summary>

@@ -7,7 +7,7 @@ using UnityEngine;
 public class TestPlayer : MonoBehaviour
 {
     [SerializeField]
-    private Inventroy _inventroy;
+    private Inventry _inventroy;
     void Start()
     {
         

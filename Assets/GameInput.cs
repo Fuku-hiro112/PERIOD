@@ -71,6 +71,33 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemSelectMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""01a5554c-a22a-4f75-afe7-57a43e5bea5a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ItemUse"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d0d473c-eb01-430b-b698-a1685bcd3f3c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemSwap"",
+                    ""type"": ""Button"",
+                    ""id"": ""842061bd-aac1-41cd-923a-79d88b4bf369"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -436,6 +463,72 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""173c1397-fd79-443a-bdf0-1f0155679493"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ItemSelectMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59086af1-d2e4-46e8-8922-d098c012613b"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ItemSelectMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""513925a4-3200-4b3e-bffa-00bf3e6d6f63"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ItemSelectMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f3d6d1a-d5d6-44ac-873e-f814b6a706bd"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ItemSelectMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d0b2586-3396-480b-961b-f7d51acb1c38"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f52e05c-60c0-4777-a2a2-c7b5e813d090"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemSwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1057,6 +1150,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_PushGimmick = m_Player.FindAction("PushGimmick", throwIfNotFound: true);
         m_Player_Change = m_Player.FindAction("Change", throwIfNotFound: true);
+        m_Player_ItemSelectMove = m_Player.FindAction("ItemSelectMove", throwIfNotFound: true);
+        m_Player_ItemUse = m_Player.FindAction("ItemUse", throwIfNotFound: true);
+        m_Player_ItemSwap = m_Player.FindAction("ItemSwap", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1136,6 +1232,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_PushGimmick;
     private readonly InputAction m_Player_Change;
+    private readonly InputAction m_Player_ItemSelectMove;
+    private readonly InputAction m_Player_ItemUse;
+    private readonly InputAction m_Player_ItemSwap;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -1145,6 +1244,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @PushGimmick => m_Wrapper.m_Player_PushGimmick;
         public InputAction @Change => m_Wrapper.m_Player_Change;
+        public InputAction @ItemSelectMove => m_Wrapper.m_Player_ItemSelectMove;
+        public InputAction @ItemUse => m_Wrapper.m_Player_ItemUse;
+        public InputAction @ItemSwap => m_Wrapper.m_Player_ItemSwap;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1169,6 +1271,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Change.started += instance.OnChange;
             @Change.performed += instance.OnChange;
             @Change.canceled += instance.OnChange;
+            @ItemSelectMove.started += instance.OnItemSelectMove;
+            @ItemSelectMove.performed += instance.OnItemSelectMove;
+            @ItemSelectMove.canceled += instance.OnItemSelectMove;
+            @ItemUse.started += instance.OnItemUse;
+            @ItemUse.performed += instance.OnItemUse;
+            @ItemUse.canceled += instance.OnItemUse;
+            @ItemSwap.started += instance.OnItemSwap;
+            @ItemSwap.performed += instance.OnItemSwap;
+            @ItemSwap.canceled += instance.OnItemSwap;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1188,6 +1299,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Change.started -= instance.OnChange;
             @Change.performed -= instance.OnChange;
             @Change.canceled -= instance.OnChange;
+            @ItemSelectMove.started -= instance.OnItemSelectMove;
+            @ItemSelectMove.performed -= instance.OnItemSelectMove;
+            @ItemSelectMove.canceled -= instance.OnItemSelectMove;
+            @ItemUse.started -= instance.OnItemUse;
+            @ItemUse.performed -= instance.OnItemUse;
+            @ItemUse.canceled -= instance.OnItemUse;
+            @ItemSwap.started -= instance.OnItemSwap;
+            @ItemSwap.performed -= instance.OnItemSwap;
+            @ItemSwap.canceled -= instance.OnItemSwap;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1383,6 +1503,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnPushGimmick(InputAction.CallbackContext context);
         void OnChange(InputAction.CallbackContext context);
+        void OnItemSelectMove(InputAction.CallbackContext context);
+        void OnItemUse(InputAction.CallbackContext context);
+        void OnItemSwap(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

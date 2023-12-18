@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gimmikc
+namespace Gimmick
 {
     public interface ISearcher
     {

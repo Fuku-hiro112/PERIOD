@@ -26,7 +26,7 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        _input = _characterManager.OperatorInput;
+        _input = CharacterManager.OperatorInput;
         _transform = GetComponent<Transform>();
         _move = new CameraMove(_transform, _distance, _smoothTime, _maxSpeed);
         _target = _boy;

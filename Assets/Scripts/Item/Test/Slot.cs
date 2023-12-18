@@ -7,13 +7,16 @@ namespace Item
     {
         private Image _icon;
         private int _itemID;
+        public RectTransform Transform;
+
+        //[SerializeField]
+        //private Vector2 _sizeMultiple = new Vector2(1.2f, 1.2f);
 
         private void Awake()
         {
             // 子オブジェクトのItemImageを取得
             _icon = transform.GetChild(0).gameObject.GetComponent<Image>();
-            //RectTransform trans = GetComponent<RectTransform>();
-            //trans.sizeDelta *= new Vector2(1.2f, 1.2f);
+            Transform = GetComponent<RectTransform>();
         }
         private void SetItem(int itemID, Sprite itemSprite)
         {
@@ -43,6 +46,10 @@ namespace Item
         public void UseItem()
         {
             ClearSlot();
+        }
+        public void ChengeSize(Vector2 sizeDelta)
+        {
+            Transform.sizeDelta = sizeDelta;
         }
     }
 }

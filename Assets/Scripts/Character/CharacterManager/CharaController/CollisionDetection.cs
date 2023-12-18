@@ -1,7 +1,8 @@
 using Character.OperaterState;
 using Cysharp.Threading.Tasks;
 using Gimmick;
-using Gimmikc;
+using Gimmick;
+using Item;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,7 +15,7 @@ namespace Character
         [SerializeField]
         private OperatorController _operater;
         private IOperatorInput _input;
-        private ISearchable _gimmickSearch;
+        private ISearcher _gimmickSearch;
         // 後でけす
         MoveGimmickData _moveGImmick;
 
@@ -36,7 +37,7 @@ namespace Character
         {
             // 後で消す
             if (_input.IsGimmickAction())
-                _moveGImmick.HandleActionAsync().Forget();
+                _moveGImmick.HandleActionAsync(null).Forget();
         }
 
         //** --------  以下当たり判定  -------- **//
@@ -44,7 +45,38 @@ namespace Character
 
         private void OnCollisionEnter(Collision other)
         {
+            if (other.gameObject.CompareTag("Gimmick"))
+            {
+                GimmickController gimmickController;
+                other.gameObject.TryGetComponent(out gimmickController);
 
+                if (gimmickController.Available == Gimmick.Character.Boy) 
+                {
+                    if (_isBoy)
+                    {
+                        //TODO: 合ってるとき処理の中身
+                    }
+                    if (!_isBoy)
+                    {
+                        //TODO: 間違ってるとき処理の中身
+                    }
+                }
+                if (gimmickController.Available == Gimmick.Character.Engineer)
+                {
+                    if (!_isBoy)
+                    {
+                        //TODO: 合ってるとき処理の中身
+                    }
+                    if (_isBoy)
+                    {
+                        //TODO: 間違ってるとき処理の中身
+                    }
+                }
+                if (gimmickController.Available == Gimmick.Character.Both)
+                {
+                    //TODO: 合ってるとき処理の中身
+                }
+            }
         }
         private void OnCollisionStay(Collision other)
         {
@@ -84,7 +116,7 @@ namespace Character
                     //HACK: GimmickControllerを渡してからステートを変更しないと、OnStartが呼ばれないと思います
                     other.transform.parent.TryGetComponent(out _operater.GimmickController);
                     _operater.StateMachine.Transition(_operater.StateMachine.GimmickState).Forget();
-                    await other.gameObject.GetComponent<GimmickSourceDataBase>().HandleActionAsync();
+                    await other.gameObject.GetComponent<GimmickSourceDataBase>().HandleActionAsync(other);
                     _operater.StateMachine.Transition(_operater.StateMachine.IdleState).Forget();
                 }
             }

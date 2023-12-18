@@ -18,7 +18,6 @@ namespace Item
             if (s_Instance == null)
             {
                 s_Instance = this;
-                Debug.Log("null‚¾",this);
             }
         }
 
