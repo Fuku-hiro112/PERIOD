@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Item;
 
 namespace Character
 {
@@ -14,12 +15,9 @@ namespace Character
         [SerializeField]
         private OperatorController _operater;
         private IOperatorInput _input;
-        private ISearchable _gimmickSearch;
-        // 後でけす
-        MoveGimmickData _moveGImmick;
-
-        public bool _isBoy = false;
-
+        private ISearcher _gimmickSearch;
+       
+     
         public void OnInput(OperatorInput input)
         {
             _input = input;
@@ -28,15 +26,12 @@ namespace Character
 
         private void Start()
         {
-            // 後で消す
-            _moveGImmick = new MoveGimmickData();
+            
         }
-
+        
         private void Update()
         {
-            // 後で消す
-            if (_input.IsGimmickAction())
-                _moveGImmick.HandleActionAsync().Forget();
+          
         }
 
         //** --------  以下当たり判定  -------- **//
@@ -74,18 +69,18 @@ namespace Character
             Action(other).Forget();
         }
         async UniTaskVoid Action(Collider other)
-        {
-            if (_operater.CurrentCharacter != this.gameObject) return;
-            if (IsSameState(_operater.StateMachine.GimmickState)) return;
+        {  
             if (other.gameObject.CompareTag("Gimmick"))
             {
                 if (_input.IsGimmickAction())
                 {
+                    if (_operater.CurrentCharacter != this.gameObject) return;
+                    if (IsSameState(_operater.StateMachine.GimmickState)) return;
                     //HACK: GimmickControllerを渡してからステートを変更しないと、OnStartが呼ばれないと思います
                     other.transform.parent.TryGetComponent(out _operater.GimmickController);
+                    _operater.StateMachine.GimmickState.GetCollider(other);
                     _operater.StateMachine.Transition(_operater.StateMachine.GimmickState).Forget();
-                    await other.gameObject.GetComponent<GimmickSourceDataBase>().HandleActionAsync();
-                    _operater.StateMachine.Transition(_operater.StateMachine.IdleState).Forget();
+                    
                 }
             }
             /*
