@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Item;
 
 namespace Character
 {
@@ -14,7 +15,7 @@ namespace Character
         [SerializeField]
         private OperatorController _operater;
         private IOperatorInput _input;
-        private ISearchable _gimmickSearch;
+        private ISearcher _gimmickSearch;
        
      
         public void OnInput(OperatorInput input)
@@ -56,6 +57,11 @@ namespace Character
             if (other.gameObject.CompareTag("Gimmick"))
             {
                 //TODO: テキスト表示
+            }
+            else if (other.gameObject.CompareTag("Item"))
+            {
+                //TODO: そのオブジェクトの「アイテムを拾う処理」を呼んでアイテムを取得する
+                other.gameObject.GetComponent<AvailableItem>()?.PickUp();
             }
         }
         private void OnTriggerStay(Collider other)
