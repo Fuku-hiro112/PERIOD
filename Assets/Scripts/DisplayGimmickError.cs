@@ -1,18 +1,16 @@
-﻿using System.Collections;
+﻿using Gimmick;
+using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-/// <summary>
-/// ギミックタグを判別するクラス
-/// </summary>
 public class DisplayGimmickError : MonoBehaviour
 {
-    GameObject _myCanvas; //自身のCanvas
-    Image _imgError; 
+    GameObject _myCanvas;
+
+    Image _imgError;
 
     [SerializeField]
     private Image _ErrorMessage;
@@ -21,41 +19,71 @@ public class DisplayGimmickError : MonoBehaviour
     GameObject ErrorMessagePrefab;
 
     [SerializeField]
-    Transform Canvas; //Canvas の位置
+    Transform Canvas;
 
+    private bool _isBoy;
 
     private void Start()
     {
-        _myCanvas = Instantiate(ErrorMessagePrefab);
-        _myCanvas.transform.SetParent(gameObject.transform); //Canvasを自身の子構造に
-        _myCanvas.transform.localPosition = transform.localPosition + Canvas.position; //キャンバスの位置補正
-        _imgError = _myCanvas.transform.Find("ErrorMessage").GetComponent<Image>();
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("当たった");
-
-            _imgError.gameObject.SetActive(true);
-
-            
+        _myCanvas = Instantiate(ErrorMessagePrefab, Canvas.transform, false);　// （引数：エラーメッセージ、親子の位置、ワールドポジションにいるか）
+        _imgError = _myCanvas.transform.Find("ErrorMessage").GetComponentInChildren<Image>();
+        if (_imgError != null)
+        {  
+            _imgError.gameObject.SetActive(false);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Gimmick"))
         {
-            _imgError.gameObject.SetActive(false);
+            GimmickController gimmickController;
+            other.gameObject.TryGetComponent(out gimmickController);
+
+            if(gimmickController?.Available == Gimmick.Character.Boy)
+            {
+                if (_isBoy)
+                {
+                    // TODO: 合っているときの処理
+                }
+                if (!_isBoy)
+                {
+                    // TODO: 間違っているときの処理
+                }
+            }
+            if (gimmickController?.Available == Gimmick.Character.Engineer)
+            {
+                if (!_isBoy)
+                {
+                    // TODO: 合っているときの処理
+                    _ErrorMessage?.gameObject.SetActive(true);
+                }
+                if (_isBoy)
+                {
+                    // TODO: 間違っているときの処理
+                }
+            }
+            if (gimmickController?.Available == Gimmick.Character.Both)
+            {
+                // TODO: 合っているときの処理
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Gimmick"))
+        {
+            if (_ErrorMessage != null)
+            {
+                _ErrorMessage.gameObject.SetActive(false);
+            }
         }
     }
 
     private void Update()
     {
-        _myCanvas.transform.forward = Camera.main.transform.forward;
+        _myCanvas.transform.forward = Camera.main.transform.forward;　// 画面正面に表示する
     }
 }
 
