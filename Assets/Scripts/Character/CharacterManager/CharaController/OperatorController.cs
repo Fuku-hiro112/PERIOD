@@ -64,6 +64,8 @@ namespace Character
 
         void Update()
         {
+
+            if (!_currentCharacter) return;
             if (!IsAction)
             {
                 _characterMove.Movement(_iOperatorInput.MovementValue, 1.0f);

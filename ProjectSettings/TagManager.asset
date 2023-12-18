@@ -9,6 +9,7 @@ TagManager:
   - GimmickCanvas
   - DataBase
   - Wall
+  - DeadZone
   layers:
   - Default
   - TransparentFX

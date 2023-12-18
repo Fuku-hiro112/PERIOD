@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gimmick
 {
-    [CreateAssetMenu(fileName = "GimmickSourceData", menuName = "ScriptableObject/Gimmick")]
+    [CreateAssetMenu(fileName = "GimmickSourceDataBase", menuName = "ScriptableObject/Gimmick/GimmickSourceDataBase")]
     public class GimmickSourceDataBase : ScriptableObject
     {
         [SerializeField]// ÉMÉ~ÉbÉNÇÃID

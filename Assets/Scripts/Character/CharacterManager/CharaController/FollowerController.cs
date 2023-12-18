@@ -47,6 +47,8 @@ public class FollowerController : MonoBehaviour
 
     private void Update()
     {
+        if (!_follower) return;
+
         if (IsFollow && !IsAction)
         {
             _followerMove.MoveFollower();

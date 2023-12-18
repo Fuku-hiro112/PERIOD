@@ -32,6 +32,7 @@ namespace Character
         public OperatorInput OperatorInput { get => _operatorInput; private set => _operatorInput = value; }
         public GameObject Operator { get => _operator; private set => _operator = value; }
         public GameObject Follower { get => _follower; private set => _follower = value; }
+        public bool EngineerIsDead { get => _engineerIsDead; private set => _engineerIsDead = value; }
 
         /// <summary>
         /// åªç›ÇÃëÄçÏcharacterÇí íB
@@ -60,6 +61,16 @@ namespace Character
             }
         }
 
+        public void EngineerDead()
+        {
+            CharacterChange(_boy, null);
+        }
+
+        public void BoyDead()
+        {
+            CharacterChange(null, null);   
+        }
+
         void Awake()
         {
             OperatorInput = new OperatorInput();
@@ -78,7 +89,7 @@ namespace Character
 
         void Update()
         {
-            if (_engineerIsDead || _boyIsDead) return;
+            if (EngineerIsDead || _boyIsDead) return;
             _followerController.Follow(_isFollow);
             OperaterChange();
         }
