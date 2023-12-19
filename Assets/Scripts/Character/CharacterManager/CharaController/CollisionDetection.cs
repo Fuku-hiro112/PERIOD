@@ -1,11 +1,10 @@
 using Character.OperaterState;
 using Cysharp.Threading.Tasks;
 using Gimmick;
-using Gimmick;
-using Item;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Item;
 using UnityEngine;
 
 namespace Character
@@ -15,9 +14,7 @@ namespace Character
         [SerializeField]
         private OperatorController _operater;
         private IOperatorInput _input;
-        private ISearcher _gimmickSearch;
-        // 後でけす
-        MoveGimmickData _moveGImmick;
+        ISearcher _gimmickSearch;
 
         public bool _isBoy = false;
 
@@ -29,15 +26,12 @@ namespace Character
 
         private void Start()
         {
-            // 後で消す
-            _moveGImmick = new MoveGimmickData();
+            
         }
 
         private void Update()
         {
-            // 後で消す
-            if (_input.IsGimmickAction())
-                _moveGImmick.HandleActionAsync(null).Forget();
+       
         }
 
         //** --------  以下当たり判定  -------- **//
@@ -116,7 +110,6 @@ namespace Character
                     //HACK: GimmickControllerを渡してからステートを変更しないと、OnStartが呼ばれないと思います
                     other.transform.parent.TryGetComponent(out _operater.GimmickController);
                     _operater.StateMachine.Transition(_operater.StateMachine.GimmickState).Forget();
-                    await other.gameObject.GetComponent<GimmickSourceDataBase>().HandleActionAsync(other);
                     _operater.StateMachine.Transition(_operater.StateMachine.IdleState).Forget();
                 }
             }
