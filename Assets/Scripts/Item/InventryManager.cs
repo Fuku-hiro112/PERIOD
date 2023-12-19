@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ namespace Item
         /// </summary>
         /// <param name="boyIndex"></param>
         /// <param name="enginnerIndex"></param>
-        public void ItemSwap(int boyIndex, int enginnerIndex)
+        public void SwapItem(int boyIndex, int enginnerIndex)
         {
             //boyIndexとenginnerIndexのアイテムを交換
             int boyItemID = _boyInventroy.ItemIDs[boyIndex];
@@ -53,7 +54,10 @@ namespace Item
             EngineerInventroy.InventryUI.UpdateUI();
             BoyInventroy.InventryUI.UpdateUI();
         }
-
+        public void UseItem(int boyIndex)
+        {
+            ItemDataManager.s_Instance.SearchProsess(_boyInventroy.ItemIDs[boyIndex]).Forget();
+        }
         //HACK: このままだとInventryの関数の意味がなくなってしまうので改良が必要
         /// <summary>
         /// インベントリに空きがあればアイテムを入れる

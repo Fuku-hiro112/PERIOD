@@ -26,6 +26,10 @@ public class InventrySelecter : MonoBehaviour
         {
             // 少年のインベントリから選択
             SelectInventryItem(_inventryManager.BoyInventroy);
+            if (CharacterManager.OperatorInput.ItemUse())// アイテム使用ボタンが押された
+            {
+
+            }
             if (CharacterManager.OperatorInput.ItemSwap())// 交換ボタンが押された
             {
                 // エンジニアのインベントリから選択出来るように
@@ -43,7 +47,7 @@ public class InventrySelecter : MonoBehaviour
                 InventryUI enginner = _inventryManager.EngineerInventroy.InventryUI;
                 enginner.SizeUpable = false;// サイズを変更可能にするか
                 // アイテム交換
-                _inventryManager.ItemSwap(boy.CurrentIndex,enginner.CurrentIndex);
+                _inventryManager.SwapItem(boy.CurrentIndex,enginner.CurrentIndex);
                 _isBoyItemSelecting = true;
             }
         }
