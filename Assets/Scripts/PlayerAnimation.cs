@@ -52,15 +52,14 @@ public class PlayerAnimation : MonoBehaviour
 
         if (Dir.sqrMagnitude > _Threshold)
         {
-            //transform.position += Dir * _MoveSpeed * Time.fixedDeltaTime;
             //同じ長さの２つのベクトルのDot積（同じ方向なら1、反対方向なら-1）を求める
-            _animator.SetFloat("Vertical", Vector3.Dot(Dir, transform.forward));
-            _animator.SetFloat("Horizontal", Vector3.Dot(Dir, transform.right));
+            _animator.SetFloat("Speed", Vector3.Dot(Dir, transform.forward));
+            _animator.SetFloat("Speed", Vector3.Dot(Dir, transform.right));
         }
         else
         {
-            _animator.SetFloat("Vertical", 0.0f);
-            _animator.SetFloat("Horizontal", 0.0f);
+            _animator.SetFloat("Speed", 0.0f);
+            _animator.SetFloat("Speed", 0.0f);
         }
     }
 

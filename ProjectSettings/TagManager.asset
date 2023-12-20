@@ -12,6 +12,7 @@ TagManager:
   - Item
   - Action
   - Ground
+  - DeadZone
   layers:
   - Default
   - TransparentFX

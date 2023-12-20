@@ -32,6 +32,7 @@ public class CameraManager : MonoBehaviour
         _target = _boy;
         _move.TargetChange(_target);
         _token = this.GetCancellationTokenOnDestroy();
+        _isMove = true;
     }
 
     private void Update()

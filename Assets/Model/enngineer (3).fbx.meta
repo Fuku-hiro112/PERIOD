@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2b488442874b9504482221763ff5efd3
+guid: 5b886406e177827469a2877366b79427
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,9 +16,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: "Avatar creation failed:\n\tAmbiguous Transform 'ALL/L_ashi'
-      and 'kotubann/L_ashi' found in hierarchy for human bone 'LeftUpperLeg'. Transform
-      name mapped to a human bone must be unique.\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -83,8 +81,16 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human:
-    - boneName: kotubann
+    - boneName: koshi
       humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_ashi
+      humanName: LeftUpperLeg
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -99,8 +105,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: L_hiza
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: R_hza
       humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_ashikubi
+      humanName: LeftFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -115,64 +137,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: R_tuchifumazu
-      humanName: RightToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: koshi
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: sebone1
-      humanName: Chest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: sebone2
-      humanName: UpperChest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: R_sakotu
-      humanName: RightShoulder
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: R_kata
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: R_hiji
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: R_tekubi
-      humanName: RightHand
+      humanName: Spine
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -203,8 +169,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: R_sakotu
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: L_kata
       humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_kata
+      humanName: RightUpperArm
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -219,6 +201,14 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: R_hiji
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: L_tekubi
       humanName: LeftHand
       limit:
@@ -227,24 +217,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: L_ashi
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: L_hiza
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: L_ashikubi
-      humanName: LeftFoot
+    - boneName: R_tekubi
+      humanName: RightHand
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -259,8 +233,16 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: R_tuchifumazu
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: L_oya4
-      humanName: Left Index Proximal
+      humanName: Left Thumb Proximal
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -268,6 +250,22 @@ ModelImporter:
         length: 0
         modified: 0
     - boneName: L_oya3
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_hitosashi4
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_hitosashi3
       humanName: Left Index Intermediate
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -285,14 +283,6 @@ ModelImporter:
         modified: 0
     - boneName: L_nakayubi3
       humanName: Left Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: L_nakayubi2
-      humanName: Left Middle Distal
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -333,6 +323,14 @@ ModelImporter:
         modified: 0
     - boneName: L_koyubi3
       humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_koyubi2
+      humanName: Left Little Distal
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -435,14 +433,22 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: sebone2
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
-    - name: enjiner_perfect(Clone)
+    - name: enngineer (3)(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MDL1
-      parentName: enjiner_perfect(Clone)
+      parentName: enngineer (3)(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -466,114 +472,34 @@ ModelImporter:
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: ALL
-      parentName: enjiner_perfect(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: R_ashi
-      parentName: ALL
-      position: {x: 0.127604, y: 0.0009360239, z: -0.08375925}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: R_tumasaki
-      parentName: R_ashi
-      position: {x: -0, y: -0.000000015260818, z: 0.16519076}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: L_ashi
-      parentName: ALL
-      position: {x: -0.127604, y: 0.0009360239, z: -0.083759286}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: L_tumasaki
-      parentName: L_ashi
-      position: {x: -5.3290704e-17, y: -7.9936054e-17, z: 0.16519077}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: koshi1
-      parentName: ALL
-      position: {x: -0, y: 1.0563316, z: 0.0012017633}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: kotuban
-      parentName: koshi1
-      position: {x: -0, y: -0.09688065, z: 0.0027688337}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sebone1
-      parentName: koshi1
-      position: {x: -0, y: 0.09246414, z: 0.016003408}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sebone2
-      parentName: koshi1
-      position: {x: 4.7216246e-26, y: 0.18937366, z: 0.0008890783}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: kubi1
-      parentName: sebone2
-      position: {x: -2.1506695e-25, y: 0.3236245, z: -0.05245562}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: kubi2
-      parentName: kubi1
-      position: {x: -2.7793268e-24, y: 0.058679163, z: 0.018670643}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: R_kata
-      parentName: sebone2
-      position: {x: 0.105655886, y: 0.2671557, z: -0.045140658}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: L_kata
-      parentName: sebone2
-      position: {x: -0.10565596, y: 0.26715463, z: -0.04514064}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: R_ude
-      parentName: sebone2
-      position: {x: 0.6994564, y: 0.2671557, z: -0.022320664}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: L_ude
-      parentName: sebone2
-      position: {x: -0.6994662, y: 0.26715463, z: -0.022320068}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: kotubann
-      parentName: enjiner_perfect(Clone)
-      position: {x: 2.5637978e-32, y: 0.95855474, z: -0.008563039}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
     - name: koshi
-      parentName: kotubann
-      position: {x: -2.5637978e-32, y: 0.100446, z: -0.013028733}
+      parentName: enngineer (3)(Clone)
+      position: {x: -0, y: 1.0590007, z: -0.021591773}
       rotation: {x: -0.3790247, y: 0.5969425, z: -0.3790247, w: 0.5969425}
       scale: {x: 1, y: 1, z: 1}
     - name: sebone1
       parentName: koshi
-      position: {x: -0.098100305, y: 2.2204459e-17, z: -7.888609e-33}
-      rotation: {x: 0.9621411, y: -0.2725518, z: 8.004462e-17, w: 8.631649e-17}
+      position: {x: -0.098100305, y: -7.105427e-17, z: 0}
+      rotation: {x: 0.9621411, y: -0.2725518, z: -1.07397114e-16, w: 3.3218687e-17}
       scale: {x: 1, y: 1, z: 1}
     - name: sebone2
       parentName: sebone1
-      position: {x: -0.09471122, y: 9.103829e-17, z: 1.3786992e-17}
-      rotation: {x: -2.604993e-17, y: -6.494261e-17, z: 0.012275411, w: 0.99992466}
+      position: {x: -0.09471122, y: 8.8817837e-17, z: 2.2059185e-17}
+      rotation: {x: -1.6720233e-16, y: 1.2762822e-16, z: 0.012275411, w: 0.99992466}
       scale: {x: 1, y: 1, z: 1}
     - name: kubi1
       parentName: sebone2
-      position: {x: -0.34640688, y: -6.0396133e-16, z: 5.1379023e-17}
-      rotation: {x: 0.9479689, y: -0.31836307, z: 8.7553633e-17, w: 9.3996953e-17}
+      position: {x: -0.34640688, y: -7.105427e-16, z: 8.28313e-17}
+      rotation: {x: 0.9479689, y: -0.31836307, z: 3.493079e-17, w: 7.632425e-17}
       scale: {x: 1, y: 1, z: 1}
     - name: kubi2
       parentName: kubi1
-      position: {x: -0.0731397, y: 0, z: -3.781997e-18}
-      rotation: {x: 5.5132263e-17, y: 1.7804564e-16, z: -0.24829364, w: 0.96868485}
+      position: {x: -0.0731397, y: 2.842171e-16, z: -2.9135016e-18}
+      rotation: {x: -4.7716574e-33, y: -3.7045615e-17, z: -0.24829364, w: 0.96868485}
       scale: {x: 1, y: 1, z: 1}
     - name: atama
       parentName: kubi2
-      position: {x: -0.21965867, y: -5.2735593e-18, z: -1.5765131e-17}
+      position: {x: -0.21965867, y: -1.5987211e-16, z: -3.1030182e-17}
       rotation: {x: 0.4977729, y: -0.50221723, z: 0.4977729, w: 0.50221723}
       scale: {x: 1, y: 1, z: 1}
     - name: R_sakotu
@@ -583,57 +509,57 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: R_kata
       parentName: R_sakotu
-      position: {x: -0.10603232, y: 0, z: -1.2985214e-17}
+      position: {x: -0.10603232, y: 0, z: -2.2204459e-17}
       rotation: {x: -0.012654106, y: -0.015659265, z: -0.00030977913, w: 0.9997973}
       scale: {x: 1, y: 1, z: 1}
     - name: R_hiji
       parentName: R_kata
-      position: {x: -0.23608373, y: 0, z: -8.5709215e-16}
+      position: {x: -0.23608373, y: 0, z: -7.9936056e-16}
       rotation: {x: 0, y: -0.008130304, z: -0, w: 0.999967}
       scale: {x: 1, y: 1, z: 1}
     - name: R_tekubi
       parentName: R_hiji
-      position: {x: -0.27946007, y: 0, z: 2.6423307e-16}
+      position: {x: -0.27946007, y: 0, z: 3.2862602e-16}
       rotation: {x: -0.0002068872, y: 0.99963695, z: 0.012656207, w: -0.023787403}
       scale: {x: 1, y: 1, z: 1}
     - name: R_ko4
       parentName: R_tekubi
       position: {x: 0.08010327, y: 0, z: -0.038453683}
-      rotation: {x: 0.00000005957552, y: 0.99986666, z: -7.389642e-12, w: 0.01633098}
+      rotation: {x: 0.00000029800862, y: 0.9998667, z: 0.00000010242682, w: 0.016330926}
       scale: {x: 1, y: 1, z: 1}
     - name: R_ko3
       parentName: R_ko4
-      position: {x: -0.036399636, y: 0, z: 1.36002315e-17}
-      rotation: {x: 0.000000040128448, y: -0.040590312, z: -0.00000006013127, w: 0.9991759}
+      position: {x: -0.036399636, y: 0, z: 2.6645352e-17}
+      rotation: {x: -0.000000047026752, y: -0.04059284, z: -0.000000033023703, w: 0.9991758}
       scale: {x: 1, y: 1, z: 1}
     - name: R_ko2
       parentName: R_ko3
-      position: {x: -0.02465824, y: 0, z: 4.440892e-18}
+      position: {x: -0.02465824, y: 0, z: 3.5527136e-17}
       rotation: {x: 0, y: -0.007200442, z: -0, w: 0.9999741}
       scale: {x: 1, y: 1, z: 1}
     - name: R_ko1
       parentName: R_ko2
-      position: {x: -0.016457707, y: 0, z: 3.2474022e-17}
+      position: {x: -0.016457707, y: 0, z: 3.5527136e-17}
       rotation: {x: -5.8520004e-17, y: 0.99905974, z: 5.8520004e-17, w: -0.04335558}
       scale: {x: 1, y: 1, z: 1}
     - name: R_kusuri4
       parentName: R_tekubi
       position: {x: 0.088657625, y: 0, z: -0.010295617}
-      rotation: {x: -2.9103824e-11, y: 0.9998686, z: 0.00000005855621, w: 0.016213413}
+      rotation: {x: -0.00000071528467, y: 0.99986863, z: -0.00000010535845, w: 0.016213413}
       scale: {x: 1, y: 1, z: 1}
     - name: R_kusuri3
       parentName: R_kusuri4
-      position: {x: -0.04031614, y: 0, z: 4.440892e-18}
-      rotation: {x: 0.000000074896725, y: -0.0404158, z: -0.0000007488099, w: 0.99918294}
+      position: {x: -0.04031614, y: 0, z: 2.2204459e-17}
+      rotation: {x: -0.000000034369783, y: -0.040413663, z: -0.00000011492081, w: 0.9991831}
       scale: {x: 1, y: 1, z: 1}
     - name: R_kusuri2
       parentName: R_kusuri3
-      position: {x: -0.029688815, y: 0, z: -2.9143353e-17}
-      rotation: {x: -0.000000030283275, y: 0.041153215, z: 1.134457e-11, w: 0.9991529}
+      position: {x: -0.029688815, y: 0, z: -3.5527136e-17}
+      rotation: {x: 0.00000015987756, y: 0.041150924, z: -0.0000000116099255, w: 0.99915296}
       scale: {x: 1, y: 1, z: 1}
     - name: R_kusuri1_
       parentName: R_kusuri2
-      position: {x: -0.024239942, y: 0, z: 3.3098524e-17}
+      position: {x: -0.024239942, y: 0, z: 3.1086245e-17}
       rotation: {x: -6.1680886e-17, y: 0.999973, z: 6.1680886e-17, w: 0.007352345}
       scale: {x: 1, y: 1, z: 1}
     - name: R_nakayubi4
@@ -643,17 +569,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: R_nakayubi3
       parentName: R_nakayubi4
-      position: {x: -0.047773752, y: 0, z: -1.4183098e-16}
+      position: {x: -0.047773752, y: 0, z: -1.3322676e-16}
       rotation: {x: 0, y: 0.021090293, z: -0, w: 0.99977756}
       scale: {x: 1, y: 1, z: 1}
     - name: R_nakatubi2
       parentName: R_nakayubi3
-      position: {x: -0.03600661, y: 0, z: 8.437695e-17}
+      position: {x: -0.03600661, y: 0, z: 9.325873e-17}
       rotation: {x: 0, y: 0.0025976978, z: -0, w: 0.99999666}
       scale: {x: 1, y: 1, z: 1}
     - name: R_nakayubi1
       parentName: R_nakatubi2
-      position: {x: -0.028523406, y: 0, z: 5.0515146e-17}
+      position: {x: -0.028523406, y: 0, z: 5.7731595e-17}
       rotation: {x: -6.1992786e-17, y: 0.9999219, z: 6.1992786e-17, w: 0.012497071}
       scale: {x: 1, y: 1, z: 1}
     - name: R_hitosashi5
@@ -663,17 +589,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: R_hitosashi3
       parentName: R_hitosashi5
-      position: {x: -0.04135984, y: 0, z: -1.08107966e-16}
+      position: {x: -0.04135984, y: 0, z: -6.661338e-17}
       rotation: {x: 0, y: 0.028708436, z: -0, w: 0.99958783}
       scale: {x: 1, y: 1, z: 1}
     - name: R_hitosahi2
       parentName: R_hitosashi3
-      position: {x: -0.033877846, y: 0, z: 2.6090241e-17}
+      position: {x: -0.033877846, y: 0, z: 7.105427e-17}
       rotation: {x: 0, y: 0.0011584364, z: -0, w: 0.99999934}
       scale: {x: 1, y: 1, z: 1}
     - name: R_hitosashi1
       parentName: R_hitosahi2
-      position: {x: -0.02104152, y: 0, z: 5.150047e-16}
+      position: {x: -0.02104152, y: 0, z: 5.32907e-16}
       rotation: {x: -6.226094e-17, y: 0.9998565, z: 6.226094e-17, w: 0.016941855}
       scale: {x: 1, y: 1, z: 1}
     - name: R_oya4
@@ -683,17 +609,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: R_oya3
       parentName: R_oya4
-      position: {x: -0.027694039, y: -0.004515544, z: -7.105427e-17}
+      position: {x: -0.027694039, y: -0.004515544, z: 0}
       rotation: {x: 0.09709005, y: 0.054222513, z: -0.12215073, w: 0.98626196}
       scale: {x: 1, y: 1, z: 1}
     - name: R_oya2
       parentName: R_oya3
-      position: {x: -0.03393592, y: -0.015386298, z: -1.7763568e-17}
+      position: {x: -0.03393592, y: -0.015386298, z: -7.105427e-17}
       rotation: {x: 0, y: 0.0065847086, z: -0, w: 0.99997836}
       scale: {x: 1, y: 1, z: 1}
     - name: R_oya1
       parentName: R_oya2
-      position: {x: -0.027858695, y: -0.0050172717, z: 7.105427e-17}
+      position: {x: -0.027858695, y: -0.0050172717, z: 1.4210854e-16}
       rotation: {x: -5.1904167e-17, y: 0.9898406, z: 5.1904167e-17, w: -0.14218125}
       scale: {x: 1, y: 1, z: 1}
     - name: L_sakotu
@@ -703,7 +629,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: L_kata
       parentName: L_sakotu
-      position: {x: 0.1060324, y: 0, z: 1.3322676e-17}
+      position: {x: 0.1060324, y: -2.842171e-16, z: -3.9968027e-17}
       rotation: {x: -0.01263699, y: -0.015659265, z: 0.00070584955, w: 0.9997973}
       scale: {x: 1, y: 1, z: 1}
     - name: L_hiji
@@ -799,12 +725,12 @@ ModelImporter:
     - name: L_oya4
       parentName: L_tekubi
       position: {x: -0.031628, y: -0.00719, z: 0.060634196}
-      rotation: {x: 0.056948874, y: 0.6587129, z: -0.048211813, w: 0.7486855}
+      rotation: {x: -8.327241e-17, y: 0.87398034, z: 8.327241e-17, w: 0.48596132}
       scale: {x: 1, y: 1, z: 1}
     - name: L_oya3
       parentName: L_oya4
       position: {x: -0.012271118, y: -0.00452, z: -0.024827218}
-      rotation: {x: 0.14270276, y: 0.606786, z: -0.06283098, w: 0.7794221}
+      rotation: {x: 0.1427041, y: 0.6067846, z: -0.062830605, w: 0.7794231}
       scale: {x: 1, y: 1, z: 1}
     - name: L_oya2
       parentName: L_oya3
@@ -816,29 +742,34 @@ ModelImporter:
       position: {x: 0.02344405, y: -0.0050199996, z: -0.015048715}
       rotation: {x: -5.1904167e-17, y: 0.9898406, z: 5.1904167e-17, w: -0.14218125}
       scale: {x: 1, y: 1, z: 1}
+    - name: kotubann
+      parentName: koshi
+      position: {x: 0.0853641, y: -0.05451714, z: 3.7112494e-17}
+      rotation: {x: 0.3790247, y: -0.5969425, z: 0.3790247, w: 0.5969425}
+      scale: {x: 1, y: 1, z: 1}
     - name: R_ashi
       parentName: kotubann
-      position: {x: 0.12759434, y: 0, z: 0.04282999}
+      position: {x: 0.12759434, y: 1.4210854e-16, z: 0.04282999}
       rotation: {x: 0.4953448, y: 0.5046213, z: 0.49533695, w: 0.5046109}
       scale: {x: 1, y: 1, z: 1}
     - name: R_hza
       parentName: R_ashi
-      position: {x: -0.44402573, y: 4.1078252e-17, z: -9.859352e-17}
+      position: {x: -0.44402573, y: -8.881784e-18, z: -5.32907e-16}
       rotation: {x: 0.98799723, y: 0.1544717, z: 8.0432495e-17, w: 4.940074e-17}
       scale: {x: 1, y: 1, z: 1}
     - name: R_ashikubi
       parentName: R_hza
-      position: {x: -0.4374443, y: -8.8817837e-17, z: 6.2848554e-17}
+      position: {x: -0.4374443, y: -3.5527136e-17, z: 4.6185276e-16}
       rotation: {x: 0.7794179, y: 0.6265044, z: -0.000004601537, w: 0.000008021859}
       scale: {x: 1, y: 1, z: 1}
     - name: R_tuchifumazu
       parentName: R_ashikubi
-      position: {x: -0.14402801, y: -4.4408918e-17, z: -2.6498413e-17}
-      rotation: {x: 1.6410767e-16, y: 5.58386e-16, z: -0.24761555, w: 0.96885836}
+      position: {x: -0.14402801, y: -3.5527136e-17, z: -1.4210854e-16}
+      rotation: {x: 5.068394e-17, y: -4.3041562e-17, z: -0.24761555, w: 0.96885836}
       scale: {x: 1, y: 1, z: 1}
     - name: R_tumasaki
       parentName: R_tuchifumazu
-      position: {x: -0.11413867, y: 1.1379786e-17, z: -1.9292431e-17}
+      position: {x: -0.11413867, y: 4.440892e-18, z: -7.105427e-17}
       rotation: {x: -0.0027838205, y: -0.70710135, z: -0.0027838205, w: 0.70710135}
       scale: {x: 1, y: 1, z: 1}
     - name: L_ashi
@@ -848,22 +779,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: L_hiza
       parentName: L_ashi
-      position: {x: 0.4440264, y: 0.00000004915666, z: 1.7763568e-17}
+      position: {x: 0.4440264, y: 0.00000004915666, z: -1.4210854e-16}
       rotation: {x: 0.98799723, y: 0.1544717, z: -7.206221e-17, w: -5.0709424e-17}
       scale: {x: 1, y: 1, z: 1}
     - name: L_ashikubi
       parentName: L_hiza
-      position: {x: 0.43744385, y: -0.000000115365864, z: 1.7763568e-17}
-      rotation: {x: 0.7794179, y: 0.6265044, z: -0.000004771594, w: 0.0000083183195}
+      position: {x: 0.43744385, y: -0.000000115365864, z: 1.2434498e-16}
+      rotation: {x: 0.7794179, y: 0.6265044, z: -0.0000047715953, w: 0.000008318322}
       scale: {x: 1, y: 1, z: 1}
     - name: L_tuchifumazu
       parentName: L_ashikubi
-      position: {x: 0.14402798, y: 0.00000007737316, z: 0}
-      rotation: {x: -7.448754e-17, y: -1.9293318e-17, z: -0.24761555, w: 0.96885836}
+      position: {x: 0.14402798, y: 0.00000007737316, z: -7.105427e-17}
+      rotation: {x: -1.41678864e-14, y: 3.1242575e-15, z: -0.24761555, w: 0.96885836}
       scale: {x: 1, y: 1, z: 1}
     - name: L_tumasaki
       parentName: L_tuchifumazu
-      position: {x: 0.11413904, y: -0.0000000047242628, z: 5.3290704e-17}
+      position: {x: 0.11413904, y: -0.0000000047242628, z: 3.5527136e-17}
       rotation: {x: -0.0027838205, y: -0.70710135, z: -0.0027838205, w: 0.70710135}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
