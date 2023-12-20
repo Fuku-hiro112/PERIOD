@@ -37,7 +37,7 @@ namespace Gimmick
         /// </summary>
         /// <param name="id"></param>
         /// <returns>IDÇÃÉfÅ[É^</returns>
-        private GimmickSourceDataBase SearchData(int id)
+        public GimmickSourceDataBase SearchData(int id)
         {
             /*foreach (GimmickSourceData data in _data)
             {

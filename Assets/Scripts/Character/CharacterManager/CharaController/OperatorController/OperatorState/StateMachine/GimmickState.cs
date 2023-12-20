@@ -11,6 +11,9 @@ namespace Character.OperaterState
         private OperatorController _operator;
         [SerializeField]
         private CursorController _cursor;
+        private Collider _other = null;
+        private GimmickSourceDataBase _dataBase;
+
 
         public GimmickState(OperatorController operatorController)
         {
@@ -24,9 +27,17 @@ namespace Character.OperaterState
         /// </summary>
         public void HandleStart()
         {
-            _operator.IsAction = true;
-            _cursor.OnStart(_operator.GimmickController.GimmickID);
-            _operator.GimmickController.OnStart();
+            int gimmickID = _other.transform.parent.gameObject.GetComponent<GimmickController>().GimmickID;
+            _dataBase = GimmickDataManager.s_Instance.SearchData(gimmickID);
+            string characterName =_dataBase.AvailableCharacterName;
+            
+            if (characterName == "" || _operator.CurrentCharacter.name == characterName)// ""の場合は共通処理
+            {
+                _operator.IsAction = true;
+                _cursor.OnStart(_operator.GimmickController.GimmickID);
+                _operator.GimmickController.OnStart();
+            }
+            Debug.Log("操作権限がございません");
         }
         /// <summary>
         /// フレーム単位で実行される、新しい状態に移行するための条件も書く
@@ -40,6 +51,7 @@ namespace Character.OperaterState
             if (_cursor.IsClear)
             {
                 _operator.StateMachine.Transition(_operator.StateMachine.IdleState).Forget();
+                _cursor.IsClear = false;
             }
         }
         /// <summary>
@@ -50,7 +62,13 @@ namespace Character.OperaterState
             _operator.IsAction = false;
             _operator.GimmickController.OnEnd();
             // TODO: 現在接触している、または使用したotherをどこかから持ってくる
-            //await other.gameObject.GetComponent<GimmickSourceDataBase>().HandleActionAsync();
+            await _dataBase.HandleActionAsync(_other);
+            _other = null;
+        }
+
+        public void GetCollider(Collider other)
+        {
+            _other = other;
         }
     }
 }

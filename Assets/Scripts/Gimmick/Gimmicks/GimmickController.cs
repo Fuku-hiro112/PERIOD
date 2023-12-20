@@ -20,6 +20,9 @@ namespace Gimmick
         private GameObject _prefab;
         public int GimmickID { get => _gimmickID; }
 
+        [SerializeField]
+        private Character _available;
+        public Character Available { get => _available; }
         /// <summary>
         /// ギミック開始
         /// </summary>

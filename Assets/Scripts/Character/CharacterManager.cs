@@ -25,7 +25,8 @@ namespace Character
         [SerializeField] private CollisionDetection _collisionEngineer;
         [SerializeField] public static OperatorInput OperatorInput;
         // ê∂ë∂îªíË
-        [SerializeField] private bool _isDead = false;
+        [SerializeField] private bool _engineerIsDead = false;
+        [SerializeField] private bool _boyIsDead = false;
         [SerializeField] private bool _isFollow = true;
 
 
@@ -72,14 +73,12 @@ namespace Character
             _operatorController.OnInput(OperatorInput);
             _collisionBoy.OnInput(OperatorInput);
             _collisionEngineer.OnInput(OperatorInput);
-            _collisionBoy._isBoy = true;
-            _collisionEngineer._isBoy = false;
             CharacterChange(_boy, _engineer);
         }
 
         void Update()
         {
-            if (_isDead) return;
+            if (_engineerIsDead || _boyIsDead) return;
             _followerController.Follow(_isFollow);
             OperaterChange();
         }

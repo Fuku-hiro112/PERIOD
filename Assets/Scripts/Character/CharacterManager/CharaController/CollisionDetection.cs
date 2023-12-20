@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Item;
 using UnityEngine;
+using Item;
 
 namespace Character
 {
@@ -28,7 +29,7 @@ namespace Character
         {
             
         }
-
+        
         private void Update()
         {
        
@@ -100,15 +101,16 @@ namespace Character
             Action(other).Forget();
         }
         async UniTaskVoid Action(Collider other)
-        {
-            if (_operater.CurrentCharacter != this.gameObject) return;
-            if (IsSameState(_operater.StateMachine.GimmickState)) return;
+        {  
             if (other.gameObject.CompareTag("Gimmick"))
             {
                 if (_input.IsGimmickAction())
                 {
+                    if (_operater.CurrentCharacter != this.gameObject) return;
+                    if (IsSameState(_operater.StateMachine.GimmickState)) return;
                     //HACK: GimmickControllerを渡してからステートを変更しないと、OnStartが呼ばれないと思います
                     other.transform.parent.TryGetComponent(out _operater.GimmickController);
+                    _operater.StateMachine.GimmickState.GetCollider(other);
                     _operater.StateMachine.Transition(_operater.StateMachine.GimmickState).Forget();
                     _operater.StateMachine.Transition(_operater.StateMachine.IdleState).Forget();
                 }
