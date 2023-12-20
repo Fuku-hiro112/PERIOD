@@ -8,7 +8,7 @@ using UnityEngine;
 public class InventrySelecter : MonoBehaviour
 {
     private InventryManager _inventryManager;
-    private bool _isBoyItemSelecting = false;
+    private bool _isBoyItemSelecting = true;
 
     private int _currentInventryBoy = 0; 
     private int _currentInventryEnginner = -1;
@@ -21,14 +21,14 @@ public class InventrySelecter : MonoBehaviour
     
     private void Update()
     {
-        // アイテムの交換をする
-        if(_isBoyItemSelecting)
+        // アイテムを選ぶ
+        if(_isBoyItemSelecting)// 選択出来る状態か
         {
             // 少年のインベントリから選択
             SelectInventryItem(_inventryManager.BoyInventroy);
             if (CharacterManager.OperatorInput.ItemUse())// アイテム使用ボタンが押された
             {
-
+                _inventryManager.UseItem(_inventryManager.BoyInventroy.InventryUI.CurrentIndex);
             }
             if (CharacterManager.OperatorInput.ItemSwap())// 交換ボタンが押された
             {

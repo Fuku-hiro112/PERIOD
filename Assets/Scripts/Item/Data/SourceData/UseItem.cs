@@ -18,6 +18,7 @@ namespace Item
             // アイテムを使う
             // アニメーション
             // ↑が終わったら効果を適応
+            Debug.Log("アイテム使用:UseItem");
         }
     }
 }
