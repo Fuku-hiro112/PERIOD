@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -209}
+  m_AnchoredPosition: {x: 1, y: -251}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5328213366443276820
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 5328213367441896710}
   - component: {fileID: 5328213367441896704}
   - component: {fileID: 5328213367441896711}
-  - component: {fileID: 5328213367441896705}
+  - component: {fileID: 7495490569989907269}
   m_Layer: 5
   m_Name: ThunderGimmick
   m_TagString: Wall
@@ -188,7 +188,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 1200}
+  m_SizeDelta: {x: 1100, y: 1100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5328213367441896704
 CanvasRenderer:
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fed80e41bc1e95499f333243415fbf9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b64aacf8873031e4a9d6a008000090b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!60 &5328213367441896705
+--- !u!60 &7495490569989907269
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,24 +272,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 196.81682, y: 525.7798}
-      - {x: -263.62253, y: -32.03293}
-      - {x: -34.269676, y: -108.808014}
-      - {x: -214.55286, y: -555.48987}
-      - {x: -212.73306, y: -551.0106}
-      - {x: 226.8807, y: -19.660925}
-      - {x: -2.8688717, y: 60.26789}
-      - {x: 197.55737, y: 525.57605}
-      - {x: 121.86716, y: 399.4603}
-      - {x: 20.400818, y: 163.11157}
-      - {x: 10.847229, y: 140.21771}
-      - {x: -30.001137, y: 49.32144}
-      - {x: -32.32612, y: 47.435562}
-      - {x: 192.1136, y: -27.854641}
-      - {x: -147.44196, y: -441.35828}
-      - {x: -8.138277, y: -96.02545}
-      - {x: -226.56989, y: -22.97289}
-      - {x: 123.361084, y: 404.06213}
+    - - {x: 157.80328, y: 553.57556}
+      - {x: -552.03595, y: -187.45935}
+      - {x: -93.34747, y: -107.89789}
+      - {x: -170.41333, y: -559.8786}
+      - {x: 348.33154, y: 36.465942}
+      - {x: 418.53717, y: 117.173706}
+      - {x: -81.11658, y: -404.00995}
+      - {x: -27.923004, y: -52.417175}
+      - {x: -416.66968, y: -114.21182}
+      - {x: 85.556885, y: 403.3454}
+      - {x: 24.240234, y: 83.91373}
+      - {x: 37.39441, y: 58.769287}
+      - {x: 68.59656, y: 54.47357}
+      - {x: 410.84402, y: 125.14978}
+      - {x: 550.05347, y: 191.00647}
+      - {x: 98.20234, y: 118.3106}
   m_UseDelaunayMesh: 0
 --- !u!1001 &3717020600519484272
 PrefabInstance:
@@ -382,12 +380,12 @@ PrefabInstance:
     - target: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -45
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 133
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8,
         type: 3}

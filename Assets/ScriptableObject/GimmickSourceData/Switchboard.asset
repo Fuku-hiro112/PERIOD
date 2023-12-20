@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 4
   _start: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8, type: 3}
-  _character: {fileID: 0}
+  _character: {fileID: 8755010658191176359, guid: cb76395dedde1124e96b6f62577353db,
+    type: 3}
   _prefab: {fileID: 5328213367441896709, guid: 1b4ccef8deed8e346a02cb4c96d402d6, type: 3}

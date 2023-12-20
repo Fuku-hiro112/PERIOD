@@ -75,9 +75,17 @@ namespace Character
                 _characterMove.Movement(_iOperatorInput.MovementValue, 1.0f);
                 //_characterClimb.Climb(_iOperatorInput.MovementValue); // •s•K—v
                 CharacterTurnAround.TurnAround(_iOperatorInput.MovementValue);
-            }
 
-            _stateMachine.OnUpdate();
+                if (Mathf.Abs(_iOperatorInput.MovementValue.z) <= Mathf.Abs(_iOperatorInput.MovementValue.x))
+                    _playerAnimator.SetFloat("Speed", Mathf.Abs(_iOperatorInput.MovementValue.x));
+                else
+                    _playerAnimator.SetFloat("Speed", Mathf.Abs(_iOperatorInput.MovementValue.z));
+
+            }
+            else
+                _playerAnimator.SetFloat("Speed", 0);
+
+                _stateMachine.OnUpdate();
         }
     }
 }

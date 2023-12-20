@@ -1,5 +1,6 @@
 using UnityEngine;
 using Character;
+using Unity.VisualScripting;
 
 /// <Summary>
 /// エンジニアがプレイヤーを追従する処理　参考元：https://nekojara.city/unity-smooth-damp
@@ -37,7 +38,9 @@ public class FollowerController : MonoBehaviour
 
     public Animator PlayerAnimator { get => _playerAnimator; private set => _playerAnimator = value; }
 
-    private Animator _playerAnimator;
+    [SerializeField] private Animator _playerAnimator;
+
+     private float _distance;
 
     public void Follow(bool isFollow)
     {
@@ -59,6 +62,25 @@ public class FollowerController : MonoBehaviour
             _direction = CharacterTurnAround.MyTargetDirection();
             CharacterTurnAround.TurnAround(_direction);
             //_characterClimb.Climb(_direction); // 不必要
+
+            float distance = Vector3.Distance(_operator.transform.position, _follower.transform.position);
+            _distance = distance - _distanceFromOperator;
+            float speed;
+            if (_distance > 0.01)
+            {
+                speed = 1f;
+            }
+            /*
+            else if(_distance > 0.03f)
+            {
+                speed = 0.5f;
+            }
+            */
+            else
+            {
+                speed = 0;
+            }
+            _playerAnimator.SetFloat("Speed", speed);
         }
     }
 

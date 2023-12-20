@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 87dd643ab949229418ba9400e67cf1c0,
         type: 3}
       propertyPath: m_Name
-      value: Enginner
+      value: Engineer
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 87dd643ab949229418ba9400e67cf1c0,
         type: 3}
@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 87dd643ab949229418ba9400e67cf1c0,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 87dd643ab949229418ba9400e67cf1c0,
         type: 3}
@@ -108,10 +108,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 784953116}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87dd643ab949229418ba9400e67cf1c0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 784953123}
   m_SourcePrefab: {fileID: 100100000, guid: 87dd643ab949229418ba9400e67cf1c0, type: 3}
 --- !u!1 &1916617530946182801 stripped
 GameObject:
@@ -224,19 +220,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _operater: {fileID: 0}
---- !u!114 &784953123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916617530946182801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902dee646d159a542ac32b9cf12407ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 1
-  runSpeed: 3
-  _MoveSpeed: 2
-  _Threshold: 0.08

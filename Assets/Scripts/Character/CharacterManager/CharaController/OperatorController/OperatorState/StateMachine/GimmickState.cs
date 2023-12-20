@@ -27,7 +27,13 @@ namespace Character.OperaterState
         /// </summary>
         public void HandleStart()
         {
-            int gimmickID = _other.transform.parent.gameObject.GetComponent<GimmickController>().GimmickID;
+            GameObject gimmick = _other.transform.parent.gameObject;
+            if (!gimmick)
+            {
+                Debug.Log("åÎçÏìÆ");
+                return;
+            }
+            int gimmickID = gimmick.GetComponent<GimmickController>().GimmickID;
             _dataBase = GimmickDataManager.s_Instance.SearchData(gimmickID);
             string characterName =_dataBase.AvailableCharacterName;
             
