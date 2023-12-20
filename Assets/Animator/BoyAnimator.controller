@@ -69,33 +69,18 @@ AnimatorStateMachine:
     m_Position: {x: 360, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5660478406798963929}
-    m_Position: {x: 360, y: 420, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -4937791322166733694}
-    m_Position: {x: 50, y: -130, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 7233336590449874088}
-    m_Position: {x: 330, y: -130, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1905686604392699394}
-    m_Position: {x: -230, y: -140, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 8274171492078570680}
-    m_Position: {x: 30, y: 400, z: 0}
+    m_Position: {x: 350, y: 400, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 1971205491875929415}
-  - {fileID: 6330777475005601886}
-  - {fileID: -551864545043277398}
-  - {fileID: 8570961119180785373}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 70, y: 20, z: 0}
-  m_EntryPosition: {x: 70, y: 110, z: 0}
-  m_ExitPosition: {x: 70, y: -300, z: 0}
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_ExitPosition: {x: 570, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 8274171492078570680}
+  m_DefaultState: {fileID: -6887873115721839708}
 --- !u!1102 &-7567966023855749011
 AnimatorState:
   serializedVersion: 6
@@ -145,7 +130,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 311ed393b831d834684867c824215719,
+  m_Motion: {fileID: 1827226128182048838, guid: fa1d87836ca92364492ade18dfea7ee0,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -458,24 +443,6 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: Death
     m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: CrouchingWalk
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: PushBox
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Climb
-    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
