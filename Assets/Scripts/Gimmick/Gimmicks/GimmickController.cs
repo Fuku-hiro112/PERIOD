@@ -12,10 +12,6 @@ namespace Gimmick
     public class GimmickController : MonoBehaviour
     {
         [SerializeField]
-        private Character _available = Character.Boy;
-        public Character Available { get; private set; }
-
-        [SerializeField]
         private int _gimmickID;
         private GameObject _prefab;
         public int GimmickID { get => _gimmickID; }
