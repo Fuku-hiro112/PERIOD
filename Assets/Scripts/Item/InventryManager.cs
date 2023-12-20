@@ -26,7 +26,7 @@ namespace Item
                 s_Instance = this;
             }
         }
-
+        
         public void TestItemSwap()
         {
             //boyIndexとenginnerIndexのアイテムを交換
@@ -56,7 +56,7 @@ namespace Item
         }
         public void UseItem(int boyIndex)
         {
-            ItemDataManager.s_Instance.SearchProsess(_boyInventroy.ItemIDs[boyIndex]).Forget();
+            ItemDataManager.s_Instance.SearchProsess(0).Forget();//TODO: Prosessの引数をアイテムIDに変える
         }
         //HACK: このままだとInventryの関数の意味がなくなってしまうので改良が必要
         /// <summary>
