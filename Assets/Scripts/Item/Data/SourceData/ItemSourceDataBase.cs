@@ -20,7 +20,7 @@ namespace Item
 
         public virtual async UniTask HandleUseItem()
         {
-            Debug.Log("アイテムが一致しません");
+            Debug.Log("アイテム使用:Virtual",this);
             return;
         }
     }

@@ -58,7 +58,6 @@ namespace Character
                 // 次フレームの位置を計算（SmoothDampを各軸に適用）
                 float newX = Mathf.SmoothDamp(currentPosition.x, targetPositionAdjusted.x, ref _currentVelocity.x, _smoothTime, _maxSpeed);
                 float newY = _followerTransfrom.position.y;
-                    //Mathf.SmoothDamp(currentPosition.y, targetPositionAdjusted.y, ref _currentVelocity.y, _smoothTime, _maxSpeed);
                 float newZ = Mathf.SmoothDamp(currentPosition.z, targetPositionAdjusted.z, ref _currentVelocity.z, _smoothTime, _maxSpeed);
 
                 // 現在位置の更新

@@ -1,10 +1,10 @@
 using Character.OperaterState;
 using Cysharp.Threading.Tasks;
 using Gimmick;
-using Gimmikc;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Item;
 using UnityEngine;
 using Item;
 
@@ -15,9 +15,10 @@ namespace Character
         [SerializeField]
         private OperatorController _operater;
         private IOperatorInput _input;
-        private ISearcher _gimmickSearch;
-       
-     
+        ISearcher _gimmickSearch;
+
+        public bool _isBoy = false;
+
         public void OnInput(OperatorInput input)
         {
             _input = input;
@@ -31,7 +32,7 @@ namespace Character
         
         private void Update()
         {
-          
+       
         }
 
         //** --------  以下当たり判定  -------- **//
@@ -39,7 +40,38 @@ namespace Character
 
         private void OnCollisionEnter(Collision other)
         {
+            if (other.gameObject.CompareTag("Gimmick"))
+            {
+                GimmickController gimmickController;
+                other.gameObject.TryGetComponent(out gimmickController);
 
+                if (gimmickController.Available == Gimmick.Character.Boy) 
+                {
+                    if (_isBoy)
+                    {
+                        //TODO: 合ってるとき処理の中身
+                    }
+                    if (!_isBoy)
+                    {
+                        //TODO: 間違ってるとき処理の中身
+                    }
+                }
+                if (gimmickController.Available == Gimmick.Character.Engineer)
+                {
+                    if (!_isBoy)
+                    {
+                        //TODO: 合ってるとき処理の中身
+                    }
+                    if (_isBoy)
+                    {
+                        //TODO: 間違ってるとき処理の中身
+                    }
+                }
+                if (gimmickController.Available == Gimmick.Character.Both)
+                {
+                    //TODO: 合ってるとき処理の中身
+                }
+            }
         }
         private void OnCollisionStay(Collision other)
         {
@@ -80,7 +112,7 @@ namespace Character
                     other.transform.parent.TryGetComponent(out _operater.GimmickController);
                     _operater.StateMachine.GimmickState.GetCollider(other);
                     _operater.StateMachine.Transition(_operater.StateMachine.GimmickState).Forget();
-                    
+                    _operater.StateMachine.Transition(_operater.StateMachine.IdleState).Forget();
                 }
             }
             /*

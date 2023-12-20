@@ -12,7 +12,7 @@ namespace Item
         /// <summary>
         /// ƒAƒCƒeƒ€‚ð“üŽè‚·‚é
         /// </summary>
-        public void ObtainItem(Inventroy inventroy)
+        public void ObtainItem(Inventry inventroy)
         {
             inventroy.Add(_itemID);
         }

@@ -16,6 +16,7 @@ namespace Item
         {
             // アイテムを設置する
             // アニメーション
+            Debug.Log("アイテム使用:SetUpItem");
         }
     }
 }

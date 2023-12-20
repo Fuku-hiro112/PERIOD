@@ -26,12 +26,13 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        _input = _characterManager.OperatorInput;
+        _input = CharacterManager.OperatorInput;
         _transform = GetComponent<Transform>();
         _move = new CameraMove(_transform, _distance, _smoothTime, _maxSpeed);
         _target = _boy;
         _move.TargetChange(_target);
         _token = this.GetCancellationTokenOnDestroy();
+        _isMove = true;
     }
 
     private void Update()

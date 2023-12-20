@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using Gimmick;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -18,7 +20,6 @@ namespace Item
             if (s_Instance == null)
             {
                 s_Instance = this;
-                Debug.Log("nullだ",this);
             }
         }
 
@@ -61,5 +62,12 @@ namespace Item
         /// </summary>
         /// <param name="id">アイテムID</param>
         public float SearchEffectValue(int id) => SearchData<UseItem>(id).EffectValue;
+
+        /// <summary>
+        /// IDと一致するアイテム処理を返す
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public UniTask SearchProsess(int id) => SearchData<ItemSourceDataBase>(id).HandleUseItem();
     }
 }

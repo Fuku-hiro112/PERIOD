@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 namespace Item
 {
@@ -24,5 +25,11 @@ namespace Item
         /// </summary>
         /// <param name="id">アイテムID</param>
         public float SearchEffectValue(int id);
+        /// <summary>
+        /// IDと一致するアイテム処理を返す
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public UniTask SearchProsess(int id);
     }
 }

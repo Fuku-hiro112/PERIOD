@@ -1,6 +1,6 @@
 using Character;
 using Cysharp.Threading.Tasks;
-using Gimmikc;
+using Gimmick;
 using Input;
 using System;
 using UnityEngine;

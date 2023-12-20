@@ -32,7 +32,7 @@ namespace Character.OperaterState
             {
                 _controller.StateMachine.Transition(_controller.StateMachine.WalkState).Forget();
             }
-            Debug.Log("—§‚¿");
+            //Debug.Log("—§‚¿");
         }
         /// <summary>
         /// StateI—¹‚ÉÀs‚³‚ê‚é

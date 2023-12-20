@@ -1,4 +1,4 @@
-using Gimmikc;
+using Gimmick;
 using System.Linq;
 using UnityEngine;
 
@@ -20,9 +20,10 @@ namespace Gimmick
             // SourceDataのインスタンスを全て生成し、非表示にして見えないようにしている
             foreach (GimmickSourceDataBase gimmickData in _data)
             {
+                if (gimmickData?._prefab == null) continue;
                 gimmickData._prefab.SetActive(false);// Prefab本体をFalseに
                 //Fixed: 毎回データが書き変わる為修正が必要、他クラスでデータにアクセスし、表示非表示の変更をするため、データを書き換える
-                gimmickData.Prefab = Instantiate(gimmickData._prefab, _canvasGimmick.transform);
+                gimmickData.Prefab = Instantiate(gimmickData._prefab, _canvasGimmick?.transform);
             }
 
             if (s_Instance == null)

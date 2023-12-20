@@ -1,5 +1,8 @@
 using UnityEngine;
 using Character;
+using TMPro;
+using Unity.VisualScripting;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 /// <Summary>
 /// エンジニアがプレイヤーを追従する処理　参考元：https://nekojara.city/unity-smooth-damp
@@ -21,7 +24,9 @@ public class FollowerController : MonoBehaviour
     // メインキャラクターとの一定距離を維持
     [SerializeField] private float _distanceFromOperator;
 
-    private Vector3 _direction;
+    [SerializeField] private Vector3 _direction;
+
+    [SerializeField] float _distance;
 
     [SerializeField] private bool _isFollow = true;
     public bool IsAction = false;
@@ -34,6 +39,12 @@ public class FollowerController : MonoBehaviour
 
     public CharacterTurnAround CharacterTurnAround { get => _characterTurnAround; private set => _characterTurnAround = value; }
     public bool IsFollow { get => _isFollow; private set => _isFollow = value; }
+
+    // 後に差し替え
+    [SerializeField] Animator _boyAnimator;
+    [SerializeField] Animator _engineerAnimator;
+
+    [SerializeField] Animator _playerAnimator;
 
     public void Follow(bool isFollow)
     {
@@ -52,8 +63,29 @@ public class FollowerController : MonoBehaviour
             _followerMove.MoveFollower();
             _direction = CharacterTurnAround.MyTargetDirection();
             CharacterTurnAround.TurnAround(_direction);
-            //_characterClimb.Climb(_direction); // 不必要
+
+            //_characterClimb.Climb(_direction);
+            float distance = Vector3.Distance(_operator.transform.position, _follower.transform.position);
+            _distance = distance - _distanceFromOperator;
+            float speed;
+            if(_distance > 0.01)
+            {
+                speed = 1f;
+            }
+            /*
+            else if(_distance > 0.03f)
+            {
+                speed = 0.5f;
+            }
+            */
+            else
+            {
+                speed = 0;
+            }
+            _playerAnimator.SetFloat("Speed", speed);
+          
         }
+        
     }
 
     /// <summary>

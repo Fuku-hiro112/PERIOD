@@ -1,4 +1,4 @@
-using Gimmikc;
+using Gimmick;
 using UnityEngine;
 
 namespace Gimmick

@@ -27,6 +27,12 @@ namespace Character
         public GameObject CurrentCharacter { get => _currentCharacter; }
         public CharacterTurnAround CharacterTurnAround { get => _characterTurnAround; private set => _characterTurnAround = value; }
 
+        // 後に差し替え
+        [SerializeField] Animator _boyAnimator;
+        [SerializeField] Animator _engineerAnimator;
+
+        [SerializeField] Animator _playerAnimator;
+
         /// <summary>
         /// 操作characterの変更
         /// </summary>
@@ -66,9 +72,16 @@ namespace Character
         {
             if (!IsAction)
             {
-                _characterMove.Movement(_iOperatorInput.MovementValue, 1.0f);
-                //_characterClimb.Climb(_iOperatorInput.MovementValue); // 不必要
-                CharacterTurnAround.TurnAround(_iOperatorInput.MovementValue);
+                _characterMove.Movement(_iOperatorInput.MovementValue, 1.0f); // 移動
+                //_characterClimb.Climb(_iOperatorInput.MovementValue);
+                CharacterTurnAround.TurnAround(_iOperatorInput.MovementValue); // 振り向き
+               
+                if (Mathf.Abs(_iOperatorInput.MovementValue.z) <= Mathf.Abs(_iOperatorInput.MovementValue.x))
+                   _playerAnimator.SetFloat("Speed", Mathf.Abs(_iOperatorInput.MovementValue.x));
+                else
+                   _playerAnimator.SetFloat("Speed", Mathf.Abs(_iOperatorInput.MovementValue.z));
+                
+              
             }
 
             _stateMachine.OnUpdate();

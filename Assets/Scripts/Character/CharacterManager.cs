@@ -15,21 +15,21 @@ namespace Character
         [SerializeField] private GameObject _engineer;
         // キャラクター状況
         [SerializeField] private GameObject _operator;
-        [SerializeField] GameObject _follower;
+        [SerializeField] private GameObject _follower;
 
         [SerializeField] private OperatorController _operatorController;
         [SerializeField] private FollowerController _followerController;
         [SerializeField] private CharaController _charaController;
         [SerializeField] private CharacterChange _characterChange;
-        [SerializeField] private OperatorInput _operatorInput;
         [SerializeField] private CollisionDetection _collisionBoy;
         [SerializeField] private CollisionDetection _collisionEngineer;
+        [SerializeField] public static OperatorInput OperatorInput;
         // 生存判定
         [SerializeField] private bool _engineerIsDead = false;
         [SerializeField] private bool _boyIsDead = false;
         [SerializeField] private bool _isFollow = true;
 
-        public OperatorInput OperatorInput { get => _operatorInput; private set => _operatorInput = value; }
+
         public GameObject Operator { get => _operator; private set => _operator = value; }
         public GameObject Follower { get => _follower; private set => _follower = value; }
 

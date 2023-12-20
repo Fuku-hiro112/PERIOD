@@ -10,12 +10,31 @@ namespace Item
     {
         [SerializeField]
         private Transform slotsParent;
-        private Inventroy _inventroy = default;
-        public Slot[] Slots { get; private set; }
+        [SerializeField]
+        private Vector2 _slotSizeMultiple = new Vector2(1.2f, 1.2f);
+        [SerializeField]
+        private RectTransform _sampleSlot;
+        private Vector2 _slotOriginalSize;
+        private Inventry _inventroy = default;
         private IItemSearcher _iItemSearcher;//MEMO: 宣言時の代入はAwakeよりも早い
+        private OriginalSlot _slot;
+        // 初回のみ値を変更出来るように
+        private class OriginalSlot
+        {
+            public readonly Vector2 Size;
+            public OriginalSlot(Vector2 slotSize) { Size = slotSize; }
+        }
+        public int CurrentIndex = -1;// InventrySelectから変更
+        public bool SizeUpable = false;
+        public Slot[] Slots { get; private set; }
 
+        private void Awake()
+        {
+            _slot = new OriginalSlot(_sampleSlot.sizeDelta);
+        }
         private void Start()
         {
+            _slotOriginalSize = _sampleSlot.sizeDelta;
             _iItemSearcher = ItemDataManager.s_Instance;//WARNING: インスタンスをAwakeで作成しているため実行順的にStateに書かないとNullが返る
             // slotsParentの子を全てSlotsに格納
             this.gameObject.TryGetComponent(out _inventroy);// 分かりやすくするためthis
@@ -40,6 +59,28 @@ namespace Item
                 else
                 {
                     Slots[i].ClearSlot();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// アイテム設定中処理 サイズを大きくする
+        /// </summary>
+        /// <param name="slotIndex"></param>
+        public void UpdateUISize(int slotIndex)
+        {
+            for (int i = 0; i < Slots.Length; i++)
+            {
+                if (slotIndex == i)// 選択中
+                {
+                    if (!SizeUpable) Slots[i].ChengeSize(_slotOriginalSize);
+                    // でかいサイズに
+                    Slots[i].ChengeSize(_slot.Size);
+                }
+                else
+                {
+                    // 通常サイズに
+                    Slots[i].ChengeSize(_slotOriginalSize);
                 }
             }
         }

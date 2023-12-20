@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,12 +12,12 @@ namespace Item
         public static readonly int s_NullID = -1;
 
         [SerializeField]
-        private Inventroy _boyInventroy = default;
+        private Inventry _boyInventroy = default;
         [SerializeField]
-        private Inventroy _engineerInventroy = default;
+        private Inventry _engineerInventroy = default;
 
-        public Inventroy BoyInventroy { get => _boyInventroy; }
-        public Inventroy EngineerInventroy { get => _engineerInventroy; }
+        public Inventry BoyInventroy { get => _boyInventroy; }
+        public Inventry EngineerInventroy { get => _engineerInventroy; }
 
         private void Awake()
         {
@@ -25,13 +26,24 @@ namespace Item
                 s_Instance = this;
             }
         }
+        
+        public void TestItemSwap()
+        {
+            //boyIndexとenginnerIndexのアイテムを交換
+            int boyItemID = _boyInventroy.ItemIDs[0];
+            _boyInventroy.ItemIDs[0] = _engineerInventroy.ItemIDs[0];
+            _engineerInventroy.ItemIDs[0] = boyItemID;
 
+            // 両UI更新
+            EngineerInventroy.InventryUI.UpdateUI();
+            BoyInventroy.InventryUI.UpdateUI();
+        }
         /// <summary>
         /// アイテム交換
         /// </summary>
         /// <param name="boyIndex"></param>
         /// <param name="enginnerIndex"></param>
-        public void ItemTrade(int boyIndex, int enginnerIndex)
+        public void SwapItem(int boyIndex, int enginnerIndex)
         {
             //boyIndexとenginnerIndexのアイテムを交換
             int boyItemID = _boyInventroy.ItemIDs[boyIndex];
@@ -42,7 +54,10 @@ namespace Item
             EngineerInventroy.InventryUI.UpdateUI();
             BoyInventroy.InventryUI.UpdateUI();
         }
-
+        public void UseItem(int boyIndex)
+        {
+            ItemDataManager.s_Instance.SearchProsess(0).Forget();//TODO: Prosessの引数をアイテムIDに変える
+        }
         //HACK: このままだとInventryの関数の意味がなくなってしまうので改良が必要
         /// <summary>
         /// インベントリに空きがあればアイテムを入れる
@@ -63,7 +78,7 @@ namespace Item
         /// </summary>
         /// <param name="inventroy">どのインベントリを調べるか</param>
         /// <returns>スペースがあったらtrue</returns>
-        private bool IsSpaceInventory(Inventroy inventroy)
+        private bool IsSpaceInventory(Inventry inventroy)
         {
             for (int i = 0; i < inventroy.ItemIDs.Count; i++)
             {
