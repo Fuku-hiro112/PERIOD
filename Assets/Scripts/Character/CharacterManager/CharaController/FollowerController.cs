@@ -68,14 +68,16 @@ public class FollowerController : MonoBehaviour
             float distance = Vector3.Distance(_operator.transform.position, _follower.transform.position);
             _distance = distance - _distanceFromOperator;
             float speed;
-            if(_distance > 0.3)
+            if(_distance > 0.01)
             {
                 speed = 1f;
             }
-            else if(_distance > 0.1f)
+            /*
+            else if(_distance > 0.03f)
             {
                 speed = 0.5f;
             }
+            */
             else
             {
                 speed = 0;
