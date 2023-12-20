@@ -95,7 +95,10 @@ namespace Character
                 return false;
             return _playerMap["Change"].WasPressedThisFrame();
         }
-        
+        /// <summary>
+        /// アイテム選択ボタン入力判定
+        /// </summary>
+        /// <returns></returns>
         public float ItemSelectMove()
         {
             if (_playerMap != _input.currentActionMap)
@@ -103,12 +106,20 @@ namespace Character
             Vector2 vecter = _playerMap["ItemSelectMove"].ReadValue<Vector2>();
             return vecter.y;
         }
+        /// <summary>
+        /// アイテム使用ボタン入力判定
+        /// </summary>
+        /// <returns></returns>
         public bool ItemUse()
         {
             if (_playerMap != _input.currentActionMap)
                 return false;
             return _playerMap["ItemUse"].WasPressedThisFrame();
         }
+        /// <summary>
+        /// アイテム交換ボタン入力判定
+        /// </summary>
+        /// <returns></returns>
         public bool ItemSwap()
         {
             if (_playerMap != _input.currentActionMap)
