@@ -74,13 +74,12 @@ namespace Character
             {
                 if (_input.IsGimmickAction())
                 {
-                    if (_operater.CurrentCharacter != this.gameObject) return;
+                    //if (_operater.CurrentCharacter != this.gameObject) return; // いらない
                     if (IsSameState(_operater.StateMachine.GimmickState)) return;
                     //HACK: GimmickControllerを渡してからステートを変更しないと、OnStartが呼ばれないと思います
                     other.transform.parent.TryGetComponent(out _operater.GimmickController);
                     _operater.StateMachine.GimmickState.GetCollider(other);
                     _operater.StateMachine.Transition(_operater.StateMachine.GimmickState).Forget();
-                    
                 }
             }
             /*

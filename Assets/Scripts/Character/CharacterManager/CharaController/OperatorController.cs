@@ -26,6 +26,10 @@ namespace Character
         public GimmickController GimmickController;
         public GameObject CurrentCharacter { get => _currentCharacter; }
         public CharacterTurnAround CharacterTurnAround { get => _characterTurnAround; private set => _characterTurnAround = value; }
+        
+        public Animator PlayerAnimator{ get => _playerAnimator; private set => _playerAnimator = value; }
+
+        [SerializeField] private Animator _playerAnimator;
 
         /// <summary>
         /// ‘€ìcharacter‚Ì•ÏX

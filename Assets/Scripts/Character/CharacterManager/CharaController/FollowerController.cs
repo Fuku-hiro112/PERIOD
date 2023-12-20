@@ -35,6 +35,10 @@ public class FollowerController : MonoBehaviour
     public CharacterTurnAround CharacterTurnAround { get => _characterTurnAround; private set => _characterTurnAround = value; }
     public bool IsFollow { get => _isFollow; private set => _isFollow = value; }
 
+    public Animator PlayerAnimator { get => _playerAnimator; private set => _playerAnimator = value; }
+
+    private Animator _playerAnimator;
+
     public void Follow(bool isFollow)
     {
         IsFollow = isFollow;

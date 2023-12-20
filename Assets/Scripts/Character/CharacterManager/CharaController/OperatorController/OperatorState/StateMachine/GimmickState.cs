@@ -37,7 +37,11 @@ namespace Character.OperaterState
                 _cursor.OnStart(_operator.GimmickController.GimmickID);
                 _operator.GimmickController.OnStart();
             }
-            Debug.Log("操作権限がございません");
+            else
+            {
+                Debug.Log("操作権限がございません");
+                _operator.StateMachine.Transition(_operator.StateMachine.IdleState).Forget();
+            }
         }
         /// <summary>
         /// フレーム単位で実行される、新しい状態に移行するための条件も書く
@@ -59,10 +63,10 @@ namespace Character.OperaterState
         /// </summary>
         public async UniTask HandleEnd() 
         {
-            _operator.IsAction = false;
+            if (!_operator.IsAction) return; 
             _operator.GimmickController.OnEnd();
-            // TODO: 現在接触している、または使用したotherをどこかから持ってくる
             await _dataBase.HandleActionAsync(_other);
+            _operator.IsAction = false;
             _other = null;
         }
 
