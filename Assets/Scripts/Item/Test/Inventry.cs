@@ -26,9 +26,9 @@ namespace Item
         /// アイテム追加
         /// </summary>
         /// <param name="itemID">追加したいアイテムIDを渡す</param>
-        public void Add(int itemID)
+        public void Add(int index, int itemID)
         {
-            ItemIDs.Add(itemID);
+            ItemIDs[index] = itemID;
             InventryUI.UpdateUI();
         }
         /// <summary>

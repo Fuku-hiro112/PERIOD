@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Item;
 using UnityEngine;
-using Item;
 
 namespace Character
 {
@@ -16,6 +15,9 @@ namespace Character
         private OperatorController _operater;
         private IOperatorInput _input;
         ISearcher _gimmickSearch;
+        [SerializeField] GameObject _boy;
+        [SerializeField] GameObject _engineer;
+        
 
         public bool _isBoy = false;
 
@@ -27,6 +29,7 @@ namespace Character
 
         private void Start()
         {
+
             
         }
         
@@ -95,10 +98,23 @@ namespace Character
                 //TODO: そのオブジェクトの「アイテムを拾う処理」を呼んでアイテムを取得する
                 other.gameObject.GetComponent<AvailableItem>()?.PickUp();
             }
+           
         }
         private void OnTriggerStay(Collider other)
         {
             Action(other).Forget();
+
+            if (other.gameObject.CompareTag("Action"))
+            {
+                if (_input.IsGimmickAction())
+                {
+                    ActionBase actionBase;
+                    other.TryGetComponent(out actionBase);
+                    Transform[] transforms = new Transform[2] { _boy.transform, _engineer.transform };
+                    Animator[] animators = new Animator[2] { _boy.GetComponent<Animator>(), _engineer.GetComponent<Animator>() };
+                    actionBase.Action(transforms, animators).Forget();
+                }
+            }
         }
         async UniTaskVoid Action(Collider other)
         {  
@@ -106,21 +122,18 @@ namespace Character
             {
                 if (_input.IsGimmickAction())
                 {
-                    if (_operater.CurrentCharacter != this.gameObject) return;
+                    // if (_operater.CurrentCharacter != this.gameObject) return;
                     if (IsSameState(_operater.StateMachine.GimmickState)) return;
                     //HACK: GimmickControllerを渡してからステートを変更しないと、OnStartが呼ばれないと思います
                     other.transform.parent.TryGetComponent(out _operater.GimmickController);
                     _operater.StateMachine.GimmickState.GetCollider(other);
                     _operater.StateMachine.Transition(_operater.StateMachine.GimmickState).Forget();
-                    _operater.StateMachine.Transition(_operater.StateMachine.IdleState).Forget();
+                    //_operater.StateMachine.Transition(_operater.StateMachine.IdleState).Forget();
                 }
             }
-            /*
-            if (other.gameObject.CompareTag(""))
-            {
-
-            }
-            */
+            
+            
+            
         }
         private void OnTriggerExit(Collider other)
         {

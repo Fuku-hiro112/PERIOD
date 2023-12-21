@@ -19,5 +19,8 @@ namespace Character
         public bool IsGimmickAction();
         public bool IsChange();
         public UniTaskVoid Vibration();
+        public float ItemSelectMove();
+        public bool ItemUse();
+        public bool ItemSwap();
     }
 }

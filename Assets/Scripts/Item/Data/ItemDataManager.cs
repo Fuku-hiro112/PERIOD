@@ -10,6 +10,8 @@ namespace Item
     {
         [SerializeField]
         private ItemDataBase _dataBase;
+        [SerializeField]
+        Sprite _nullSprite;
 
         private ItemSourceDataBase[] _data { get => _dataBase.ItemSourceDataBases; }
 
@@ -51,7 +53,16 @@ namespace Item
         /// IDと一致するアイテム画像を返す
         /// </summary>
         /// <param name="id">アイテムID</param>
-        public Sprite SearchSprite(int id) => SearchData<ItemSourceDataBase>(id)?.Sprite;
+        public Sprite SearchSprite(int id){
+    if (SearchData<ItemSourceDataBase>(id) != null)
+    {
+        return SearchData<ItemSourceDataBase>(id).Sprite;
+    }
+    else
+    {
+        return _nullSprite;
+    }
+}
         /// <summary>
         /// IDと一致する設置オブジェクトを返す
         /// </summary>

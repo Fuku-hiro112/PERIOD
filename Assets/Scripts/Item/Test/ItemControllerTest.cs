@@ -14,7 +14,7 @@ namespace Item
         /// </summary>
         public void ObtainItem(Inventry inventroy)
         {
-            inventroy.Add(_itemID);
+            inventroy.Add(0, _itemID);
         }
     }
 }

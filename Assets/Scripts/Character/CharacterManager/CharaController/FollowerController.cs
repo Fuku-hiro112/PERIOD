@@ -85,7 +85,12 @@ public class FollowerController : MonoBehaviour
             _playerAnimator.SetFloat("Speed", speed);
           
         }
-        
+        else
+            _playerAnimator.SetFloat("Speed", 0);
+
+
+
+
     }
 
     /// <summary>

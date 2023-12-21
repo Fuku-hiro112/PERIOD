@@ -21,7 +21,7 @@ namespace Gimmick
             GameObject gimmick = other.transform.parent.gameObject;
             other.gameObject.SetActive(false);
             _transform = gimmick.transform;
-            _movement = new Vector3(2,0,0);
+            _movement = new Vector3(4,0,0);
             Vector3 pos = _transform.position;
             _movement += pos;
             await _transform.DOLocalMove(_movement,_time).WithCancellation(_token.Token);

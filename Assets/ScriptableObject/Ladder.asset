@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Ladder
   m_EditorClassIdentifier: 
   _id: 3
-  _start: {fileID: 5654064638198099698, guid: 43cd91ead110646439e5c5f9aaa795b8, type: 3}
+  _start: {fileID: 4973408960758190621, guid: d45071824c0c9694198ea21f51094757, type: 3}
+  _character: {fileID: 0}
   _prefab: {fileID: 5328213367441896709, guid: 1b4ccef8deed8e346a02cb4c96d402d6, type: 3}
-  _movePos: {x: 0, y: 2, z: 40}
+  _movePos: {x: 3.0915074, y: 1.9641137, z: 45.77568}
   _high: 2
+  _moveSpeedOrigin: 0.7
+  _animationName: Climbing

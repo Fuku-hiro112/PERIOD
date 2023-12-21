@@ -1,6 +1,8 @@
+using Character;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using Character;
 
 public class MoveAction : ActionBase
 {
@@ -11,24 +13,27 @@ public class MoveAction : ActionBase
     [SerializeField]
     private bool _isFollow = true;// trueは１にfalseは０に
     [SerializeField]
-    private string _boolAnimatorParameter = default;
+    private string _boolAnimatorParameter = "Crawling";
+    private CharacterManager _characterManager;
 
     private const string c_layerNameChara = "Character";
     private const string c_layerNameAction = "Action";
 
     int _charaLayer, _actionLayer;// Startで初期化必須
 
+
     protected override void OnStart()
     {
         _charaLayer = LayerMask.NameToLayer(c_layerNameChara);
         _actionLayer = LayerMask.NameToLayer(c_layerNameAction);
+        GameObject.FindGameObjectWithTag("CharacterManager").TryGetComponent(out _characterManager);
     }
 
     public async override UniTask Action(Transform[] charas, Animator[] animator) 
     {
         //CharaとActionレイヤーの当たり判定を無視する　MEMO:これがついてるオブジェクトの当たり判定OFFにすればいいのでは？
         Physics.IgnoreLayerCollision(_charaLayer, _actionLayer, true);// 
-
+        if (!_isFollow) _characterManager._isFollow = !_characterManager._isFollow;
         //TODO: アニメーション開始
         int index = _isFollow ? 1 : 0;// 追従するかをキャストしfotループのインデックスに組み込む
         //TODO: Charaが移動
@@ -51,7 +56,8 @@ public class MoveAction : ActionBase
     private async UniTaskVoid Move(Transform chara,Animator animator)
     {
         animator.SetBool(_boolAnimatorParameter, true);//TODO: ""の中を書く アニメーション開始
-        await chara.DOLocalMove(_moveValue, _moveSpeed).WithCancellation(Token);// 移動
+        Vector3 pos = chara.position;
+        await chara.DOLocalMove(pos + _moveValue, _moveSpeed).WithCancellation(Token);// 移動
         animator.SetBool(_boolAnimatorParameter, false);//TODO: ""の中を書く　アニメーション終了
     }
 }

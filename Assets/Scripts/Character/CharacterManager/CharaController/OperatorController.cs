@@ -26,6 +26,7 @@ namespace Character
         public GimmickController GimmickController;
         public GameObject CurrentCharacter { get => _currentCharacter; }
         public CharacterTurnAround CharacterTurnAround { get => _characterTurnAround; private set => _characterTurnAround = value; }
+        public Animator PlayerAnimator { get => _playerAnimator; private set => _playerAnimator = value; }
 
         // å„Ç…ç∑Çµë÷Ç¶
         [SerializeField] Animator _boyAnimator;
@@ -82,6 +83,11 @@ namespace Character
                    _playerAnimator.SetFloat("Speed", Mathf.Abs(_iOperatorInput.MovementValue.z));
                 
               
+            }
+            else
+            {
+                _playerAnimator.SetFloat("Speed", 0);
+                _characterMove.Movement(_iOperatorInput.MovementValue, 0f);
             }
 
             _stateMachine.OnUpdate();

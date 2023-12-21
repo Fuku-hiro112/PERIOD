@@ -13,6 +13,7 @@ TagManager:
   - Action
   - Ground
   - DeadZone
+  - CharacterManager
   layers:
   - Default
   - TransparentFX

@@ -27,7 +27,7 @@ namespace Character
         // ¶‘¶”»’è
         [SerializeField] private bool _engineerIsDead = false;
         [SerializeField] private bool _boyIsDead = false;
-        [SerializeField] private bool _isFollow = true;
+        [SerializeField] public bool _isFollow = true;
 
 
         public GameObject Operator { get => _operator; private set => _operator = value; }

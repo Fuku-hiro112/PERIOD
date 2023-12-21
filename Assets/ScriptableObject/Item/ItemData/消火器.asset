@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   _name: "\u6D88\u706B\u5668"
-  _sprite: {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
-  _effectValue: 0
+  _sprite: {fileID: 21300000, guid: 98c0d0767d5ce7248b930fc8a6bac6bc, type: 3}
+  _effectValue: 5

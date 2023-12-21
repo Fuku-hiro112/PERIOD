@@ -28,7 +28,8 @@ public class InventrySelecter : MonoBehaviour
             SelectInventryItem(_inventryManager.BoyInventroy);
             if (CharacterManager.OperatorInput.ItemUse())// アイテム使用ボタンが押された
             {
-                _inventryManager.UseItem(_inventryManager.BoyInventroy.InventryUI.CurrentIndex);
+                //  _inventryManager.UseItem(_inventryManager.BoyInventroy.InventryUI.CurrentIndex);
+                _inventryManager.UseItem(_inventryManager.BoyInventroy,0);
             }
             if (CharacterManager.OperatorInput.ItemSwap())// 交換ボタンが押された
             {

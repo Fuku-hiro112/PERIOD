@@ -30,14 +30,18 @@ namespace Character.OperaterState
             int gimmickID = _other.transform.parent.gameObject.GetComponent<GimmickController>().GimmickID;
             _dataBase = GimmickDataManager.s_Instance.SearchData(gimmickID);
             string characterName =_dataBase.AvailableCharacterName;
-            
+
             if (characterName == "" || _operator.CurrentCharacter.name == characterName)// ""の場合は共通処理
             {
                 _operator.IsAction = true;
                 _cursor.OnStart(_operator.GimmickController.GimmickID);
                 _operator.GimmickController.OnStart();
             }
-            Debug.Log("操作権限がございません");
+            else
+            {
+                _operator.StateMachine.Transition(_operator.StateMachine.IdleState).Forget();
+                Debug.Log("操作権限がございません");
+            }
         }
         /// <summary>
         /// フレーム単位で実行される、新しい状態に移行するための条件も書く
@@ -59,10 +63,11 @@ namespace Character.OperaterState
         /// </summary>
         public async UniTask HandleEnd() 
         {
-            _operator.IsAction = false;
+            if (!_operator.IsAction) return;
             _operator.GimmickController.OnEnd();
             // TODO: 現在接触している、または使用したotherをどこかから持ってくる
             await _dataBase.HandleActionAsync(_other);
+            _operator.IsAction = false;
             _other = null;
         }
 

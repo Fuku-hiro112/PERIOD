@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using DG.Tweening;
-
+using UnityEngine.Rendering.PostProcessing;
 
 /// <summary>
 /// デッドゾーンによる画面の変化を纏めたクラス

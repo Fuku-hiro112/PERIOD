@@ -26,7 +26,7 @@ namespace Item
                 s_Instance = this;
             }
         }
-        
+
         public void TestItemSwap()
         {
             //boyIndexとenginnerIndexのアイテムを交換
@@ -54,9 +54,10 @@ namespace Item
             EngineerInventroy.InventryUI.UpdateUI();
             BoyInventroy.InventryUI.UpdateUI();
         }
-        public void UseItem(int boyIndex)
+        public void UseItem(Inventry inventry,int index)
         {
-            ItemDataManager.s_Instance.SearchProsess(0).Forget();//TODO: Prosessの引数をアイテムIDに変える
+            ItemDataManager.s_Instance.SearchProsess(inventry.ItemIDs[index]).Forget();//TODO: Prosessの引数をアイテムIDに変える
+            inventry.Remove(inventry.ItemIDs[index]);
         }
         //HACK: このままだとInventryの関数の意味がなくなってしまうので改良が必要
         /// <summary>
@@ -66,8 +67,11 @@ namespace Item
         /// <returns>インベントリに空きがあったらTrue</returns>
         public bool IsAddItem(int itemID)
         {
-            if      (IsSpaceInventory(_boyInventroy))      _boyInventroy.Add(itemID);
-            else if (IsSpaceInventory(_engineerInventroy)) _engineerInventroy.Add(itemID);
+            (bool IsSpaceBoy, int indexBoy) = IsSpaceInventory(_boyInventroy);
+            (bool IsSpaceEngineer, int indexEngineer) = IsSpaceInventory(EngineerInventroy);
+
+            if (IsSpaceBoy) _boyInventroy.Add(indexBoy, itemID);
+            else if (IsSpaceEngineer) _engineerInventroy.Add(indexEngineer, itemID);
             else return false;
 
             return true;
@@ -78,17 +82,17 @@ namespace Item
         /// </summary>
         /// <param name="inventroy">どのインベントリを調べるか</param>
         /// <returns>スペースがあったらtrue</returns>
-        private bool IsSpaceInventory(Inventry inventroy)
+        private (bool, int) IsSpaceInventory(Inventry inventroy)
         {
             for (int i = 0; i < inventroy.ItemIDs.Count; i++)
             {
                 // 空きがあれば
-                if (inventroy.ItemIDs[i] != s_NullID)
+                if (inventroy.ItemIDs[i] == s_NullID)
                 {
-                    return true;
+                    return (true, i);
                 }
             }
-            return false;
+            return (false, -1);
         }
     }
 }

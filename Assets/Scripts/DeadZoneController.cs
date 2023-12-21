@@ -44,7 +44,8 @@ public class DeadZoneController : MonoBehaviour
         _velocity = Vector3.ClampMagnitude(_velocity, _maxSpeed);
 
         // デッドゾーンを進ませる
-        transform.position = transform.position + _velocity * Time.deltaTime;
+        transform.position +=  _velocity * Time.deltaTime;
+        
     }
 
 
